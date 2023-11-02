@@ -9,7 +9,15 @@
 #include <assert.h>
 
 #define NUM_THREADS 2
-#define RAND_LIMIT 50
+#define RAND_LIMIT 20
+
+#ifdef DEBUG
+    #define logf(...) printf( __VA_ARGS__)
+    #define logmpz(...) gmp_printf( __VA_ARGS__);
+#else
+    #define logf(...) 
+    #define logmpz(...) 
+#endif
 
 gmp_randstate_t state;
 
@@ -24,6 +32,8 @@ unsigned int message_sig = -1;
 int pipefd[2];
 
 FILE *fp;
+
+#define Verbose true
 
 typedef struct ClientFuncArgs
 {
@@ -45,10 +55,7 @@ typedef struct ClientFuncArgs
  */
 void calculate_public_key(mpz_t public_key, mpz_t generator, mpz_t private_number, mpz_t prime_number){
     mpz_init(public_key);
-
-    mpz_t gen; mpz_init_set(gen, generator);
-
-    mpz_powm(public_key, gen, private_number, prime_number);
+    mpz_powm(public_key, generator, private_number, prime_number);
 }
 
 /*
@@ -61,14 +68,8 @@ void calculate_public_key(mpz_t public_key, mpz_t generator, mpz_t private_numbe
  */
 void calculate_secret_key(mpz_t secret_key, mpz_t public_key, mpz_t private_key, mpz_t prime_number){
     mpz_init(secret_key);
-
-    gmp_printf  ("Public key: %Zd\n", public_key);
-    gmp_printf  ("Private key: %Zd\n", private_key);
-    gmp_printf  ("Prime number: %Zd\n", prime_number);
-    
+   
     mpz_powm(secret_key, public_key, private_key, prime_number);
-
-    gmp_printf("Secret key: %Zd\n", secret_key);
 }
 
 /*
@@ -101,16 +102,19 @@ void *WriterFunc(void* args){
         pthread_cond_wait(&MESSAGE_READ, &WRITING_MESSAGE);
     }
     
-
     mpz_t public_key; calculate_public_key(public_key, *generator, *data->private_number, *prime_number);
     char public_key_str[100]; mpz_get_str(public_key_str, 2, public_key);
 
-    printf("\t\t%u sent public key: %s\n", parent, public_key_str);
+    logf("\t\t%u sent public key: %s\n", parent, public_key_str);
 
     write(pipefd[1], public_key_str, 100);
     message_sig = parent;
 
     messages_pending++;
+
+    if(fp != NULL){
+        fprintf(fp, "%s, ", public_key_str);
+    }
 
     pthread_cond_broadcast(&MESSAGE_SENT);
     pthread_mutex_unlock(&WRITING_MESSAGE);
@@ -135,7 +139,7 @@ void *ReaderFunc(void* args){
     char *client_key = (char *)malloc(key_size*sizeof(char));
 
     read(pipefd[0], client_key, key_size);
-    printf("\t\t%u Received public key: %s\n",parent, client_key);
+    logf("\t\t%u Received public key: %s\n",parent, client_key);
     
     --messages_pending;
     message_sig = parent;
@@ -150,12 +154,9 @@ void *Comm_Init(void* args){
     unsigned int pid = pthread_self();
     fdata_t *data = (fdata_t *)args;
 
+    void *vptr_return;
+
     data->parent = pid;
-
-    mpz_t private_number; mpz_init(private_number);
-    mpz_urandomm(private_number, state, *data->prime_number);
-
-    data->private_number = &private_number;
 
     pthread_t Writer, Reader;
     if(pthread_create(&Writer, NULL, WriterFunc, (void*)data) != 0){ 
@@ -167,21 +168,19 @@ void *Comm_Init(void* args){
         exit(1);
     }
 
-    void *vptr_return;
-    printf("all is well here\n");
-    mpz_t public_key; mpz_init(public_key); mpz_set_str(public_key, (char *)vptr_return, 10);
-    printf("all is well here as well\n");
-    mpz_t secret_key; mpz_init(secret_key);
-    printf("we are out\n");
-
     pthread_join(Reader, &vptr_return);
     pthread_join(Writer, NULL);
 
+    mpz_t public_key; mpz_init(public_key); mpz_set_str(public_key, (char *)vptr_return, 10);
+    mpz_t *secret_key; secret_key = (mpz_t*)malloc(sizeof(mpz_t));
 
+    calculate_secret_key(*secret_key, public_key, *data->private_number, *data->prime_number);
+    
+    #ifdef VERBOSE
+        gmp_printf("Secret key for thread[%u]: %Zd\n",pid, *secret_key);
+    #endif
 
-    gmp_printf("Public key: %Zd\n", public_key);
-
-    calculate_secret_key(secret_key, public_key, *data->private_number, *data->prime_number);
+    pthread_exit(secret_key);
 }
 
 
@@ -194,44 +193,24 @@ int main( int argc, char *argv[]) {
 
     for (int i = 1; i < argc; i++ ){
         char* arg = argv[i];
-        
-        printf("arg: [%s]\n", arg);
 
         if (strcmp(arg, "-o") == 0){
-
-            printf("it thinks its -o");
-
-            fp = fopen(argv[++i], "w");
+            fp = fopen(argv[++i], "a");
             if (fp == NULL){
                 printf("Error opening file\n");
                 exit(1);
             }
             w = 1;
-
         } else if (strcmp(arg, "-p") == 0){
-
-            printf("it thinks its -p\n");
-
             assert (i+1 <= argc && "Missing argument for -p");
             p = ++i;
-            printf("p: %s\n", argv[p]);
-        } else if (strcmp(arg, "-g\n") == 0){
-
-            printf("it thinks its -g");
-
+        } else if (strcmp(arg, "-g") == 0){
             assert (i+1 <= argc && "Missing argument for -g");
             g = ++i;
-            printf("g: %s\n", argv[g]);
-        } else if (strcmp(arg, "-a\n") == 0){
-
-            printf("it thinks its -a");
-
+        } else if (strcmp(arg, "-a") == 0){
             assert (i+1 <= argc && "Missing argument for -a");
             a = ++i;
         } else if (strcmp(arg, "-b") == 0){
-
-            printf("it thinks its -b\n");
-
             assert (i+1 <= argc && "Missing argument for -b");
             b = ++i;
         } else if (strcmp(arg, "-h") == 0){
@@ -240,7 +219,6 @@ int main( int argc, char *argv[]) {
             printf("Invalid argument: %s\n", arg);
             exit(1);
         }
-       
     }
 
     mpz_t prime_number; mpz_init(prime_number);
@@ -252,7 +230,8 @@ int main( int argc, char *argv[]) {
 
     mpz_t rand_limit; mpz_init_set_ui(rand_limit, RAND_LIMIT);
 
-    /* Generate Generator */
+
+    /* Generate Generator           */
     mpz_t generator; mpz_init(generator); 
     if (g == 0){
         mpz_urandomm(generator, state, rand_limit-1);
@@ -260,34 +239,84 @@ int main( int argc, char *argv[]) {
     } else {
         mpz_set_str(generator, argv[g], 10);
     }
-    
 
+    mpz_t private_number; mpz_init(private_number);
 
+    /*  Init arguments for Thread */
     fdata_t *ClientArgs = (fdata_t *)malloc(sizeof(fdata_t));
     ClientArgs->prime_number = &prime_number;
     ClientArgs->generator = &generator;
     ClientArgs->name = "Client";
     ClientArgs->parent = pthread_self();
 
+    /*  Set _Alices_ private key    */
+    if(a > 0 ){
+        mpz_set_str(private_number, argv[a], 10);
+    }
+    mpz_urandomm(private_number, state, prime_number);
+    ClientArgs->private_number = &private_number;
+    
+    
+    /*  Init arguments for Thread */
     fdata_t *HostArgs = (fdata_t *)malloc(sizeof(fdata_t));
     HostArgs->prime_number = &prime_number;
     HostArgs->generator = &generator;
     HostArgs->name = "Host";
     HostArgs->parent = pthread_self();
+    
+    /*  Set _bobs_ private key  */
+    if(b > 0 ){
+        mpz_set_str(private_number, argv[a], 10);
+    }
+    mpz_urandomm(private_number, state, prime_number);
+    HostArgs->private_number = &private_number;
+    /*  DEBUG PRINT             */
+    logmpz("Prime number: %Zd\n", prime_number);
+    logmpz("Generator: %Zd\n", generator);
 
-    gmp_printf("Prime number: %Zd\n", prime_number);
-    gmp_printf("Generator: %Zd\n\n", generator);
 
-    if(pipe(pipefd) < 0) exit(1);
+    if(pipe(pipefd) < 0) exit(1);                                                               // Create pipe
 
-    pthread_t client_thread, host_thread;
+    pthread_t client_thread, host_thread;                                                       // Threads                               
+    void *vptr_host_return, *vptr_client_return;                                                // Return values from threads
+
+    /* Create Threads           */
 
     pthread_create(&client_thread, NULL, Comm_Init, (void*)ClientArgs);
     pthread_create(&host_thread, NULL, Comm_Init, (void *)HostArgs);
     
-    pthread_join(host_thread, NULL);
-    pthread_join(client_thread, NULL);
+    /* Wait for communication   */
+
+    pthread_join(host_thread, &vptr_host_return);
+    pthread_join(client_thread, &vptr_client_return);
+
+    /* Cleaning Up              */
 
     close(pipefd[0]);
     close(pipefd[1]);
+
+    free(ClientArgs);
+    free(HostArgs);
+
+    mpz_clears(prime_number,generator, private_number, rand_limit, NULL);
+
+    /*  Compare keys            */
+    mpz_t host_key; mpz_init(host_key); mpz_set(host_key, vptr_host_return);
+    mpz_t client_key; mpz_init(client_key); mpz_set(client_key, vptr_client_return);
+
+    int result = mpz_cmp(host_key, client_key);
+    if (fp != NULL && result == 0){
+        gmp_fprintf(fp, "%Zd\n", host_key);
+        fclose(fp);
+    }
+    mpz_clears(host_key, client_key, NULL);
+
+    if (result == 0){
+            printf("Keys match\n");
+            
+        return 0;
+    } else {
+            printf("Keys do not match\n");
+        return -1;
+    }
 }
