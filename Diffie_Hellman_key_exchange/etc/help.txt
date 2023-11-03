@@ -1,0 +1,73 @@
+################################################################
+#   WELCOME TO THE BEST DH PROGRAM EVER TO GRACE THE EARTH     #
+#                                                              #
+#          By Ηλίας Γεωργακόπουλος & Μάριος Κρητικάκης         #
+################################################################
+
+This program runs the Diffie-Hellman key exchange algorithm. To 
+simulate true Client-Host communication each "person" runs on a 
+seperate thread.
+After the key exchange takes place, each thread reports its key 
+back to the main() which compares and shows whether they match 
+or not returning 0 for a positive match and -1 for a negative.
+
+=========================================================
+=                      Compilation                      =
+=========================================================
+
+    When compiled the program can take the following flags
+        -DDEBUG : Prints statements about each thread and its 
+                state to the console. 
+        -DVERBOSE   : Prints the various variables used in the
+                    algorithm to the console.
+
+    The program is compiled with the following command:
+        gcc -o dh_assign_1 Diffie_Hellman_Key_Exchange.c -lgmp 
+            -lpthread -g -DVERBOSE -DDEBUG
+
+    Alternatively, the program can also be compiled through
+    the makefile with the following command:
+        make
+
+=========================================================
+=                       Execution                       =
+=========================================================
+
+    The program is run with the following command:
+    ./dh [-o filename] [-p prime] [-g base] [-a host_key] [-b client_key]
+
+    Options:
+        -o      :   Write the output to the specified file.
+        -p      :   Use the specified prime number
+        -g      :   Use the specified base number
+        -a      :   Use the specified private host key
+        -b      :   Use the specified private client key
+
+    if any of {-o,-p,-g,-a,-b} is ommited, the program will 
+    select a random number for that option.
+
+    Exit Status:
+        0       :   When the two keys match
+        -1      :   When the two keys do not match
+
+    Example: (compiled with DVERBOSE flag)
+        ./dh_assign_1 -p 23 -g 5 -a 6 -b 15
+
+    The program will then print the following to the console:
+        Selected prime number 23
+        Selected base number 5
+        Selected host private number 6
+        Selected client private number 6
+        [{3272578816} | Client sent public key: 8]
+        [{3264186112} | Host Received public key: 8]
+        [{3264186112} | Host sent public key: 8]
+        [{3272578816} | Client Received public key: 8]
+        Secret key for thread[3264186112]: 13
+        Secret key for thread[3272578816]: 13
+Keys match
+
+    If the program is compiled without the -DDEBUG flag it will
+    not print the statements about each thread and its state.
+
+    If the program is compiled without the -DVERBOSE flag it will
+    not print the various variables used in the algorithm.
