@@ -22,7 +22,7 @@ or not returning 0 for a positive match and -1 for a negative.
                     algorithm to the console.
 
     The program is compiled with the following command:
-        gcc -o dh_assign_1 Diffie_Hellman_Key_Exchange.c -lgmp 
+        gcc -o dh_assign_1 DH_Key_exchange.c -lgmp 
             -lpthread -g -DVERBOSE -DDEBUG
 
     Alternatively, the program can also be compiled through
