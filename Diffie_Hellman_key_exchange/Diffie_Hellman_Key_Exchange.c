@@ -30,19 +30,25 @@
 
 gmp_randstate_t state;
 
+/* Mutex decleration */
 pthread_mutex_t WRITING_MESSAGE = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t READING_MESSAGE = PTHREAD_MUTEX_INITIALIZER;
+/* Condvar decleration */
 pthread_cond_t MESSAGE_SENT = PTHREAD_COND_INITIALIZER;
 pthread_cond_t MESSAGE_READ = PTHREAD_COND_INITIALIZER;
 
 unsigned int messages_pending = 0;
 unsigned int message_sig = -1;
 
+/*  Pipe where communication happens */
 int pipefd[2];
 
+/* File where output is written to  */
 FILE *fp;
 
-typedef struct ClientFuncArgs
+/* Arguments for the WriterFunc 
+    and the Reader Func             */
+typedef struct comm_op_args
 {
     mpz_t* prime_number;
     mpz_t* generator;
@@ -92,7 +98,7 @@ void generate_prime_number(mpz_t prime_number){
     mpz_init(prime_number);
 
     gmp_randinit_mt(state);
-    gmp_randseed_ui(state, time(NULL)+pthread_self());
+    gmp_randseed_ui(state, time(NULL)+pthread_self()+1);
     mpz_urandomb(prime_number, state, RAND_LIMIT);
     do{    
         mpz_nextprime (prime_number, prime_number);
@@ -104,7 +110,6 @@ void generate_prime_number(mpz_t prime_number){
 *
 * @param args : Arguments are pass in the form of a (void *) pointer to 
 *               a struct of type (fdata_t).
-* @struct fdata_t
 */
 void *WriterFunc(void* args){
     fdata_t* data = (fdata_t*)args;
@@ -124,7 +129,7 @@ void *WriterFunc(void* args){
         gettimeofday(&tv, NULL);
 
         ts.tv_sec = tv.tv_sec;
-        ts.tv_nsec = tv.tv_usec * 1000 + 100;
+        ts.tv_nsec = tv.tv_usec * 1000 + 500;
         pthread_cond_timedwait(&MESSAGE_READ, &WRITING_MESSAGE, &ts);
     }
 
@@ -151,6 +156,12 @@ void *WriterFunc(void* args){
     return NULL;
 }
 
+/*
+* This function runs on a thread and is responsible for reading data.
+*
+* @param args : Arguments are pass in the form of a (void *) pointer to 
+*               a struct of type (fdata_t).
+*/
 void *ReaderFunc(void* args){
     int key_size = 100;
 
@@ -189,6 +200,11 @@ void *ReaderFunc(void* args){
     pthread_exit(client_key);
 }
 
+/**
+ * 
+ * 
+ * 
+*/
 void *Comm_Init(void* args){
     unsigned int pid = pthread_self();
     fdata_t *data = (fdata_t *)args;
@@ -282,8 +298,8 @@ int main( int argc, char *argv[]) {
     /* Init base number */
     mpz_t generator; mpz_init(generator); 
     if (g == 0){
-        gmp_randseed_ui(state,time(NULL)+pthread_self());
-        mpz_urandomm(generator, state, rand_limit-1);
+        gmp_randseed_ui(state,time(NULL)+pthread_self()+1);
+        mpz_urandomm(generator, state, rand_limit-2);
         mpz_add_ui(generator, generator, 1); 
         logmpzv("\tGenerated base number %Zd\n", generator);
     } else {
@@ -308,7 +324,8 @@ int main( int argc, char *argv[]) {
         logmpzv("\tSelected host private number %Zd\n", host_private_number)
     }else{
         gmp_randseed_ui(state, time(NULL)+a+1);
-        mpz_urandomm(host_private_number, state, prime_number);
+        mpz_urandomm(host_private_number, state, prime_number -1);
+        mpz_add_ui(host_private_number,host_private_number, 1);
         logmpzv("\tGenerated host private number %Zd\n", host_private_number)
     }
     HostArgs->private_number = &host_private_number;
@@ -326,7 +343,8 @@ int main( int argc, char *argv[]) {
         logmpzv("\tSelected client private number %Zd\n", client_private_number)
     } else {
         gmp_randseed_ui(state, time(NULL)+b+2);
-        mpz_urandomm(client_private_number, state, prime_number);
+        mpz_urandomm(client_private_number, state, prime_number-1);
+        mpz_add_ui(host_private_number,host_private_number, 1);
         logmpzv("\tGenerated client private number %Zd\n", client_private_number)
     }
     ClientArgs->private_number = &client_private_number;

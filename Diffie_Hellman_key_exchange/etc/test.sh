@@ -11,7 +11,6 @@ do
 
   echo -n "$i "   
   ./../dh_assign_1 -o output.txt
-  sleep 0.001
   if [ $? -ne 0 ]; then
     echo "Failure"
     exit 1
