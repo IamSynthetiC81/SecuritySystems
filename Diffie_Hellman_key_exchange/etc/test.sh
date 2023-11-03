@@ -1,22 +1,21 @@
 #!/bin/bash
 
 # Compile DH with flags
-gcc ../Diffie_Hellman_Key_Exchange.c -o ../dh_assign_1 -lgmp -lpthread -g
+gcc ../DH_Key_exchange.c -o ../dh_assign_1 -lgmp -lpthread -g
 sleep 1
 # Wait for gcc to finish
 
-# Run DH 200 times
-for i in {1..1000}
+# Run DH 500 times without printing anything on the terminal
+for i in {1..500}
 do
-
-  echo -n "$i "   
-  ./../dh_assign_1 -o output.txt
+  ./../dh_assign_1 -o output.txt >/dev/null 2>&1
   if [ $? -ne 0 ]; then
-    echo "Failure"
+  echo "non-threaded test"
+  echo -ne '\n'
+    echo -e "${RED}FAIL${ENDCOLOR}"
     exit 1
   fi
 done
 
-echo "Success"
 
-
+echo -e "${GREEN}Success${ENDCOLOR}"
