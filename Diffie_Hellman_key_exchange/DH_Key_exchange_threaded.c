@@ -299,7 +299,7 @@ int main( int argc, char *argv[]) {
     mpz_t generator; mpz_init(generator); 
     if (g == 0){
         gmp_randseed_ui(state,time(NULL)+pthread_self()+1);
-        mpz_urandomm(generator, state, rand_limit-2);
+        mpz_urandomm(generator, state, rand_limit);
         mpz_add_ui(generator, generator, 1); 
         logmpzv("\tGenerated base number %Zd\n", generator);
     } else {
@@ -324,7 +324,7 @@ int main( int argc, char *argv[]) {
         logmpzv("\tSelected host private number %Zd\n", host_private_number)
     }else{
         gmp_randseed_ui(state, time(NULL)+a+1);
-        mpz_urandomm(host_private_number, state, prime_number -1);
+        mpz_urandomm(host_private_number, state, prime_number );
         mpz_add_ui(host_private_number,host_private_number, 1);
         logmpzv("\tGenerated host private number %Zd\n", host_private_number)
     }
@@ -343,7 +343,7 @@ int main( int argc, char *argv[]) {
         logmpzv("\tSelected client private number %Zd\n", client_private_number)
     } else {
         gmp_randseed_ui(state, time(NULL)+b+2);
-        mpz_urandomm(client_private_number, state, prime_number-1);
+        mpz_urandomm(client_private_number, state, prime_number);
         mpz_add_ui(host_private_number,host_private_number, 1);
         logmpzv("\tGenerated client private number %Zd\n", client_private_number)
     }

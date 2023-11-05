@@ -1,8 +1,10 @@
+all: dh_assign_1_threaded dh_assign_1 
 
-all: Diffie_Hellman_Key_Exchange
+dh_assign_1_threaded : DH_Key_exchange_threaded.c 
+	gcc DH_Key_exchange_threaded.c -o dh_assign_1_threaded -g -lgmp -lpthread -DDEBUG -DVERBOSE
 
-Diffie_Hellman_Key_Exchange: DF_Key_exchange_threaded.c
-	gcc -o dh_assign_1_threaded DF_Key_exchange_threaded.c -lgmp -lpthread -g -DVERBOSE -DDEBUG
-	gcc -o dh_assign_1 DF_Key_exchange.c -lgmp -g -DVERBOSE
+dh_assign_1 : DH_Key_exchange.c
+	gcc DH_Key_exchange.c -o dh_assign_1 -g -lgmp -lpthread -DDEBUG -DVERBOSE
 
-	dh_assign_1 -h
+clean:
+	rm -f dh_assign_1_threaded dh_assign_1
