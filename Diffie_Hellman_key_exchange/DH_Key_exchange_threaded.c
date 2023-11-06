@@ -9,8 +9,10 @@
 #include <assert.h>
 #include <sys/time.h>
 
-#define NUM_THREADS 2
-#define RAND_LIMIT 20
+#include "lib/DH.h"
+#include "lib/parser.h"
+
+#define BIT_CNT 64
 
 #ifdef DEBUG
     #define logf(...) printf( __VA_ARGS__)
@@ -46,8 +48,9 @@ int pipefd[2];
 /* File where output is written to  */
 FILE *fp;
 
-/* Arguments for the WriterFunc 
-    and the Reader Func             */
+/**
+ * This struct is used to pass arguments to the threads.
+*/
 typedef struct comm_op_args
 {
     mpz_t* prime_number;
@@ -57,59 +60,17 @@ typedef struct comm_op_args
     unsigned int parent;
 } fdata_t;
 
+mpz_t prime_number;
+mpz_t generator;
+mpz_t bit_count;
+mpz_t client_private_number; 
+mpz_t host_private_number;
 
-/*
- * This function calculates the public key
- * 
- * @param public_key : The public key to be generated. Declare the 
- *                      variable first, then pass it as an arg here.
- * @param generator: The generator used for the key exchange
- * @param private number: The private number used for the key exchange
- * @param prime number: The prime number used for the key exchange 
- */
-void calculate_public_key(mpz_t public_key, mpz_t generator, mpz_t private_number, mpz_t prime_number){
-    mpz_init(public_key);
-    mpz_powm(public_key, generator, private_number, prime_number);
-}
-
-/*
- * This function calculates the secret key
+/**
+ * This function runs on a thread and is responsible for sending data.
  *
- * @param secret key : The secret key to be calculated. Declare the 
- *                      variable first, than pass it as an arg here.
- * @param public key: The public key of the other user
- * @param private key: The private key of the current user
- * @param prime number: The prime number used for the key exchange
- * @return: The secret key
- */
-void calculate_secret_key(mpz_t secret_key, mpz_t public_key, mpz_t private_key, mpz_t prime_number){
-    mpz_init(secret_key);
-   
-    mpz_powm(secret_key, public_key, private_key, prime_number);
-}
-
-/*
- * This function generates a prime number between 0 and 2^PRIME_LIMIT
- *
- * @param prime_number : The prime number to be generated. Declare the
- *                          variable first, then pass it as an arg here.
- */
-void generate_prime_number(mpz_t prime_number){
-    mpz_init(prime_number);
-
-    gmp_randinit_mt(state);
-    gmp_randseed_ui(state, time(NULL)+pthread_self()+1);
-    mpz_urandomb(prime_number, state, RAND_LIMIT);
-    do{    
-        mpz_nextprime (prime_number, prime_number);
-    }while(mpz_probab_prime_p(prime_number, 25) == 0);
-}
-
-/*
-* This function runs on a thread and is responsible for sending data.
-*
-* @param args : Arguments are pass in the form of a (void *) pointer to 
-*               a struct of type (fdata_t).
+ * @param args : Arguments are pass in the form of a (void *) pointer to 
+ *               a struct of type (fdata_t).
 */
 void *WriterFunc(void* args){
     fdata_t* data = (fdata_t*)args;
@@ -141,7 +102,6 @@ void *WriterFunc(void* args){
     logv("\t[{%u} | %s sent public key: %s]\n", parent, data->name, public_key_str);
     write(pipefd[1], public_key_str, 100);
     
-   
     message_sig = parent;
     messages_pending++;
 
@@ -156,11 +116,11 @@ void *WriterFunc(void* args){
     return NULL;
 }
 
-/*
-* This function runs on a thread and is responsible for reading data.
-*
-* @param args : Arguments are pass in the form of a (void *) pointer to 
-*               a struct of type (fdata_t).
+/**
+ * This function runs on a thread and is responsible for reading data.
+ *
+ * @param args : Arguments are pass in the form of a (void *) pointer to 
+ *               a struct of type (fdata_t).
 */
 void *ReaderFunc(void* args){
     int key_size = 100;
@@ -201,9 +161,11 @@ void *ReaderFunc(void* args){
 }
 
 /**
+ * This function runs on a thread and is responsible for the communication between the two users.
  * 
- * 
- * 
+ * @param args : Arguments are passed in the form of a (void *) pointer to
+ *              a struct of type (fdata_t).
+ * @return : The secret key
 */
 void *Comm_Init(void* args){
     unsigned int pid = pthread_self();
@@ -237,78 +199,81 @@ void *Comm_Init(void* args){
     pthread_exit(secret_key);
 }
 
+void *WriteToFile(void *arg){
+    fp = fopen(arg, "a");
+    if (fp == NULL){
+        printf("Error opening file\n");
+        exit(1);
+    }
+}
+
+void *GeneratePrimeNumber(void *arg){
+    mpz_init(prime_number);
+
+    mpz_set_str(prime_number, (char*)arg , 10);
+
+    logmpzv("\tSelected prime number %Zd\n", prime_number);
+}
+
+void *GenerateBaseNumber(void *arg){
+    mpz_init(generator); 
+
+    mpz_set_str(generator, (char*)arg, 10);
+
+    logmpzv("\tSelected base number %Zd\n", generator);
+}
+
+void *HostPrivateKey(void *arg){
+    mpz_init(host_private_number);
+
+    mpz_set_str(host_private_number, arg, 10);
+
+    logmpzv("\tSelected client private number %Zd\n", host_private_number);
+}
+
+void *ClientPrivateKey(void *arg){
+    mpz_init(client_private_number);
+
+    mpz_set_str(client_private_number, arg, 10);
+
+    logmpzv("\tSelected client private number %Zd\n", client_private_number);
+}
+
+void *PrintHelp(){
+    FILE *help = fopen("etc/help.txt", "r");
+        
+    if (help == NULL){
+        printf("Error opening help file\n");
+        exit(1);
+    }
+    char c;
+    while((c = fgetc(help)) != EOF){
+        printf("%c", c);
+    }
+    fclose(help);
+    exit(1);
+}
 
 int main( int argc, char *argv[]) {
     /* Random Number Generator Init*/
     gmp_randinit_mt(state);
+    gmp_randseed_ui(state, time(NULL) + pthread_self());
 
-    int p = 0, g = 0, a = 0, b = 0, h = 0;
+    command *commands[] = {
+        &(command){.command = "-o", .includedParam = 1, .NumericParam = 0 , .func = WriteToFile},
+        &(command){.command = "-p", .includedParam = 1, .NumericParam = 1 , .func = GeneratePrimeNumber},
+        &(command){.command = "-g", .includedParam = 1, .NumericParam = 1 , .func = GenerateBaseNumber},
+        &(command){.command = "-a", .includedParam = 1, .NumericParam = 1 , .func = HostPrivateKey},
+        &(command){.command = "-b", .includedParam = 1, .NumericParam = 1 , .func = ClientPrivateKey},
+        &(command){.command = "-h", .includedParam = 0, .NumericParam = 0 , .func = PrintHelp}
+    };
 
-    for (int i = 1; i < argc; i++ ){
-        char* arg = argv[i];
+    parse(argc, argv, commands);
 
-        if (strcmp(arg, "-o") == 0){
-            fp = fopen(argv[++i], "a");
-            if (fp == NULL){
-                printf("Error opening file\n");
-                exit(1);
-            }
-        } else if (strcmp(arg, "-p") == 0){
-            assert (i+1 <= argc && "Missing argument for -p");
-            p = ++i;
-        } else if (strcmp(arg, "-g") == 0){
-            assert (i+1 <= argc && "Missing argument for -g");
-            g = ++i;
-        } else if (strcmp(arg, "-a") == 0){
-            assert (i+1 <= argc && "Missing argument for -a");
-            a = ++i;
-        } else if (strcmp(arg, "-b") == 0){
-            assert (i+1 <= argc && "Missing argument for -b");
-            b = ++i;
-        } else if (strcmp(arg, "-h") == 0){
-            FILE *help = fopen("etc/help.txt", "r");
-            if (help == NULL){
-                printf("Error opening help file\n");
-                exit(1);
-            }
-            char c;
-            while((c = fgetc(help)) != EOF){
-                printf("%c", c);
-            }
-            fclose(help);
-            exit(1);
-        } else {
-            printf("Invalid argument: %s\n", arg);
-            exit(1);
-        }
-    }
-
-    /* Init prime number */
-    mpz_t prime_number; mpz_init(prime_number);
-    if (p == 0) {
-        generate_prime_number(prime_number);
-        logmpzv("\tGenerated prime number %Zd\n", prime_number);
-    } else {
-        mpz_set_str(prime_number, argv[p], 10);
-        logmpzv("\tSelected prime number %Zd\n", prime_number);
-    }
-
-    mpz_t rand_limit; mpz_init_set_ui(rand_limit, RAND_LIMIT);
-
-    /* Init base number */
-    mpz_t generator; mpz_init(generator); 
-    if (g == 0){
-        gmp_randseed_ui(state,time(NULL)+pthread_self()+1);
-        mpz_urandomm(generator, state, rand_limit);
-        mpz_add_ui(generator, generator, 1); 
-        logmpzv("\tGenerated base number %Zd\n", generator);
-    } else {
-        mpz_set_str(generator, argv[g], 10);
-        logmpzv("\tSelected base number %Zd\n", generator);
-    }
-
-    mpz_t host_private_number; mpz_init(host_private_number);
-    mpz_t client_private_number; mpz_init(client_private_number);
+    mpz_cmp_ui(prime_number, 0) == 0 ? generate_prime_number(prime_number) : 0;
+    mpz_cmp_ui(generator, 0) == 0 ? generate_base_number(generator, prime_number) : 0;
+    mpz_cmp_ui(host_private_number, 0) == 0 ? mpz_urandomb(host_private_number, state, BIT_CNT) : 0;
+    mpz_cmp_ui(client_private_number, 0) == 0 ? mpz_urandomb(client_private_number, state, BIT_CNT) : 0;
 
     /*  Init arguments for Host */
     fdata_t *HostArgs = (fdata_t *)malloc(sizeof(fdata_t));
@@ -316,37 +281,14 @@ int main( int argc, char *argv[]) {
     HostArgs->generator = &generator;
     HostArgs->name = "Host";
     HostArgs->parent = pthread_self();
-    
-
-    /*  Set _Alices_ private key    */
-    if(a > 0 ){
-        mpz_set_str(host_private_number, argv[a], 10);
-        logmpzv("\tSelected host private number %Zd\n", host_private_number)
-    }else{
-        gmp_randseed_ui(state, time(NULL)+a+1);
-        mpz_urandomm(host_private_number, state, prime_number );
-        mpz_add_ui(host_private_number,host_private_number, 1);
-        logmpzv("\tGenerated host private number %Zd\n", host_private_number)
-    }
     HostArgs->private_number = &host_private_number;
     
-    /*  Init arguments for Thread */
+    /*  Init arguments for Client */
     fdata_t *ClientArgs = (fdata_t *)malloc(sizeof(fdata_t));
     ClientArgs->prime_number = &prime_number;
     ClientArgs->generator = &generator;
     ClientArgs->name = "Client";
     ClientArgs->parent = pthread_self();
-    
-    /*  Set _bobs_ private key  */
-    if(b > 0 ){
-        mpz_set_str(client_private_number, argv[a], 10);
-        logmpzv("\tSelected client private number %Zd\n", client_private_number)
-    } else {
-        gmp_randseed_ui(state, time(NULL)+b+2);
-        mpz_urandomm(client_private_number, state, prime_number);
-        mpz_add_ui(host_private_number,host_private_number, 1);
-        logmpzv("\tGenerated client private number %Zd\n", client_private_number)
-    }
     ClientArgs->private_number = &client_private_number;
 
     /* Pipe init */
@@ -370,7 +312,7 @@ int main( int argc, char *argv[]) {
     free(ClientArgs);
     free(HostArgs);
 
-    mpz_clears(prime_number,generator, host_private_number, client_private_number, rand_limit, NULL);
+    mpz_clears(prime_number,generator, host_private_number, client_private_number, bit_count, NULL);
 
     /*  Compare keys            */
     mpz_t host_key; mpz_init(host_key); mpz_set(host_key, vptr_host_return);

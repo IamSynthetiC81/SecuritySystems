@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "types.h": "c",
+        "time.h": "c",
+        "dh.h": "c",
+        "stdio.h": "c",
+        "assert.h": "c",
+        "parser.h": "c",
+        "pthread.h": "c"
+    }
+}
