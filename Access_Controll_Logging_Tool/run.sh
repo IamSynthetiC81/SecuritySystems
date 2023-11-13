@@ -1,0 +1,8 @@
+#!/bin/bash 
+
+ORIGINAL_LD_LIBRARY_PATH=$LD_LIBRARY_PATH
+
+export LD_LIBRARY_PATH=./out
+LD_PRELOAD=./out/libmylib.so ./out/main
+
+export LD_LIBRARY_PATH=$ORIGINAL_LD_LIBRARY_PATH
