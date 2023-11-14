@@ -13,8 +13,6 @@ int main(int argc, char *argv[]){
         exit(EXIT_FAILURE);
     }
 
-    printf("Got here\n");
-
     // write to file "Hello World !!!"
     fwrite(message,sizeof(char) , strlen(message), fp);
 

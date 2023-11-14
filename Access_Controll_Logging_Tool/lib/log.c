@@ -20,7 +20,7 @@ struct tm date_and_time(){
 	return *timestamp;
 }
 
-void print_log_to_file(log_t log_entry){
+void print_log_to_file(logf_t log_entry){
 	
 	FILE *(*fopen_ptr)(const char *, const char *);
 	Handle("libc.so.6", "fopen", &fopen_ptr);
@@ -69,45 +69,41 @@ void print_log_to_file(log_t log_entry){
 	char key[50] = "";
 
 	for (int i = 0; i < 16; i++){
-		if (log_entry.fingerprint[i] == '\0'){
-			strcat(key, "  ");
-		} else {
-			snprintf(log2, 3, "%02x", log_entry.fingerprint[i]);
-			strcat(key, log2);		
-		}
+        snprintf(log2, 3, "%02x", log_entry.fingerprint[i]);
+        strcat(key, log2);		
 	}
 	fwrite_ptr(key, sizeof(char), 32, fp);
 
 	snprintf(log2, strlen(log_entry.path) + 12, " | Path : %s\n", log_entry.path);
 	fwrite_ptr(log2, sizeof(char), strlen(log2), fp);
 
-	fclose(fp);
+	return;
 }
 
-log_t create_log(const char *path, const access_t access, const int action_denied, unsigned char fingerprint[16]){
-	log_t log_entry = {
+logf_t create_log(const char *path, const access_t access, const int action_denied, char fingerprint[33]){
+	logf_t log_entry = {
 		.UID = getuid(),
 		.path = path,
 		.timestamp = date_and_time(),
 		.access = access,
 		.action_denied = action_denied,
 		.fingerprint = {
-			fingerprint == NULL ? '\0' : fingerprint[0],
-			fingerprint == NULL ? '\0' : fingerprint[1],
-			fingerprint == NULL ? '\0' : fingerprint[2],
-			fingerprint == NULL ? '\0' : fingerprint[3],
-			fingerprint == NULL ? '\0' : fingerprint[4],
-			fingerprint == NULL ? '\0' : fingerprint[5],
-			fingerprint == NULL ? '\0' : fingerprint[6],
-			fingerprint == NULL ? '\0' : fingerprint[7],
-			fingerprint == NULL ? '\0' : fingerprint[8],
-			fingerprint == NULL ? '\0' : fingerprint[9],
-			fingerprint == NULL ? '\0' : fingerprint[10],
-			fingerprint == NULL ? '\0' : fingerprint[11],
-			fingerprint == NULL ? '\0' : fingerprint[12],
-			fingerprint == NULL ? '\0' : fingerprint[13],
-			fingerprint == NULL ? '\0' : fingerprint[14],
-			fingerprint == NULL ? '\0' : fingerprint[15]
+			*fingerprint = fingerprint[0],
+			*fingerprint = fingerprint[1],
+			*fingerprint = fingerprint[2],
+			*fingerprint = fingerprint[3],
+			*fingerprint = fingerprint[4],
+			*fingerprint = fingerprint[5],
+			*fingerprint = fingerprint[6],
+			*fingerprint = fingerprint[7],
+			*fingerprint = fingerprint[8],
+			*fingerprint = fingerprint[9],
+			*fingerprint = fingerprint[10],
+			*fingerprint = fingerprint[11],
+			*fingerprint = fingerprint[12],
+			*fingerprint = fingerprint[13],
+			*fingerprint = fingerprint[14],
+			*fingerprint = fingerprint[15]
 		}
 	};
 
