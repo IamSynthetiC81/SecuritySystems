@@ -1,0 +1,86 @@
+\hypertarget{acmonitor_8c}{}\section{acmonitor.\+c File Reference}
+\label{acmonitor_8c}\index{acmonitor.\+c@{acmonitor.\+c}}
+{\ttfamily \#include \char`\"{}lib/log.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}lib/fhandler.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for acmonitor.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{acmonitor_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structlog__entry__text__hash}{log\+\_\+entry\+\_\+text\+\_\+hash}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{acmonitor_8c_aff6732b7d46ac296a7b8d61ada41d949_aff6732b7d46ac296a7b8d61ada41d949}{\+\_\+\+L\+O\+G\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+Z\+E\+\_\+}~1024
+\item 
+\#define \hyperlink{acmonitor_8c_a73708c27921af699a08573001ea2584d_a73708c27921af699a08573001ea2584d}{\+\_\+\+M\+A\+X\+\_\+\+S\+T\+R\+I\+K\+E\+\_\+}~7
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structlog__entry__text__hash}{log\+\_\+entry\+\_\+text\+\_\+hash} \hyperlink{acmonitor_8c_a2c07adb053c6cb67f66231ae9cc7734d_a2c07adb053c6cb67f66231ae9cc7734d}{logf\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{acmonitor_8c_a2c07adb053c6cb67f66231ae9cc7734d_a2c07adb053c6cb67f66231ae9cc7734d}{logf\+\_\+t} \hyperlink{acmonitor_8c_a88ee5df83d5ccb61194f75e95db7771b_a88ee5df83d5ccb61194f75e95db7771b}{parse\+\_\+file} (F\+I\+LE $\ast$fp)
+\item 
+void \hyperlink{acmonitor_8c_a6f1ac7ad36d068e54e8c4b9b03981960_a6f1ac7ad36d068e54e8c4b9b03981960}{print\+\_\+logf} (\hyperlink{acmonitor_8c_a2c07adb053c6cb67f66231ae9cc7734d_a2c07adb053c6cb67f66231ae9cc7734d}{logf\+\_\+t} log)
+\item 
+int \hyperlink{acmonitor_8c_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{acmonitor_8c_aff6732b7d46ac296a7b8d61ada41d949_aff6732b7d46ac296a7b8d61ada41d949}\label{acmonitor_8c_aff6732b7d46ac296a7b8d61ada41d949_aff6732b7d46ac296a7b8d61ada41d949}} 
+\index{acmonitor.\+c@{acmonitor.\+c}!\+\_\+\+L\+O\+G\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+Z\+E\+\_\+@{\+\_\+\+L\+O\+G\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+Z\+E\+\_\+}}
+\index{\+\_\+\+L\+O\+G\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+Z\+E\+\_\+@{\+\_\+\+L\+O\+G\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+Z\+E\+\_\+}!acmonitor.\+c@{acmonitor.\+c}}
+\subsubsection{\texorpdfstring{\+\_\+\+L\+O\+G\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+Z\+E\+\_\+}{\_LOG\_BUFFER\_SIZE\_}}
+{\footnotesize\ttfamily \#define \+\_\+\+L\+O\+G\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+Z\+E\+\_\+~1024}
+
+\mbox{\Hypertarget{acmonitor_8c_a73708c27921af699a08573001ea2584d_a73708c27921af699a08573001ea2584d}\label{acmonitor_8c_a73708c27921af699a08573001ea2584d_a73708c27921af699a08573001ea2584d}} 
+\index{acmonitor.\+c@{acmonitor.\+c}!\+\_\+\+M\+A\+X\+\_\+\+S\+T\+R\+I\+K\+E\+\_\+@{\+\_\+\+M\+A\+X\+\_\+\+S\+T\+R\+I\+K\+E\+\_\+}}
+\index{\+\_\+\+M\+A\+X\+\_\+\+S\+T\+R\+I\+K\+E\+\_\+@{\+\_\+\+M\+A\+X\+\_\+\+S\+T\+R\+I\+K\+E\+\_\+}!acmonitor.\+c@{acmonitor.\+c}}
+\subsubsection{\texorpdfstring{\+\_\+\+M\+A\+X\+\_\+\+S\+T\+R\+I\+K\+E\+\_\+}{\_MAX\_STRIKE\_}}
+{\footnotesize\ttfamily \#define \+\_\+\+M\+A\+X\+\_\+\+S\+T\+R\+I\+K\+E\+\_\+~7}
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{acmonitor_8c_a2c07adb053c6cb67f66231ae9cc7734d_a2c07adb053c6cb67f66231ae9cc7734d}\label{acmonitor_8c_a2c07adb053c6cb67f66231ae9cc7734d_a2c07adb053c6cb67f66231ae9cc7734d}} 
+\index{acmonitor.\+c@{acmonitor.\+c}!logf\+\_\+t@{logf\+\_\+t}}
+\index{logf\+\_\+t@{logf\+\_\+t}!acmonitor.\+c@{acmonitor.\+c}}
+\subsubsection{\texorpdfstring{logf\+\_\+t}{logf\_t}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structlog__entry__text__hash}{log\+\_\+entry\+\_\+text\+\_\+hash}  \hyperlink{acmonitor_8c_a2c07adb053c6cb67f66231ae9cc7734d_a2c07adb053c6cb67f66231ae9cc7734d}{logf\+\_\+t}}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{acmonitor_8c_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97}\label{acmonitor_8c_a0ddf1224851353fc92bfbff6f499fa97_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{acmonitor.\+c@{acmonitor.\+c}!main@{main}}
+\index{main@{main}!acmonitor.\+c@{acmonitor.\+c}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{acmonitor_8c_a88ee5df83d5ccb61194f75e95db7771b_a88ee5df83d5ccb61194f75e95db7771b}\label{acmonitor_8c_a88ee5df83d5ccb61194f75e95db7771b_a88ee5df83d5ccb61194f75e95db7771b}} 
+\index{acmonitor.\+c@{acmonitor.\+c}!parse\+\_\+file@{parse\+\_\+file}}
+\index{parse\+\_\+file@{parse\+\_\+file}!acmonitor.\+c@{acmonitor.\+c}}
+\subsubsection{\texorpdfstring{parse\+\_\+file()}{parse\_file()}}
+{\footnotesize\ttfamily \hyperlink{acmonitor_8c_a2c07adb053c6cb67f66231ae9cc7734d_a2c07adb053c6cb67f66231ae9cc7734d}{logf\+\_\+t} parse\+\_\+file (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{acmonitor_8c_a6f1ac7ad36d068e54e8c4b9b03981960_a6f1ac7ad36d068e54e8c4b9b03981960}\label{acmonitor_8c_a6f1ac7ad36d068e54e8c4b9b03981960_a6f1ac7ad36d068e54e8c4b9b03981960}} 
+\index{acmonitor.\+c@{acmonitor.\+c}!print\+\_\+logf@{print\+\_\+logf}}
+\index{print\+\_\+logf@{print\+\_\+logf}!acmonitor.\+c@{acmonitor.\+c}}
+\subsubsection{\texorpdfstring{print\+\_\+logf()}{print\_logf()}}
+{\footnotesize\ttfamily void print\+\_\+logf (\begin{DoxyParamCaption}\item[{\hyperlink{acmonitor_8c_a2c07adb053c6cb67f66231ae9cc7734d_a2c07adb053c6cb67f66231ae9cc7734d}{logf\+\_\+t}}]{log }\end{DoxyParamCaption})}
+

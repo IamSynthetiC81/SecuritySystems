@@ -1,0 +1,158 @@
+\hypertarget{log_8h}{}\section{log.\+h File Reference}
+\label{log_8h}\index{log.\+h@{log.\+h}}
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}fhandler.\+h\char`\"{}}\newline
+Include dependency graph for log.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{log_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=274pt]{log_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structlog__entry}{log\+\_\+entry}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{log_8h_a286c666b6725cb6f32fbd5500f41dd9f_a286c666b6725cb6f32fbd5500f41dd9f}{\+\_\+\+L\+O\+G\+\_\+\+F\+I\+L\+E\+\_\+\+P\+A\+T\+H\+\_\+}~\char`\"{}etc/log.\+txt\char`\"{}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \hyperlink{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24}{access\+\_\+types} \hyperlink{log_8h_ab20c54dfb1eb1323b9a3cfe2e6a76270_ab20c54dfb1eb1323b9a3cfe2e6a76270}{access\+\_\+t}
+\item 
+typedef struct \hyperlink{structlog__entry}{log\+\_\+entry} \hyperlink{log_8h_abd600feddcc5ca71fa3f3afa84eee569_abd600feddcc5ca71fa3f3afa84eee569}{log\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24}{access\+\_\+types} \{ \hyperlink{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24acb4c076c6c5acda9b100eda359c1275e}{\+\_\+\+\_\+\+C\+R\+E\+A\+T\+I\+ON}, 
+\hyperlink{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24a3cc9315c8894d0f5203a18e0211fda55}{\+\_\+\+\_\+\+O\+P\+EN}, 
+\hyperlink{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24a95544025446df9b5d326de5be621a6b1}{\+\_\+\+\_\+\+W\+R\+I\+TE}, 
+\hyperlink{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24a3dd5f28d31d4586aa16d6a57b7c16d53}{\+\_\+\+\_\+\+R\+E\+AD}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct tm \hyperlink{log_8h_a2de5fe84ca15039e1b007634ccef1651_a2de5fe84ca15039e1b007634ccef1651}{date\+\_\+and\+\_\+time} ()
+\begin{DoxyCompactList}\small\item\em Create a timestamp object with the current date and time. \end{DoxyCompactList}\item 
+void \hyperlink{log_8h_ab3a7d9a8e25e365afb72e557f60ba45f_ab3a7d9a8e25e365afb72e557f60ba45f}{print\+\_\+log\+\_\+to\+\_\+file} (\hyperlink{log_8h_abd600feddcc5ca71fa3f3afa84eee569_abd600feddcc5ca71fa3f3afa84eee569}{log\+\_\+t} \hyperlink{structlog__entry}{log\+\_\+entry})
+\begin{DoxyCompactList}\small\item\em Prints the log entry to the log file. \end{DoxyCompactList}\item 
+\hyperlink{log_8h_abd600feddcc5ca71fa3f3afa84eee569_abd600feddcc5ca71fa3f3afa84eee569}{log\+\_\+t} \hyperlink{log_8h_a208f5ebd87e3ff13ab84ab2d57c46974_a208f5ebd87e3ff13ab84ab2d57c46974}{create\+\_\+log} (const char $\ast$path, const \hyperlink{log_8h_ab20c54dfb1eb1323b9a3cfe2e6a76270_ab20c54dfb1eb1323b9a3cfe2e6a76270}{access\+\_\+t} access, const int action\+\_\+denied, unsigned char fingerprint\mbox{[}16\mbox{]})
+\begin{DoxyCompactList}\small\item\em Creates a log entry. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{log_8h_a286c666b6725cb6f32fbd5500f41dd9f_a286c666b6725cb6f32fbd5500f41dd9f}\label{log_8h_a286c666b6725cb6f32fbd5500f41dd9f_a286c666b6725cb6f32fbd5500f41dd9f}} 
+\index{log.\+h@{log.\+h}!\+\_\+\+L\+O\+G\+\_\+\+F\+I\+L\+E\+\_\+\+P\+A\+T\+H\+\_\+@{\+\_\+\+L\+O\+G\+\_\+\+F\+I\+L\+E\+\_\+\+P\+A\+T\+H\+\_\+}}
+\index{\+\_\+\+L\+O\+G\+\_\+\+F\+I\+L\+E\+\_\+\+P\+A\+T\+H\+\_\+@{\+\_\+\+L\+O\+G\+\_\+\+F\+I\+L\+E\+\_\+\+P\+A\+T\+H\+\_\+}!log.\+h@{log.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+\+L\+O\+G\+\_\+\+F\+I\+L\+E\+\_\+\+P\+A\+T\+H\+\_\+}{\_LOG\_FILE\_PATH\_}}
+{\footnotesize\ttfamily \#define \+\_\+\+L\+O\+G\+\_\+\+F\+I\+L\+E\+\_\+\+P\+A\+T\+H\+\_\+~\char`\"{}etc/log.\+txt\char`\"{}}
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{log_8h_ab20c54dfb1eb1323b9a3cfe2e6a76270_ab20c54dfb1eb1323b9a3cfe2e6a76270}\label{log_8h_ab20c54dfb1eb1323b9a3cfe2e6a76270_ab20c54dfb1eb1323b9a3cfe2e6a76270}} 
+\index{log.\+h@{log.\+h}!access\+\_\+t@{access\+\_\+t}}
+\index{access\+\_\+t@{access\+\_\+t}!log.\+h@{log.\+h}}
+\subsubsection{\texorpdfstring{access\+\_\+t}{access\_t}}
+{\footnotesize\ttfamily typedef enum \hyperlink{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24}{access\+\_\+types}  \hyperlink{log_8h_ab20c54dfb1eb1323b9a3cfe2e6a76270_ab20c54dfb1eb1323b9a3cfe2e6a76270}{access\+\_\+t}}
+
+\mbox{\Hypertarget{log_8h_abd600feddcc5ca71fa3f3afa84eee569_abd600feddcc5ca71fa3f3afa84eee569}\label{log_8h_abd600feddcc5ca71fa3f3afa84eee569_abd600feddcc5ca71fa3f3afa84eee569}} 
+\index{log.\+h@{log.\+h}!log\+\_\+t@{log\+\_\+t}}
+\index{log\+\_\+t@{log\+\_\+t}!log.\+h@{log.\+h}}
+\subsubsection{\texorpdfstring{log\+\_\+t}{log\_t}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structlog__entry}{log\+\_\+entry}  \hyperlink{log_8h_abd600feddcc5ca71fa3f3afa84eee569_abd600feddcc5ca71fa3f3afa84eee569}{log\+\_\+t}}
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24}\label{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24}} 
+\index{log.\+h@{log.\+h}!access\+\_\+types@{access\+\_\+types}}
+\index{access\+\_\+types@{access\+\_\+types}!log.\+h@{log.\+h}}
+\subsubsection{\texorpdfstring{access\+\_\+types}{access\_types}}
+{\footnotesize\ttfamily enum \hyperlink{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24}{access\+\_\+types}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{\+\_\+\+\_\+\+C\+R\+E\+A\+T\+I\+ON@{\+\_\+\+\_\+\+C\+R\+E\+A\+T\+I\+ON}!log.\+h@{log.\+h}}\index{log.\+h@{log.\+h}!\+\_\+\+\_\+\+C\+R\+E\+A\+T\+I\+ON@{\+\_\+\+\_\+\+C\+R\+E\+A\+T\+I\+ON}}}\mbox{\Hypertarget{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24acb4c076c6c5acda9b100eda359c1275e}\label{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24acb4c076c6c5acda9b100eda359c1275e}} 
+\+\_\+\+\_\+\+C\+R\+E\+A\+T\+I\+ON&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{\+\_\+\+\_\+\+O\+P\+EN@{\+\_\+\+\_\+\+O\+P\+EN}!log.\+h@{log.\+h}}\index{log.\+h@{log.\+h}!\+\_\+\+\_\+\+O\+P\+EN@{\+\_\+\+\_\+\+O\+P\+EN}}}\mbox{\Hypertarget{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24a3cc9315c8894d0f5203a18e0211fda55}\label{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24a3cc9315c8894d0f5203a18e0211fda55}} 
+\+\_\+\+\_\+\+O\+P\+EN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{\+\_\+\+\_\+\+W\+R\+I\+TE@{\+\_\+\+\_\+\+W\+R\+I\+TE}!log.\+h@{log.\+h}}\index{log.\+h@{log.\+h}!\+\_\+\+\_\+\+W\+R\+I\+TE@{\+\_\+\+\_\+\+W\+R\+I\+TE}}}\mbox{\Hypertarget{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24a95544025446df9b5d326de5be621a6b1}\label{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24a95544025446df9b5d326de5be621a6b1}} 
+\+\_\+\+\_\+\+W\+R\+I\+TE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{\+\_\+\+\_\+\+R\+E\+AD@{\+\_\+\+\_\+\+R\+E\+AD}!log.\+h@{log.\+h}}\index{log.\+h@{log.\+h}!\+\_\+\+\_\+\+R\+E\+AD@{\+\_\+\+\_\+\+R\+E\+AD}}}\mbox{\Hypertarget{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24a3dd5f28d31d4586aa16d6a57b7c16d53}\label{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24a3dd5f28d31d4586aa16d6a57b7c16d53}} 
+\+\_\+\+\_\+\+R\+E\+AD&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{log_8h_a208f5ebd87e3ff13ab84ab2d57c46974_a208f5ebd87e3ff13ab84ab2d57c46974}\label{log_8h_a208f5ebd87e3ff13ab84ab2d57c46974_a208f5ebd87e3ff13ab84ab2d57c46974}} 
+\index{log.\+h@{log.\+h}!create\+\_\+log@{create\+\_\+log}}
+\index{create\+\_\+log@{create\+\_\+log}!log.\+h@{log.\+h}}
+\subsubsection{\texorpdfstring{create\+\_\+log()}{create\_log()}}
+{\footnotesize\ttfamily \hyperlink{log_8h_abd600feddcc5ca71fa3f3afa84eee569_abd600feddcc5ca71fa3f3afa84eee569}{log\+\_\+t} create\+\_\+log (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path,  }\item[{const \hyperlink{log_8h_ab20c54dfb1eb1323b9a3cfe2e6a76270_ab20c54dfb1eb1323b9a3cfe2e6a76270}{access\+\_\+t}}]{access,  }\item[{const int}]{action\+\_\+denied,  }\item[{unsigned char}]{fingerprint\mbox{[}16\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Creates a log entry. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The absolute path of the file. \\
+\hline
+{\em access} & The access type. see access\+\_\+t \\
+\hline
+{\em action\+\_\+denied} & 1 if the action was denied, else 0. \\
+\hline
+{\em fingerprint} & The fingerprint of the file. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{log_8h_a2de5fe84ca15039e1b007634ccef1651_a2de5fe84ca15039e1b007634ccef1651}\label{log_8h_a2de5fe84ca15039e1b007634ccef1651_a2de5fe84ca15039e1b007634ccef1651}} 
+\index{log.\+h@{log.\+h}!date\+\_\+and\+\_\+time@{date\+\_\+and\+\_\+time}}
+\index{date\+\_\+and\+\_\+time@{date\+\_\+and\+\_\+time}!log.\+h@{log.\+h}}
+\subsubsection{\texorpdfstring{date\+\_\+and\+\_\+time()}{date\_and\_time()}}
+{\footnotesize\ttfamily struct tm date\+\_\+and\+\_\+time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Create a timestamp object with the current date and time. 
+
+\begin{DoxyReturn}{Returns}
+struct tm The current date and time. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{log_8h_ab3a7d9a8e25e365afb72e557f60ba45f_ab3a7d9a8e25e365afb72e557f60ba45f}\label{log_8h_ab3a7d9a8e25e365afb72e557f60ba45f_ab3a7d9a8e25e365afb72e557f60ba45f}} 
+\index{log.\+h@{log.\+h}!print\+\_\+log\+\_\+to\+\_\+file@{print\+\_\+log\+\_\+to\+\_\+file}}
+\index{print\+\_\+log\+\_\+to\+\_\+file@{print\+\_\+log\+\_\+to\+\_\+file}!log.\+h@{log.\+h}}
+\subsubsection{\texorpdfstring{print\+\_\+log\+\_\+to\+\_\+file()}{print\_log\_to\_file()}}
+{\footnotesize\ttfamily void print\+\_\+log\+\_\+to\+\_\+file (\begin{DoxyParamCaption}\item[{\hyperlink{log_8h_abd600feddcc5ca71fa3f3afa84eee569_abd600feddcc5ca71fa3f3afa84eee569}{log\+\_\+t}}]{log\+\_\+entry }\end{DoxyParamCaption})}
+
+
+
+Prints the log entry to the log file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{structlog__entry}{log\+\_\+entry}} & The log entry to be printed. \\
+\hline
+\end{DoxyParams}

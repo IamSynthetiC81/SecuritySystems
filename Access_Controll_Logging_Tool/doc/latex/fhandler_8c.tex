@@ -1,0 +1,41 @@
+\hypertarget{fhandler_8c}{}\section{fhandler.\+c File Reference}
+\label{fhandler_8c}\index{fhandler.\+c@{fhandler.\+c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$dlfcn.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}fhandler.\+h\char`\"{}}\newline
+Include dependency graph for fhandler.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fhandler_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{fhandler_8c_a9b1ada6e94cd79a619e282d13b8529d7_a9b1ada6e94cd79a619e282d13b8529d7}{Handle} (const char $\ast$\+\_\+\+\_\+lib, const char $\ast$\+\_\+\+\_\+func, void $\ast$\+\_\+funcp)
+\begin{DoxyCompactList}\small\item\em Handles the dynamic linking of the functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{fhandler_8c_a9b1ada6e94cd79a619e282d13b8529d7_a9b1ada6e94cd79a619e282d13b8529d7}\label{fhandler_8c_a9b1ada6e94cd79a619e282d13b8529d7_a9b1ada6e94cd79a619e282d13b8529d7}} 
+\index{fhandler.\+c@{fhandler.\+c}!Handle@{Handle}}
+\index{Handle@{Handle}!fhandler.\+c@{fhandler.\+c}}
+\subsubsection{\texorpdfstring{Handle()}{Handle()}}
+{\footnotesize\ttfamily void Handle (\begin{DoxyParamCaption}\item[{const char $\ast$}]{\+\_\+\+\_\+lib,  }\item[{const char $\ast$}]{\+\_\+\+\_\+func,  }\item[{void $\ast$}]{\+\_\+funcp }\end{DoxyParamCaption})}
+
+
+
+Handles the dynamic linking of the functions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+lib} & The library name to be linked. \\
+\hline
+{\em \+\_\+\+\_\+func} & The function name to be linked. \\
+\hline
+{\em \+\_\+funcp} & The pointer to the function to be linked. \\
+\hline
+\end{DoxyParams}
