@@ -1,6 +1,9 @@
-#ifndef _GNU_SOURCE
+#ifndef HANDLER_H
+    #define HANDLER_H
+
+
     #define _GNU_SOURCE
-#endif
+
 
 /**
  * @brief Handles the dynamic linking of the functions.
@@ -11,3 +14,5 @@
  * 
 */
 void Handle(const char *__lib, const char *__func, void *_funcp);
+
+#endif

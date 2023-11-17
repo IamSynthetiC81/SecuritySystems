@@ -7,8 +7,19 @@
 #include <time.h>
 #include <unistd.h>
 #include <stdarg.h>
+#include <errno.h>
 
 #include "fhandler.h"
+#include "Misc.h"
+
+enum logs{
+	_UID,
+	_PATH,
+	_TIMESTAMP,
+	_ACCESS,
+	_ACTION_DENIED,
+	_FINGERPRINT
+};
 
 struct tm date_and_time(){
 	time_t rawtime = time(NULL);
@@ -21,7 +32,6 @@ struct tm date_and_time(){
 }
 
 void print_log_to_file(logf_t log_entry){
-	
 	FILE *(*fopen_ptr)(const char *, const char *);
 	Handle("libc.so.6", "fopen", &fopen_ptr);
 
@@ -30,9 +40,19 @@ void print_log_to_file(logf_t log_entry){
 	
 	FILE *fp = fopen_ptr(_LOG_FILE_PATH_, "a");
 	if(fp == NULL){
-		printf("Error opening log file\n");
+		// perror("print_log_to_file : fopen");
+		if(errno == EACCES){
+			printf("Permission denied\n");
+		} else if(errno == ENOENT){
+			printf("File does not exist\n");
+		} else if (errno == EROFS){
+			printf("Read only file system\n");
+		} else {
+			printf("Unknown error\n");
+		}
 		exit(EXIT_FAILURE);
 	}
+
 
 	struct tm asd = log_entry.timestamp;
 	asd.tm_year += 1900;
@@ -55,16 +75,15 @@ void print_log_to_file(logf_t log_entry){
 	} else {
 		access = "READ";
 	}
-	
+
 	char log1[120];
 	for (int i = 0; i < 120; i++){
 		log1[i] = '\0';
 	}
 
 	snprintf(log1,85 ,"[%02d:%02d:%02d] %02d/%02d/%04d | UID : %5d | Action : %6s | Denied : %1d | Fingerprint : ", hour, min, sec , day, month, year, log_entry.UID, access, log_entry.action_denied);
-	
 	fwrite_ptr(log1, sizeof(char), 83, fp);
-
+	
 	char log2[50] = "";
 	char key[50] = "";
 
@@ -77,10 +96,12 @@ void print_log_to_file(logf_t log_entry){
 	snprintf(log2, strlen(log_entry.path) + 12, " | Path : %s\n", log_entry.path);
 	fwrite_ptr(log2, sizeof(char), strlen(log2), fp);
 
-	return;
+	if(fp!=NULL){
+		fclose(fp);
+	}
 }
 
-logf_t create_log(const char *path, const access_t access, const int action_denied, char fingerprint[33]){
+logf_t create_log(const char *path, const access_t access, const int action_denied, unsigned char fingerprint[33]){
 	logf_t log_entry = {
 		.UID = getuid(),
 		.path = path,
@@ -109,5 +130,220 @@ logf_t create_log(const char *path, const access_t access, const int action_deni
 
 	print_log_to_file(log_entry);
 
+	_size_++;
+
 	return log_entry;
+}
+
+char ***parse_log(){
+	FILE* (*fopen_ptr)(const char *, const char *);
+	Handle("libc.so.6", "fopen", &fopen_ptr);
+
+	FILE *fp = fopen_ptr(_LOG_FILE_PATH_, "r");
+    if (fp == NULL){
+        perror("Parse_log : fopen");
+        exit(EXIT_FAILURE);
+    }
+
+	char **lines = (char**)malloc(sizeof(char *));
+	int log_count = 0;
+
+
+	while(!feof(fp)){
+		lines = (char **)realloc(lines, sizeof(char*) * (log_count + 1));
+		lines[log_count] = (char *)malloc(sizeof(char) * 256);
+		fgets(lines[log_count++], 256, fp);
+	}
+	_size_ = log_count;
+
+	char ***logs = (char ***)malloc(sizeof(char **) * 6);
+	logs[_UID] = (char **)malloc(sizeof(char *) * log_count);
+	logs[_PATH] = (char **)malloc(sizeof(char *) * log_count);
+	logs[_TIMESTAMP] = (char **)malloc(sizeof(char *) * log_count);
+	logs[_ACCESS] = (char **)malloc(sizeof(char *) * log_count);
+	logs[_ACTION_DENIED] = (char **)malloc(sizeof(char *) * log_count);
+	logs[_FINGERPRINT] = (char **)malloc(sizeof(char *) * log_count);
+
+	for(int i = 0; i < log_count; i++){
+		char time[9], date[10];
+
+		logs[_UID][i] = (char *)malloc(sizeof(char) * 10);
+		logs[_PATH][i] = (char *)malloc(sizeof(char) * 256);
+		logs[_TIMESTAMP][i] = (char *)malloc(sizeof(char) * 18);
+		logs[_ACCESS][i] = (char *)malloc(sizeof(char) * 6);
+		logs[_ACTION_DENIED][i] = (char *)malloc(sizeof(char) * 1);
+		logs[_FINGERPRINT][i] = (char *)malloc(sizeof(char) * 33);
+
+		
+		sscanf(lines[i], "%s %s | UID : %s | Action : %s | Denied : %c | Fingerprint : %s | Path : %s\n",
+		 time, date, logs[_UID][i], logs[_ACCESS][i], logs[_ACTION_DENIED][i], logs[_FINGERPRINT][i], logs[_PATH][i]);
+		
+		strcat(logs[_TIMESTAMP][i], time);
+		strcat(logs[_TIMESTAMP][i], " ");
+		strcat(logs[_TIMESTAMP][i], date);
+	}
+
+	// for(int i = 0; i < log_count; i++){
+	// 	free(lines[i]);
+	// }
+	// free(lines);
+
+	fclose(fp);
+
+	return logs;
+}
+
+int string_included(user_history_t history, const char *path){
+    for (int j = 0; j < history.strikes; j++){
+        if (strcmp(history.path[j], path) == 0){
+            return 1;
+        }
+    }
+    return 0;
+}
+
+array_t *user_history_init(){
+	char ***logs = parse_log();
+
+	printf("Parsed log\n");
+
+	user_history_t* history = malloc(sizeof(user_history_t) * 1);
+	unsigned int users = 0;
+	int found_user = 0;
+
+	for (int i = 0; i < _size_; i++){
+		found_user = 0;
+
+		for (int j = 0; j < users; j++)
+		{
+			if (history[j].UID == atoi(logs[i][_UID])){
+				history[j].strikes++;
+				history[j].path = (char **)realloc(history[j].path, sizeof(char *) * history[j].strikes);
+				history[j].path[history[j].strikes-1] = (char *)malloc(sizeof(char) * 256);
+				strcpy(history[j].path[history[j].strikes-1], logs[i][_PATH]);
+				found_user = 1;
+
+				continue;
+			}
+		}
+
+		if (!found_user){
+			users++;
+			history = (user_history_t *)realloc(history, sizeof(user_history_t) * users);
+			history[users-1].UID = atoi(logs[i][_UID]);
+			history[users-1].strikes = 1;
+			history[users-1].path = (char **)malloc(sizeof(char *) * 1);
+			history[users-1].path[0] = (char *)malloc(sizeof(char) * 256);
+			strcpy(history[users-1].path[0], logs[i][_PATH]);
+		}
+	}
+
+	array_t *array = (array_t *)malloc(sizeof(array_t) * 1);
+	array->data = (void *)history;
+	array->size = users;
+
+	// for (int i = 0; i < 6; i++ ){
+	// 	for (int j = 0; j < _size_; j++)
+	// 		free(logs[i][j]);	
+	// 	free(logs[i]);
+	// }
+
+	// printf("About to free\n");
+
+	return array;
+}
+
+array_t *file_history_init(){
+	char ***logs = parse_log();
+	
+	file_history_t *history = (file_history_t *)malloc(sizeof(file_history_t) * 1);
+	char **state = (char**)malloc(sizeof(char) * 1);
+	int files = 0;
+	int found_file = 0;
+	int found_user = 0;
+
+	for (int i = 0; i < _size_; i++ ){
+		found_file = 0;
+		// printf("[%d] %s\n", i, logs[_PATH][i]);
+
+		for (int j = 0; j < files; j++){
+			if (strcmp(history[j].path, logs[_PATH][i]) == 0){
+				found_file = 1;
+
+				if(strcmp(state[j], logs[_FINGERPRINT][i]) == 0)
+					continue;
+				
+				for(int k = 0; k < history[j].users; k++){
+					if (history[j].UID[k] == atoi(logs[_UID][i])){
+						history[j].modifications[k]++;
+						found_user = 1;
+
+						strcpy(state[j], logs[_FINGERPRINT][i]);
+
+						// printf("user %d has modified file %s %d times\n", history[j].UID[k], history[j].path, history[j].modifications[k]);
+						continue;
+					}
+				}
+
+				if (!found_user){
+					history[j].users++;
+					history[j].UID = (unsigned int *)realloc(history[j].UID, sizeof(unsigned int) * history[j].users);
+					history[j].modifications = (unsigned int *)realloc(history[j].modifications, sizeof(unsigned int) * history[j].users);
+
+					history[j].UID[history[j].users-1] = atoi(logs[_UID][i]);
+					history[j].modifications[history[j].users-1] = 1;
+
+
+					strcpy(state[j], logs[_FINGERPRINT][i]);
+				}
+				
+				found_user = 0;
+
+				// printf("User %d has modified file %s %d times\n", history[j].UID[history[j].users - 1], history[j].path, history[j].modifications[history[j].users - 1]);
+
+				continue;
+			}
+		}
+
+		if (!found_file){
+			files++;
+			history = (file_history_t *)realloc(history, sizeof(file_history_t) * files);
+			history[files-1].path = (char *)malloc(sizeof(char) * 256);
+			strcpy(history[files-1].path, logs[_PATH][i]);
+
+			// printf("File %s\n", history[files - 1].path);
+
+			history[files-1].UID = (unsigned int *)malloc(sizeof(unsigned int) * 1);
+			history[files-1].modifications = (unsigned int *)malloc(sizeof(unsigned int) * 1);
+
+			history[files-1].UID[0] = atoi(logs[_UID][i]);
+			history[files-1].modifications[0] = 1;
+
+			history[files-1].users = 1;
+
+			state = (char **)realloc(state, sizeof(char *) * files);
+			state[files-1] = (char *)malloc(sizeof(char) * 33);
+			strcpy(state[files-1], logs[_FINGERPRINT][i]);
+
+			// printf("User %d has modified file %s %d times\n", history[files-1].UID[0], history[files-1].path, history[files-1].modifications[0]);
+		}
+	}
+
+	array_t *array = (array_t *)malloc(sizeof(array_t) * 1);
+	array->data = (void *)history;
+	array->size = files;
+
+	// for(int i = 0; i < files; i++){
+	// 	printf("[%02d] File %s\n",i, history[i].path);
+	// }
+
+	// printf("About to free\n");
+
+	// for (int i = 0; i < 6; i++ ){
+	// 	for (int j = 0; j < _size_; j++)
+	// 		free(logs[i][j]);
+		
+	// 	free(logs[i]);
+	// }
+	return array;
 }

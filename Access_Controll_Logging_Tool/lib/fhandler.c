@@ -1,8 +1,8 @@
+#include "fhandler.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <dlfcn.h>
-
-#include "fhandler.h"
 
 void Handle(const char *__lib, const char *__func, void * _funcp){
     char *error;

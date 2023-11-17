@@ -48,9 +48,14 @@ int testWrite(){
             if (i == 3 || i == 9 || i == 15){
                 return 0;
             }
+        }else if( errno == ENOENT){
+            continue;
+        } else if (errno == EPERM){
         } else {
-            fclose(fp);
-            clearerr(fp);
+            if (fp != NULL){
+                // fclose(fp);
+                clearerr(fp);
+            }
         }
         errno = 0;
     }
@@ -65,7 +70,7 @@ int testRead(){
                 return 0;
             }
         } else {
-            fclose(fp);
+            // fclose(fp);
             clearerr(fp);
         }
         errno = 0;
@@ -81,8 +86,6 @@ int testExec(){
         strcat(path, paths[i]);
         strcat(path, " > /dev/null 2>&1");
 
-        
-
         int exec = system(path);
         if (exec != 0 && (i == 6 || i == 12))
             return 0;
@@ -92,12 +95,20 @@ int testExec(){
 
 
 int main() {
-    printf("%-5s : ", "Write");
-    printf("[%4s]\n", testWrite() ? GRN "PASS" RESET : RED "FAIL" RESET);
-    
-    printf("%-5s : ", "Read");
-    printf("[%4s]\n", testRead() ? GRN "PASS" RESET : RED "FAIL" RESET);
 
-    printf("%-5s : ", "Exec");
-    printf("[%4s]\n", testExec() ? GRN "PASS" RESET : RED "FAIL" RESET);
+    FILE* fp = fopen("test/.testfiles/user_read.c", "r");
+    fclose(fp);
+
+    printf("%-20s : ", "Write");
+    printf("[%4s]\n", testWrite() ? GRN "PASS" RESET : RED "FAIL" RESET);
+
+    // printf("VBALLS\n");
+
+        printf("%-20s : ", "Read");
+        printf("[%4s]\n", testRead() ? GRN "PASS" RESET : RED "FAIL" RESET);
+
+    // printf("VBALLS\n");
+
+        printf("%-20s : ", "Exec");
+        printf("[%4s]\n", testExec() ? GRN "PASS" RESET : RED "FAIL" RESET);
 }

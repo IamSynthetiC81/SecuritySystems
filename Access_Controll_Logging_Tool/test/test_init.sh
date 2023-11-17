@@ -1,5 +1,5 @@
-
 #!/bin/bash
+
 echo "Cleaning up testfiles"
 rm -f test/.testfiles/*
 
@@ -96,6 +96,3 @@ gcc -o test/.testfiles/other_write_execute etc/template.c
 chmod 003 test/.testfiles/other_write_execute
 
 echo "."
-
-echo "PRELOADING libmylib.so"
-export LD_PRELOAD=./out/libmylib.so 

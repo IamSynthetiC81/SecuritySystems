@@ -109,8 +109,7 @@ FILE *fopen(const char *path, const char *mode){
 	access_t access_type = (access(path, F_OK) == 0) ? __OPEN : __CREATION; 		// Check if file exists
 
 	FILE* fp = fopen_ptr(path, mode);												// Open file
-
-	if (errno == EACCES){
+	if (errno == EACCES || errno == EPERM || errno == EROFS){
 		hash_key = Hash_string("");
 		action_denied = 1;
 
@@ -120,13 +119,15 @@ FILE *fopen(const char *path, const char *mode){
 		strcat(__abs_path, path);													// Append the path to the end of the working directory
 	} else {
 		hash_key = Hash(fp);														// Get hash_key of file
-		__abs_path = get_path(fp);													// Get absolute path of file
-	}	
+		__abs_path = get_path(fp); 													// Get absolute path of file
+	}
 
 	create_log(__abs_path, access_type, action_denied, hash_key); 					// Create and pring log entry onto log.txt
 
 	free(hash_key);		
 	free(__abs_path);
+
+
 
 	return fp;
 }
@@ -157,7 +158,9 @@ size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream){
 	
 	size_t ret_val = fwrite_ptr(ptr, size, nmemb, stream); 							// Write to the file
 
-	if (ret_val != nmemb && nmemb != 0)												// If the write operation was not successful
+
+
+	if (errno == EACCES || errno == EPERM || errno == EROFS)						// If the write operation was not successful
 		action_denied = 1;															// Set action_denied to 1
 	else
 		__seek_pointer = ftell(stream);												// Save seek pointer
