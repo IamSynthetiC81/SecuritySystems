@@ -8,7 +8,7 @@
 
 #define _LOG_FILE_PATH_ "etc/log.txt"
 
-unsigned int _size_ = 0;
+size_t _size_ = 0;
 
 /**
  * @brief The access types.

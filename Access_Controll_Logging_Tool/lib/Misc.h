@@ -1,7 +1,6 @@
 #ifndef _MISC_H_
     #define _MISC_H_
 
-
 typedef struct array_1d{
     void* data;
     int size;

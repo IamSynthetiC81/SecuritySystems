@@ -11,6 +11,20 @@
 #include <unistd.h>
 #include <string.h>
 
+#ifdef DEBUG 
+	#define printd(format, ...) printf(format, ##__VA_ARGS__)
+	#define printld(format, ...) printf("[%s line : %-3d] " format,__FILE__, __LINE__, ##__VA_ARGS__)
+#else
+	#define printd(format, ...)
+	#define printld(format, ...)
+#endif
+
+#ifdef VERBOSE
+	#define printv(format, ...) if(_VERBOSE_) printf(format, ##__VA_ARGS__)
+#else
+	#define printv(format, ...)
+#endif
+
 #define RED   "\x1B[31m"
 #define GRN   "\x1B[32m"
 #define YEL   "\x1B[33m"
@@ -66,51 +80,50 @@ char *chatGPT_is_a_poet[] = {
 
 
 int Write(){
-    FILE *fp = fopen("test/.testfiles/user_read_write.c", "w+");
-    if (fp == NULL){
-        perror("fopen");
-        printf("fot fucked up\n");
-        return 0;
-    }
-
     for(int i = 0; i < 41; i++){
+        FILE *fp = fopen("test/.testfiles/user_read_write.c", "a");
+        if (fp == NULL){
+            perror("fopen");
+            return 0;
+        }
+
+
+        printd("[%-3d] Write to file\n", __LINE__);
         array_t *data = file_history_init();
-
-        // printf("got the history\n");
-
         file_history_t *history = (file_history_t *)data->data;
 
-        int mod_before = 0, mod_after = 0;
+        int mod_before = 0, mod_after = 0, found_file = 0;
+        printld("data->size = %d\n", data->size);
 
         for (int i = 0; i < data->size; i++){
             // printf("[%02d] %s\n", i, history[i].path);
-            if (strcmp(history[i].path, "/home/marios/SecuritySystems/Access_Controll_Logging_Tool/test/.testfiles/other_read_write.c") == 0)
-            {
-                for(int j = 0; j < history[i].users; j++){
+            if (strcmp(history[i].path, "/home/marios/SecuritySystems/Access_Controll_Logging_Tool/test/.testfiles/user_read_write.c") == 0){
+                printld("Found file\n");
+                for (int j = 0; j < history[i].users; j++){
                     mod_before += history[i].modifications[j];
                 }
-                printf("User %u has modified the file %d times\n", *history[i].UID, mod_before);
             }
         }
-        printf("Access number before write = %d\n" , mod_before);
+        printf("[%d]Access number before write = %d\n" ,i, mod_before);
 
-        fwrite(chatGPT_is_a_poet[i], sizeof(char), strlen(chatGPT_is_a_poet[i]), fp);
-        fwrite("\n", sizeof(char), 1, fp);
+        // fwrite(chatGPT_is_a_poet[i], sizeof(char), strlen(chatGPT_is_a_poet[i]), fp);
+        // fwrite("\n", sizeof(char), 1, fp);
         fclose(fp);
 
-        data = file_history_init();
-        history = (file_history_t *)data->data;
+        // free(data);
+        // printd("[%-3d] Free data\n", __LINE__);
+        // data = file_history_init();
+        // printf("[%d] data->size = %d\n", __LINE__, data->size);
+        // history = (file_history_t *)data->data;
 
-        for (int i = 0; i < data->size; i++){
-            if (strcmp(history[i].path, "/home/marios/SecuritySystems/Access_Controll_Logging_Tool/test/.testfiles/other_read_write.c") == 0){
-                for(int j = 0; j < history[i].users; j++){
-                    mod_after += history[i].modifications[j];
-                }
-            }
-        }
-
-        printf("Access number after write = %d\n" , mod_after);
-
+        // for (int i = 0; i < data->size; i++){
+        //     if (strcmp(history[i].path, "/home/marios/SecuritySystems/Access_Controll_Logging_Tool/test/.testfiles/user_read_write.c") == 0){
+        //         for (int j = 0; j < history[i].users; j++){
+        //             mod_after += history[i].modifications[j];
+        //         }
+        //     }
+        // }
+        // printf("[%d]Access number after write = %d\n" ,i, mod_after);
 
         // if (mod_after - 2 != mod_before ){
         //     return 0;
