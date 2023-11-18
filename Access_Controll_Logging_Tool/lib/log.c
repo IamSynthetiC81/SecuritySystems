@@ -11,6 +11,7 @@
 
 #include "fhandler.h"
 #include "Misc.h"
+
 #ifdef DEBUG 
 	#define printd(format, ...) printf(format, ##__VA_ARGS__)
 	#define printld(format, ...) printf("[%s line : %-3d] " format,__FILE__, __LINE__, ##__VA_ARGS__)
@@ -28,9 +29,6 @@
 enum logs{
 	_UID,
 	_PATH,
-	_TIMESTAMP,
-	_ACCESS,
-	_ACTION_DENIED,
 	_FINGERPRINT
 };
 
@@ -109,9 +107,10 @@ void print_log_to_file(logf_t log_entry){
 	snprintf(log2, strlen(log_entry.path) + 12, " | Path : %s\n", log_entry.path);
 	fwrite_ptr(log2, sizeof(char), strlen(log2), fp);
 
-	if(fp!=NULL){
-		fclose(fp);
-	}
+	fflush(fp);
+
+	fclose(fp);
+	
 }
 
 logf_t create_log(const char *path, const access_t access, const int action_denied, unsigned char fingerprint[33]){
@@ -149,6 +148,7 @@ logf_t create_log(const char *path, const access_t access, const int action_deni
 }
 
 char ***parse_log(){
+	printld("parse_log() : Starting\n");
 	FILE* (*fopen_ptr)(const char *, const char *);
 	Handle("libc.so.6", "fopen", &fopen_ptr);
 
@@ -162,55 +162,57 @@ char ***parse_log(){
 	char **lines = (char**)malloc(sizeof(char *));
 	int log_count = 0;
 
+	printld("parse_log() : Reading file\n");
+	fseek(fp, 0, SEEK_SET);
 	while (!feof(fp)){
-		char buffer[256];
+		printld("log_count = %d\n", log_count);
+		char buffer[512];
 		fgets(buffer, 512, fp);
 
-		if (strlen(buffer) < 10){
+		if (strlen(buffer) < 10)
 			break;
-		}
 
-		printld("buffer : %s\n", buffer);
+		lines = (char **)realloc(lines, sizeof(char *) * (log_count + 1));
+		lines[log_count] = (char *)malloc(sizeof(char) * 512);
 
-		lines[log_count] = (char *)malloc(sizeof(char) * 256);
 		strcpy(lines[log_count], buffer);
 		log_count++;
 	}
-	_size_ = log_count;
-	printld("log_count = %d\n", log_count);
+	printld("parse_log() : Read %d lines\n", log_count);
+	fclose(fp);
 
-	char ***logs = (char ***)malloc(sizeof(char **) * 6);
-	logs[_UID] = (char **)malloc(sizeof(char *) * log_count +1 );
-	logs[_PATH] = (char **)malloc(sizeof(char *) * log_count + 1);
-	logs[_TIMESTAMP] = (char **)malloc(sizeof(char *) * log_count + 1);
-	logs[_ACCESS] = (char **)malloc(sizeof(char *) * log_count + 1);
-	logs[_ACTION_DENIED] = (char **)malloc(sizeof(char *) * log_count + 1);
-	logs[_FINGERPRINT] = (char **)malloc(sizeof(char *) * log_count + 1);
+	_size_ = log_count;
+
+	printld("parse_log() : Allocating memory\n");
+
+	char **UID = (char **)malloc(sizeof(char*) * log_count);
+	char **PATH = (char **)malloc(sizeof(char*) * log_count);
+	char **FINGERPRINT = (char **)malloc(sizeof(char*) * log_count);
+
+	printld("parse_log() : Allocated memory\n");
 
 	for(int i = 0; i < log_count; i++){
-		char time[9], date[10];
 
-		logs[_UID][i] = (char *)malloc(sizeof(char) * 10);
-		logs[_PATH][i] = (char *)malloc(sizeof(char) * 256);
-		logs[_TIMESTAMP][i] = (char *)malloc(sizeof(char) * 18);
-		logs[_ACCESS][i] = (char *)malloc(sizeof(char) * 6);
-		logs[_ACTION_DENIED][i] = (char *)malloc(sizeof(char) * 1);
-		logs[_FINGERPRINT][i] = (char *)malloc(sizeof(char) * 33);
+		UID[i] = (char *)malloc(sizeof(char) * 10);
+		PATH[i] = (char *)malloc(sizeof(char) * 256);
+		FINGERPRINT[i] = (char *)malloc(sizeof(char) * 33);
 
-		
-		sscanf(lines[i], "%s %s | UID : %s | Action : %s | Denied : %c | Fingerprint : %s | Path : %s\n",
-		 time, date, logs[_UID][i], logs[_ACCESS][i], logs[_ACTION_DENIED][i], logs[_FINGERPRINT][i], logs[_PATH][i]);
+		sscanf(lines[i], "[%*d:%*d:%*d] %*d/%*d/%*d | UID : %s | Action : %*s | Denied : %*d | Fingerprint : %s | Path : %s\n"
+		, UID[i],FINGERPRINT[i], PATH[i]);
 
 		free(lines[i]);
-
-		strcat(logs[_TIMESTAMP][i], time);
-		strcat(logs[_TIMESTAMP][i], " ");
-		strcat(logs[_TIMESTAMP][i], date);
 	}
+
+	printld("parse_log() : Freeing lines\n");
 
 	free(lines);
 
-	fclose(fp);
+	char ***logs = (char ***)malloc(sizeof(char **) * 3);
+	logs[_UID] = UID;
+	logs[_PATH] = PATH;
+	logs[_FINGERPRINT] = FINGERPRINT;
+
+	printld("parse_log() : Returning\n");
 
 	return logs;
 }
@@ -227,8 +229,6 @@ int string_included(user_history_t history, const char *path){
 array_t *user_history_init(){
 	char ***logs = parse_log();
 
-	printf("Parsed log\n");
-
 	user_history_t* history = malloc(sizeof(user_history_t) * 1);
 	unsigned int users = 0;
 	int found_user = 0;
@@ -238,10 +238,8 @@ array_t *user_history_init(){
 
 		for (int j = 0; j < users; j++){
 			if (history[j].UID == atoi(logs[i][_UID])){
-				printf("found user %d\n", history[j].UID);
 				
 				history[j].strikes++;
-				printf("Strike %d\n", history[j].strikes);
 
 				history[j].path = (char **)realloc(history[j].path, sizeof(char *) * history[j].strikes);
 				history[j].path[history[j].strikes-1] = (char *)malloc(sizeof(char) * 256);
@@ -278,119 +276,126 @@ array_t *user_history_init(){
 	// 	free(logs[i]);
 	// }
 
-	// printf("About to free\n");
-
 	return array;
 }
 
-int add_to_file_history(array_t* source, file_history_t target ){
-
-	file_history_t* _source = (file_history_t*)source->data;
-
-	_source = realloc(_source, (source->size + 1) * sizeof(file_history_t));
-	if(_source == NULL){
-		exit(0);
-		return 0;
-	}
-	_source[source->size + 1] = target;
-
-	return 1;
-}
-
 array_t *file_history_init(){
+	printld("file_history_init() : Starting\n");
+
 	char ***logs = parse_log();
 	printld("log size : %lu\n", _size_);
 
-	file_history_t *history = (file_history_t *)malloc(sizeof(file_history_t) * 0);
-	char **state = (char**)malloc(sizeof(char*) * 1);
+	file_history_t *history = (file_history_t *)malloc(sizeof(file_history_t) * 1);
+
+	String_array_t fingerprints = InitStringArray(33);
+
 	int files = 0;
 	int found_file = 0;
 	int found_user = 0;
 
-	for (int i = 0; i < _size_; i++ ){
+
+	for (int log_index = 0; log_index < _size_; log_index++){
+		printld("log_index = %d\n", log_index);
+		// search for file in history
 		found_file = 0;
-		
-		for (int j = 0; j < files; j++){
-			if (strcmp(history[j].path, logs[_PATH][i]) == 0){
+
+		for (int history_index = 0; history_index < files; history_index++){
+			printld("\thistory_index = %d\n", history_index);
+			printld("\tHistory path = %s\n", history[history_index].path);
+			printld("\tLog path = %s\n", logs[_PATH][log_index]);
+
+
+			if (strcmp(history[history_index].path, logs[_PATH][log_index]) == 0){
+				printld("\t\tFound file\n");
+				printld("\t\thistory_index = %d\n", history_index);
+				
 				found_file = 1;
 
-				printd("[%-3d]found file %s\n",__LINE__, history[j].path);
+				printld("\t\thistory[history_index].users = %d\n", history[history_index].users);
+				printld("\t\tfingerprints.data[history_index] = %s\n", fingerprints.data[history_index]);
 
-				if(strcmp(state[j], logs[_FINGERPRINT][i]) == 0){
-					printd("\t[%-3d]state is the same\n",__LINE__);
+				// check if the file has different fingerprint
+				if (strcmp(fingerprints.data[history_index], logs[_FINGERPRINT][log_index]) == 0){
+					printld("\t\t\t\Fingerprint is the same\n");
 					continue;
+				} else{
+					printld("\t\t\tFingerprint is different\n");
 				}
 
-				printd("\t[%-3d]state is different\n", __LINE__);
+				// search for user in file history
+				found_user = 0;
+				printld("\t\tUser index = %d\n", history[history_index].users);
 
-				for(int k = 0; k < history[j].users; k++){
-					if (history[j].UID[k] == atoi(logs[_UID][i])){
-						history[j].modifications[k]++;
-						printd("\tUser %d has modified file %s %d times\n", history[j].UID[k], history[j].path, history[j].modifications[k]);
+				for (int user_index = 0; user_index < history[history_index].users; user_index++){
+					printld("\t\t\tuser_index = %d\n", user_index);
+					printld("\t\t\tUID = %d\n", history[history_index].UID[user_index]);
+					printld("\t\t\tlog UID = %d\n", atoi(logs[_UID][log_index]));
 
+					if (history[history_index].UID[user_index] == atoi(logs[_UID][log_index])){
 						found_user = 1;
+						printld("\t\t\t\tFound user\n");
+						printld("\t\t\t\tfingerprints.data[user_index] = %s\n", fingerprints.data[user_index]);
+						printld("\t\t\t\tlog fingerprint = %s\n", logs[_FINGERPRINT][log_index]);
 
-						strcpy(state[j], logs[_FINGERPRINT][i]);
-
-						// printf("user %d has modified file %s %d times\n", history[j].UID[k], history[j].path, history[j].modifications[k]);
-						continue;
+						// check if the fingerprint has changed for this file
+						if (strcmp(fingerprints.data[user_index], logs[_FINGERPRINT][log_index]) != 0){
+							printld("\t\t\t\tFingerprint changed\n");
+							history[history_index].modifications[user_index] += 1;
+							setStringArray(&fingerprints, user_index, logs[_FINGERPRINT][log_index]);
+						}
 					}
 				}
 
 				if (!found_user){
-					printd("\t[%-3d]user %d not found\n",__LINE__, atoi(logs[_UID][i]));
+					printld("\t\t\tUser not found\n");
+					history[history_index].users += 1;
+					history[history_index].UID = (unsigned int *)realloc(history[history_index].UID, sizeof(unsigned int) * history[history_index].users);
+					printld("\t\t\thistory[history_index].users = %d\n", history[history_index].users);
 
-					history[j].users = 1;
-					history[j].UID = (unsigned int *)realloc(history[j].UID, sizeof(unsigned int) * history[j].users);
-					history[j].modifications = (unsigned int *)realloc(history[j].modifications, sizeof(unsigned int) * history[j].users);
+					history[history_index].modifications = (unsigned int *)realloc(history[history_index].modifications, sizeof(unsigned int) * history[history_index].users);
 
-					history[j].UID[history[j].users-1] = atoi(logs[_UID][i]);
-					history[j].modifications[history[j].users-1] = 1;
-
-
-					strcpy(state[j], logs[_FINGERPRINT][i]);
+					history[history_index].UID[history[history_index].users - 1] = atoi(logs[_UID][log_index]);
+					printld("history[history_index].UID[history[history_index].users - 1] = %d\n", history[history_index].UID[history[history_index].users - 1]);
+					history[history_index].modifications[history[history_index].users - 1] = 1;
+					printld("history[history_index].modifications[history[history_index].users - 1] = %d\n", history[history_index].modifications[history[history_index].users - 1]);
 				}
-				
-				found_user = 0;
-
-				// printf("User %d has modified file %s %d times\n", history[j].UID[history[j].users - 1], history[j].path, history[j].modifications[history[j].users - 1]);
-
-				continue;
 			}
 		}
 
 		if (!found_file){
-			files++;
-			printld("Files = %d\n", files);
-			history = (file_history_t *)realloc(history, sizeof(file_history_t) * (files+1));
-			history[files-1].path = (char *)malloc(sizeof(char) * 256);
-			strcpy(history[files-1].path, logs[_PATH][i]);
+			printld("File not found\n");
+			files += 1;
+			history = (file_history_t *)realloc(history, sizeof(file_history_t) * files);
+			history[files - 1].path = (char *)malloc(sizeof(char) * 256);
+			strcpy(history[files - 1].path, logs[_PATH][log_index]);
+			history[files - 1].users = 1;
+			history[files - 1].UID = (unsigned int *)malloc(sizeof(unsigned int) * 1);
+			history[files - 1].modifications = (unsigned int *)malloc(sizeof(unsigned int) * 1);
+			history[files - 1].UID[0] = atoi(logs[_UID][log_index]);
+			history[files - 1].modifications[0] = 1;
 
-			// printf("File %s\n", history[files - 1].path);
-
-			history[files-1].UID = (unsigned int *)malloc(sizeof(unsigned int) * 1);
-			history[files-1].modifications = (unsigned int *)malloc(sizeof(unsigned int) * 1);
-
-			history[files-1].UID[0] = atoi(logs[_UID][i]);
-			history[files-1].modifications[0] = 1;
-
-			history[files-1].users = 1;
-
-			state = (char **)realloc(state, sizeof(char *) * (files+1));
-			state[files-1] = (char *)malloc(sizeof(char) * 33);
-			strcpy(state[files-1], logs[_FINGERPRINT][i]);
-
-			printld("Created file entry\n");
-			// printf("User %d has modified file %s %d times\n", history[files-1].UID[0], history[files-1].path, history[files-1].modifications[0]);
+			PushStringArray(&fingerprints, logs[_FINGERPRINT][log_index]);
 		}
+		printld("Next log\n");
 	}
 
 	array_t *array = (array_t *)malloc(sizeof(array_t) * 1);
 	array->data = (void *)history;
 	array->size = files;
 
-	free(state);
+	// for (int i = 0; i < files; i++ ){
+	// 	printf("Path = %s\n", history[i].path);
+	// 	printf("  Users = %d\n", history[i].users);
+	// 	for (int j = 0; j < history[i].users; j++){
+	// 		printf("    UID = %d\n", history[i].UID[j]);
+	// 		printf("    Modifications = %d\n", history[i].modifications[j]);
+	// 	}
+	// }
+
+	printld("Freeing logs\n");
 	free(logs);
+
+	printld("file_history_init() : Returning\n");
 
 	return array;
 }

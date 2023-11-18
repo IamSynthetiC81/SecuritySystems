@@ -2,6 +2,20 @@
 	#define _GNU_SOURCE
 #endif
 
+#ifdef DEBUG 
+	#define printd(format, ...) printf(format, ##__VA_ARGS__)
+	#define printld(format, ...) printf("[%s line : %-3d] " format,__FILE__, __LINE__, ##__VA_ARGS__)
+#else
+	#define printd(format, ...)
+	#define printld(format, ...)
+#endif
+
+#ifdef VERBOSE
+	#define printv(format, ...) if(_VERBOSE_) printf(format, ##__VA_ARGS__)
+#else
+	#define printv(format, ...)
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -50,17 +64,29 @@ unsigned char *Hash(FILE *fp){
 	MD5_CTX md5;
 	MD5_Init(&md5);
 
-	char buf[1024] = "";
+	fseek(fp, 0, SEEK_SET);															// Set file pointer to the beginning of the file
+
+	char buf[1024] = "\0";
 
 	int nread;
 	do{
 		nread = fread_ptr(buf, sizeof(char), 1024, fp);
+
+		// printld("nread = %d\n", nread);
+		// printld("buf = %s\n", buf);
+
 		MD5_Update(&md5, buf, nread);
 	} while (nread > 0);
 
 	MD5_Final(hash_key, &md5);														// Get hash_key of file
 
 	fseek(fp, __seek_pointer, SEEK_SET);											// Set seek pointer to original position
+
+	printld("Hash_key = ");
+	for (int i = 0; i < 16; i++) {
+		printd("%02x", hash_key[i]);
+	}
+	printd("\n");
 
 	return hash_key;
 }
@@ -107,8 +133,8 @@ FILE *fopen(const char *path, const char *mode){
 	int action_denied = 0;
 
 	access_t access_type = (access(path, F_OK) == 0) ? __OPEN : __CREATION; 		// Check if file exists
-
-	FILE* fp = fopen_ptr(path, mode);												// Open file
+	
+	FILE *fp = fopen_ptr(path, mode);												// Open file
 	if (errno == EACCES || errno == EPERM || errno == EROFS){
 		hash_key = Hash_string("");
 		action_denied = 1;
@@ -126,8 +152,6 @@ FILE *fopen(const char *path, const char *mode){
 
 	free(hash_key);		
 	free(__abs_path);
-
-
 
 	return fp;
 }
@@ -158,21 +182,23 @@ size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream){
 	
 	size_t ret_val = fwrite_ptr(ptr, size, nmemb, stream); 							// Write to the file
 
-
+	fflush(stream);																	// Flush the file stream
 
 	if (errno == EACCES || errno == EPERM || errno == EROFS)						// If the write operation was not successful
 		action_denied = 1;															// Set action_denied to 1
-	else
-		__seek_pointer = ftell(stream);												// Save seek pointer
+	// else
+		// __seek_pointer = ftell(stream);												// Save seek pointer
 
 	MD5_CTX md5;
 	MD5_Init(&md5);
 
-	fseek(stream, 0, SEEK_SET);														// Set file pointer to the beginning of the file
+	// fseek(stream, 0, SEEK_SET);														// Set file pointer to the beginning of the file
 
 	hash_key = Hash(stream);														// Get hash_key of file
 
-	fseek(stream, __seek_pointer, SEEK_SET);										// Set seek pointer to original position		
+	printld("hashed\n"); 
+
+	// fseek(stream, __seek_pointer, SEEK_SET);										// Set seek pointer to original position		
 
 	create_log(get_path(stream), __WRITE, action_denied, hash_key);					// Create and print log entry onto log.txt
 
@@ -227,3 +253,18 @@ size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream){
 	return ret_val;																	// Return the value returned by fread
 }
 #endif
+
+int fclose(FILE *fp){
+	int (*fclose_ptr)(FILE *);
+
+	Handle("libc.so.6", "fclose", &fclose_ptr);
+
+	unsigned char *hash_key;
+	int action_denied = 0;
+
+	
+
+	// printld("\t\t\t\tfclose() : \n");
+
+	return fclose_ptr(fp);
+}
