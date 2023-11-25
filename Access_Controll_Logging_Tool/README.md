@@ -5,12 +5,13 @@
 
 The access controll logging system monitors and keeps track of every file access and modification that occurs in the system.
 
-> :warning:
+> Warning :warning:
 > 
 > Systemwide logging can throw errors (notably in the case of 'gcc') that are not related to the program itself, but to the nature of the temp files these commands use. 
 >
->>
->> It is best to disable the preloading before running these commands.
+> Solution ❕
+> 
+> It is best to disable the preloading before running these commands.
 
 ### Compilation
 
@@ -30,10 +31,10 @@ LD_PRELOAD=./out/libmylib.so    // Enables the logging
 LD_PRELOAD=                     // Disables the logging
 ```
 
-alternatively, logging can be enabled for a single command by running the following command:
+alternatively, logging can be enabled for a single program by running the following command:
 
 ```bash
-LD_PRELOAD=./out/libmylib.so <command>
+LD_PRELOAD=./out/libmylib.so <program>
 ```
 
 ### Testing
@@ -46,7 +47,7 @@ make test
 
 or 
 ```bash
-./out/aclog
+./out/aclog   // this runs make test
 ```
 
 ### Documentation
