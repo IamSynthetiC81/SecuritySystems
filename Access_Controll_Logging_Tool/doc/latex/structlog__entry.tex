@@ -2,6 +2,11 @@
 \label{structlog__entry}\index{log\+\_\+entry@{log\+\_\+entry}}
 
 
+The log entry.  
+
+
+
+
 {\ttfamily \#include $<$log.\+h$>$}
 
 \subsection*{Data Fields}
@@ -17,8 +22,28 @@ const \hyperlink{log_8h_ab20c54dfb1eb1323b9a3cfe2e6a76270_ab20c54dfb1eb1323b9a3c
 \item 
 const int \hyperlink{structlog__entry_a7845b16ee2d60f04349b65d55c44dd50_a7845b16ee2d60f04349b65d55c44dd50}{action\+\_\+denied}
 \item 
-unsigned char \hyperlink{structlog__entry_a5e3b10ab8a78db5d73c94a4970da58dd_a5e3b10ab8a78db5d73c94a4970da58dd}{fingerprint} \mbox{[}16\mbox{]}
+const char \hyperlink{structlog__entry_af2ebb7fded35fda20794591db630571e_af2ebb7fded35fda20794591db630571e}{fingerprint} \mbox{[}33\mbox{]}
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The log entry. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em U\+ID} & The U\+ID of the user. \\
+\hline
+{\em path} & The absolute path of the file. \\
+\hline
+{\em timestamp} & The timestamp of the log entry. \\
+\hline
+{\em access} & The access type. see access\+\_\+t \\
+\hline
+{\em action\+\_\+denied} & 1 if the action was denied, else 0. \\
+\hline
+{\em fingerprint} & The fingerprint of the file. \\
+\hline
+\end{DoxyParams}
 
 
 \subsection{Field Documentation}
@@ -34,11 +59,11 @@ unsigned char \hyperlink{structlog__entry_a5e3b10ab8a78db5d73c94a4970da58dd_a5e3
 \subsubsection{\texorpdfstring{action\+\_\+denied}{action\_denied}}
 {\footnotesize\ttfamily const int log\+\_\+entry\+::action\+\_\+denied}
 
-\mbox{\Hypertarget{structlog__entry_a5e3b10ab8a78db5d73c94a4970da58dd_a5e3b10ab8a78db5d73c94a4970da58dd}\label{structlog__entry_a5e3b10ab8a78db5d73c94a4970da58dd_a5e3b10ab8a78db5d73c94a4970da58dd}} 
+\mbox{\Hypertarget{structlog__entry_af2ebb7fded35fda20794591db630571e_af2ebb7fded35fda20794591db630571e}\label{structlog__entry_af2ebb7fded35fda20794591db630571e_af2ebb7fded35fda20794591db630571e}} 
 \index{log\+\_\+entry@{log\+\_\+entry}!fingerprint@{fingerprint}}
 \index{fingerprint@{fingerprint}!log\+\_\+entry@{log\+\_\+entry}}
 \subsubsection{\texorpdfstring{fingerprint}{fingerprint}}
-{\footnotesize\ttfamily unsigned char log\+\_\+entry\+::fingerprint\mbox{[}16\mbox{]}}
+{\footnotesize\ttfamily const char log\+\_\+entry\+::fingerprint\mbox{[}33\mbox{]}}
 
 \mbox{\Hypertarget{structlog__entry_af95c41539cb49570c94f3cdbce83440b_af95c41539cb49570c94f3cdbce83440b}\label{structlog__entry_af95c41539cb49570c94f3cdbce83440b_af95c41539cb49570c94f3cdbce83440b}} 
 \index{log\+\_\+entry@{log\+\_\+entry}!path@{path}}

@@ -237,14 +237,14 @@ array_t *user_history_init(){
 		found_user = 0;
 
 		for (int j = 0; j < users; j++){
-			if (history[j].UID == atoi(logs[i][_UID])){
+			if (history[j].UID == atoi(logs[_UID][i])){
 				
 				history[j].strikes++;
 
 				history[j].path = (char **)realloc(history[j].path, sizeof(char *) * history[j].strikes);
 				history[j].path[history[j].strikes-1] = (char *)malloc(sizeof(char) * 256);
 
-				strcpy(history[j].path[history[j].strikes-1], logs[i][_PATH]);
+				strcpy(history[j].path[history[j].strikes-1], logs[_PATH][i]);
 				printd("path %s\n", history[j].path[history[j].strikes - 1]);
 
 				found_user = 1;
@@ -252,19 +252,23 @@ array_t *user_history_init(){
 			}
 		}
 
+	
+
 		if (!found_user){
-			printd("user %d not found\n", atoi(logs[i][_UID]));
+			printd("user %d not found\n", atoi(logs[_UID][i]));
 			printd("users %d\n", users);
 			users++;
 
 			history = (user_history_t *)realloc(history, sizeof(user_history_t) * users);
-			history[users-1].UID = atoi(logs[i][_UID]);
+			history[users-1].UID = atoi(logs[_UID][i]);
 			history[users-1].strikes = 1;
 			history[users-1].path = (char **)malloc(sizeof(char *) * 1);
 			history[users-1].path[0] = (char *)malloc(sizeof(char) * 256);
-			strcpy(history[users-1].path[0], logs[i][_PATH]);
+			strcpy(history[users-1].path[0], logs[_PATH][i]);
 		}
 	}
+
+	
 
 	array_t *array = (array_t *)malloc(sizeof(array_t) * 1);
 	array->data = (void *)history;
@@ -316,7 +320,7 @@ array_t *file_history_init(){
 
 				// check if the file has different fingerprint
 				if (strcmp(fingerprints.data[history_index], logs[_FINGERPRINT][log_index]) == 0){
-					printld("\t\t\t\Fingerprint is the same\n");
+					printld("\t\t\tFingerprint is the same\n");
 					continue;
 				} else{
 					printld("\t\t\tFingerprint is different\n");

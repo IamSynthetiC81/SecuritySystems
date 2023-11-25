@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['path',['path',['../structlog__entry__text__hash_a991fd47833c6a7e56c8b0713ef85870e.html#a991fd47833c6a7e56c8b0713ef85870e',1,'log_entry_text_hash::path()'],['../structlog__entry_af95c41539cb49570c94f3cdbce83440b.html#af95c41539cb49570c94f3cdbce83440b',1,'log_entry::path()']]],
-  ['paths',['paths',['../fperm__test_8c_a9acefa3eb5b801834cb9b7a7453b41e0.html#a9acefa3eb5b801834cb9b7a7453b41e0',1,'fperm_test.c']]]
+  ['capacity',['capacity',['../structString__array_a6c31358160c33bad3f63da0b677bec82.html#a6c31358160c33bad3f63da0b677bec82',1,'String_array']]],
+  ['chatgpt_5fis_5fa_5fpoet',['chatGPT_is_a_poet',['../fmod__test_8c_a63b532db3eeff7bcfc7ac922342e7e22.html#a63b532db3eeff7bcfc7ac922342e7e22',1,'fmod_test.c']]]
 ];

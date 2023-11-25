@@ -65,6 +65,8 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">log.c File Reference</div>  </div>
@@ -78,28 +80,56 @@ $(function() {
 <code>#include &lt;time.h&gt;</code><br />
 <code>#include &lt;unistd.h&gt;</code><br />
 <code>#include &lt;stdarg.h&gt;</code><br />
+<code>#include &lt;errno.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="fhandler_8h_source.html">fhandler.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Misc_8h_source.html">Misc.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for log.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="log_8c__incl.png" border="0" usemap="#log_8c" alt=""/></div>
 <map name="log_8c" id="log_8c">
-<area shape="rect" id="node2" href="log_8h.html" title="log.h" alt="" coords="61,80,115,107"/>
-<area shape="rect" id="node4" href="fhandler_8h.html" title="fhandler.h" alt="" coords="101,155,189,181"/>
+<area shape="rect" id="node2" href="log_8h.html" title="log.h" alt="" coords="126,80,181,107"/>
+<area shape="rect" id="node4" href="fhandler_8h.html" title="fhandler.h" alt="" coords="93,155,181,181"/>
+<area shape="rect" id="node5" href="Misc_8h.html" title="Misc.h" alt="" coords="257,155,319,181"/>
 </map>
 </div>
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ac4c027058e9ccd1d4dce6a718af0b422"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8c_ac4c027058e9ccd1d4dce6a718af0b422.html#ac4c027058e9ccd1d4dce6a718af0b422">printd</a>(format, ...)</td></tr>
+<tr class="separator:ac4c027058e9ccd1d4dce6a718af0b422"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b3a3c4c8735fffe0d3b0ab6c7053667"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8c_a8b3a3c4c8735fffe0d3b0ab6c7053667.html#a8b3a3c4c8735fffe0d3b0ab6c7053667">printld</a>(format, ...)</td></tr>
+<tr class="separator:a8b3a3c4c8735fffe0d3b0ab6c7053667"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a483d4c865c4cb956ffe919f48867641a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8c_a483d4c865c4cb956ffe919f48867641a.html#a483d4c865c4cb956ffe919f48867641a">printv</a>(format, ...)</td></tr>
+<tr class="separator:a483d4c865c4cb956ffe919f48867641a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a37d874d1d45bc2e5bfa013cddacb8e68"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8c_a37d874d1d45bc2e5bfa013cddacb8e68.html#a37d874d1d45bc2e5bfa013cddacb8e68">logs</a> { <a class="el" href="log_8c_a37d874d1d45bc2e5bfa013cddacb8e68.html#a37d874d1d45bc2e5bfa013cddacb8e68a95104fcc64ae8dceb7f9b2de7b6514ae">_UID</a>, 
+<a class="el" href="log_8c_a37d874d1d45bc2e5bfa013cddacb8e68.html#a37d874d1d45bc2e5bfa013cddacb8e68ad7b8089e9e6d168cd3731f08d54fda85">_PATH</a>, 
+<a class="el" href="log_8c_a37d874d1d45bc2e5bfa013cddacb8e68.html#a37d874d1d45bc2e5bfa013cddacb8e68a5808f65fb9f0aa0b10f39fc9c275b342">_FINGERPRINT</a>
+ }</td></tr>
+<tr class="separator:a37d874d1d45bc2e5bfa013cddacb8e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a2de5fe84ca15039e1b007634ccef1651"><td class="memItemLeft" align="right" valign="top">struct tm&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8c_a2de5fe84ca15039e1b007634ccef1651.html#a2de5fe84ca15039e1b007634ccef1651">date_and_time</a> ()</td></tr>
-<tr class="memdesc:a2de5fe84ca15039e1b007634ccef1651"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a timestamp object with the current date and time.  <a href="log_8c_a2de5fe84ca15039e1b007634ccef1651.html#a2de5fe84ca15039e1b007634ccef1651">More...</a><br /></td></tr>
 <tr class="separator:a2de5fe84ca15039e1b007634ccef1651"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3a7d9a8e25e365afb72e557f60ba45f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8c_ab3a7d9a8e25e365afb72e557f60ba45f.html#ab3a7d9a8e25e365afb72e557f60ba45f">print_log_to_file</a> (<a class="el" href="log_8h_abd600feddcc5ca71fa3f3afa84eee569.html#abd600feddcc5ca71fa3f3afa84eee569">log_t</a> <a class="el" href="structlog__entry.html">log_entry</a>)</td></tr>
-<tr class="memdesc:ab3a7d9a8e25e365afb72e557f60ba45f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the log entry to the log file.  <a href="log_8c_ab3a7d9a8e25e365afb72e557f60ba45f.html#ab3a7d9a8e25e365afb72e557f60ba45f">More...</a><br /></td></tr>
-<tr class="separator:ab3a7d9a8e25e365afb72e557f60ba45f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a208f5ebd87e3ff13ab84ab2d57c46974"><td class="memItemLeft" align="right" valign="top"><a class="el" href="log_8h_abd600feddcc5ca71fa3f3afa84eee569.html#abd600feddcc5ca71fa3f3afa84eee569">log_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8c_a208f5ebd87e3ff13ab84ab2d57c46974.html#a208f5ebd87e3ff13ab84ab2d57c46974">create_log</a> (const char *path, const <a class="el" href="log_8h_ab20c54dfb1eb1323b9a3cfe2e6a76270.html#ab20c54dfb1eb1323b9a3cfe2e6a76270">access_t</a> access, const int action_denied, unsigned char fingerprint[16])</td></tr>
-<tr class="memdesc:a208f5ebd87e3ff13ab84ab2d57c46974"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a log entry.  <a href="log_8c_a208f5ebd87e3ff13ab84ab2d57c46974.html#a208f5ebd87e3ff13ab84ab2d57c46974">More...</a><br /></td></tr>
-<tr class="separator:a208f5ebd87e3ff13ab84ab2d57c46974"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a670c74165ab410cb0d3f2e1b33353fad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8c_a670c74165ab410cb0d3f2e1b33353fad.html#a670c74165ab410cb0d3f2e1b33353fad">print_log_to_file</a> (<a class="el" href="log_8h_a9146f9d95d54274f118322bcf7f713ef.html#a9146f9d95d54274f118322bcf7f713ef">logf_t</a> <a class="el" href="structlog__entry.html">log_entry</a>)</td></tr>
+<tr class="separator:a670c74165ab410cb0d3f2e1b33353fad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d629107f91e052ae3a78630c7aa216d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="log_8h_a9146f9d95d54274f118322bcf7f713ef.html#a9146f9d95d54274f118322bcf7f713ef">logf_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8c_a5d629107f91e052ae3a78630c7aa216d.html#a5d629107f91e052ae3a78630c7aa216d">create_log</a> (const char *path, const <a class="el" href="log_8h_ab20c54dfb1eb1323b9a3cfe2e6a76270.html#ab20c54dfb1eb1323b9a3cfe2e6a76270">access_t</a> access, const int action_denied, unsigned char fingerprint[33])</td></tr>
+<tr class="memdesc:a5d629107f91e052ae3a78630c7aa216d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a log entry.  <a href="log_8c_a5d629107f91e052ae3a78630c7aa216d.html#a5d629107f91e052ae3a78630c7aa216d">More...</a><br /></td></tr>
+<tr class="separator:a5d629107f91e052ae3a78630c7aa216d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a7875b83501648d98a17332d687d069"><td class="memItemLeft" align="right" valign="top">char ***&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8c_a9a7875b83501648d98a17332d687d069.html#a9a7875b83501648d98a17332d687d069">parse_log</a> ()</td></tr>
+<tr class="separator:a9a7875b83501648d98a17332d687d069"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacdf3e01976101e73d8f199789b45866"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8c_aacdf3e01976101e73d8f199789b45866.html#aacdf3e01976101e73d8f199789b45866">string_included</a> (<a class="el" href="log_8h_adae9bf82e84f8e9ba2b5d82c481fd32a.html#adae9bf82e84f8e9ba2b5d82c481fd32a">user_history_t</a> history, const char *path)</td></tr>
+<tr class="separator:aacdf3e01976101e73d8f199789b45866"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5028d467821dad15eb5d62f1f459b4c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Misc_8h_a00cef65fdcdf049cdfa42839691a9b45.html#a00cef65fdcdf049cdfa42839691a9b45">array_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8c_ac5028d467821dad15eb5d62f1f459b4c.html#ac5028d467821dad15eb5d62f1f459b4c">user_history_init</a> ()</td></tr>
+<tr class="memdesc:ac5028d467821dad15eb5d62f1f459b4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the log file and returns an array of <a class="el" href="log_8h_adae9bf82e84f8e9ba2b5d82c481fd32a.html#adae9bf82e84f8e9ba2b5d82c481fd32a">user_history_t</a> in the form of <a class="el" href="Misc_8h_a00cef65fdcdf049cdfa42839691a9b45.html#a00cef65fdcdf049cdfa42839691a9b45">array_t</a>.  <a href="log_8c_ac5028d467821dad15eb5d62f1f459b4c.html#ac5028d467821dad15eb5d62f1f459b4c">More...</a><br /></td></tr>
+<tr class="separator:ac5028d467821dad15eb5d62f1f459b4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7d10f80cd766efcca714ce1f1f06d87"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Misc_8h_a00cef65fdcdf049cdfa42839691a9b45.html#a00cef65fdcdf049cdfa42839691a9b45">array_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8c_ad7d10f80cd766efcca714ce1f1f06d87.html#ad7d10f80cd766efcca714ce1f1f06d87">file_history_init</a> ()</td></tr>
+<tr class="memdesc:ad7d10f80cd766efcca714ce1f1f06d87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the log file and returns an array of <a class="el" href="log_8h_a5eba967092586c4763c2fbe89d22a634.html#a5eba967092586c4763c2fbe89d22a634">file_history_t</a> in the form of <a class="el" href="Misc_8h_a00cef65fdcdf049cdfa42839691a9b45.html#a00cef65fdcdf049cdfa42839691a9b45">array_t</a>.  <a href="log_8c_ad7d10f80cd766efcca714ce1f1f06d87.html#ad7d10f80cd766efcca714ce1f1f06d87">More...</a><br /></td></tr>
+<tr class="separator:ad7d10f80cd766efcca714ce1f1f06d87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

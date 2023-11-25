@@ -61,51 +61,42 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">acmonitor.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="log_8h_source.html">lib/log.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="fhandler_8h_source.html">lib/fhandler.h</a>&quot;</code><br />
-<code>#include &lt;stdio.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;pwd.h&gt;</code><br />
+<code>#include &lt;grp.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="log_8h_source.html">lib/log.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="fhandler_8h_source.html">lib/fhandler.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Misc_8h_source.html">lib/Misc.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for acmonitor.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="acmonitor_8c__incl.png" border="0" usemap="#acmonitor_8c" alt=""/></div>
 <map name="acmonitor_8c" id="acmonitor_8c">
-<area shape="rect" id="node2" href="log_8h.html" title="lib/log.h" alt="" coords="25,80,100,107"/>
-<area shape="rect" id="node4" href="fhandler_8h.html" title="fhandler.h" alt="" coords="93,155,181,181"/>
+<area shape="rect" id="node8" href="log_8h.html" title="lib/log.h" alt="" coords="428,80,503,107"/>
+<area shape="rect" id="node10" href="fhandler_8h.html" title="fhandler.h" alt="" coords="465,155,553,181"/>
+<area shape="rect" id="node11" href="Misc_8h.html" title="Misc.h" alt="" coords="114,155,177,181"/>
 </map>
 </div>
 </div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlog__entry__text__hash.html">log_entry_text_hash</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:aff6732b7d46ac296a7b8d61ada41d949"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="acmonitor_8c_aff6732b7d46ac296a7b8d61ada41d949.html#aff6732b7d46ac296a7b8d61ada41d949">_LOG_BUFFER_SIZE_</a>&#160;&#160;&#160;1024</td></tr>
-<tr class="separator:aff6732b7d46ac296a7b8d61ada41d949"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73708c27921af699a08573001ea2584d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="acmonitor_8c_a73708c27921af699a08573001ea2584d.html#a73708c27921af699a08573001ea2584d">_MAX_STRIKE_</a>&#160;&#160;&#160;7</td></tr>
 <tr class="separator:a73708c27921af699a08573001ea2584d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a2c07adb053c6cb67f66231ae9cc7734d"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structlog__entry__text__hash.html">log_entry_text_hash</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="acmonitor_8c_a2c07adb053c6cb67f66231ae9cc7734d.html#a2c07adb053c6cb67f66231ae9cc7734d">logf_t</a></td></tr>
-<tr class="separator:a2c07adb053c6cb67f66231ae9cc7734d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a88ee5df83d5ccb61194f75e95db7771b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="acmonitor_8c_a2c07adb053c6cb67f66231ae9cc7734d.html#a2c07adb053c6cb67f66231ae9cc7734d">logf_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="acmonitor_8c_a88ee5df83d5ccb61194f75e95db7771b.html#a88ee5df83d5ccb61194f75e95db7771b">parse_file</a> (FILE *fp)</td></tr>
-<tr class="separator:a88ee5df83d5ccb61194f75e95db7771b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f1ac7ad36d068e54e8c4b9b03981960"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="acmonitor_8c_a6f1ac7ad36d068e54e8c4b9b03981960.html#a6f1ac7ad36d068e54e8c4b9b03981960">print_logf</a> (<a class="el" href="acmonitor_8c_a2c07adb053c6cb67f66231ae9cc7734d.html#a2c07adb053c6cb67f66231ae9cc7734d">logf_t</a> log)</td></tr>
+<tr class="memitem:aacdf3e01976101e73d8f199789b45866"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="acmonitor_8c_aacdf3e01976101e73d8f199789b45866.html#aacdf3e01976101e73d8f199789b45866">string_included</a> (<a class="el" href="log_8h_adae9bf82e84f8e9ba2b5d82c481fd32a.html#adae9bf82e84f8e9ba2b5d82c481fd32a">user_history_t</a> history, const char *path)</td></tr>
+<tr class="separator:aacdf3e01976101e73d8f199789b45866"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f1ac7ad36d068e54e8c4b9b03981960"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="acmonitor_8c_a6f1ac7ad36d068e54e8c4b9b03981960.html#a6f1ac7ad36d068e54e8c4b9b03981960">print_logf</a> (<a class="el" href="log_8h_a9146f9d95d54274f118322bcf7f713ef.html#a9146f9d95d54274f118322bcf7f713ef">logf_t</a> log)</td></tr>
 <tr class="separator:a6f1ac7ad36d068e54e8c4b9b03981960"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="acmonitor_8c_a0ddf1224851353fc92bfbff6f499fa97.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>

@@ -67,6 +67,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>The log entry.  
+ <a href="structlog__entry.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="log_8h_source.html">log.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -81,10 +84,23 @@ Data Fields</h2></td></tr>
 <tr class="separator:a36a8d704c97e0fa5f3f83454e2d92662"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7845b16ee2d60f04349b65d55c44dd50"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlog__entry_a7845b16ee2d60f04349b65d55c44dd50.html#a7845b16ee2d60f04349b65d55c44dd50">action_denied</a></td></tr>
 <tr class="separator:a7845b16ee2d60f04349b65d55c44dd50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e3b10ab8a78db5d73c94a4970da58dd"><td class="memItemLeft" align="right" valign="top">unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlog__entry_a5e3b10ab8a78db5d73c94a4970da58dd.html#a5e3b10ab8a78db5d73c94a4970da58dd">fingerprint</a> [16]</td></tr>
-<tr class="separator:a5e3b10ab8a78db5d73c94a4970da58dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2ebb7fded35fda20794591db630571e"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlog__entry_af2ebb7fded35fda20794591db630571e.html#af2ebb7fded35fda20794591db630571e">fingerprint</a> [33]</td></tr>
+<tr class="separator:af2ebb7fded35fda20794591db630571e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The log entry. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">UID</td><td>The UID of the user. </td></tr>
+    <tr><td class="paramname">path</td><td>The absolute path of the file. </td></tr>
+    <tr><td class="paramname">timestamp</td><td>The timestamp of the log entry. </td></tr>
+    <tr><td class="paramname">access</td><td>The access type. see access_t </td></tr>
+    <tr><td class="paramname">action_denied</td><td>1 if the action was denied, else 0. </td></tr>
+    <tr><td class="paramname">fingerprint</td><td>The fingerprint of the file. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li><a class="el" href="log_8h_source.html">log.h</a></li>
 </ul>
 </div><!-- contents -->

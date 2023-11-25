@@ -48,53 +48,62 @@ void print_logf(logf_t log){
     printf("[%02d:%02d:%02d] %02d/%02d/%04d | UID : %5d | Action : %6s | Denied : %1d | Fingerprint : %s | Path : %s\n", log.timestamp.tm_hour, log.timestamp.tm_min, log.timestamp.tm_sec, log.timestamp.tm_mday, log.timestamp.tm_mon, log.timestamp.tm_year, log.UID, access, log.action_denied, log.fingerprint, log.path);
 }
 
-int main(int argc, char *argv[]){
+int printMaliciousUsers(){
+    array_t *data = user_history_init();
+    user_history_t *user_history = (user_history_t *)data->data;
 
+    for (int i = 0; i < data->size; i++){
+        if (user_history[i].strikes >= _MAX_STRIKE_)
+        {
+            printf("User %d has been banned\n", user_history[i].UID);
+        }
+    }
+    return 0;
+}
+
+void printHelp(){
+    return;
+}
+
+int main(int argc, char *argv[]){
     if (argc == 2){
+        if(strcmp(argv[1],"-m") == 0){
+            return printMaliciousUsers();
+        } else if (strcmp(argv[1],"-h") == 0){
+            printHelp();
+        }else if (strcmp(argv[1],"-i") == 0){
+            perror("No file specified");
+            return -1;
+        }
+    } else if (argc == 3){
+
         array_t *data = file_history_init();
         file_history_t *history = (file_history_t *)data->data;
 
         file_history_t file;
         for(int i = 0; i < data->size; i++){
-            if (strcmp(history[i].path, argv[1]) == 0){
+            if (strcmp(history[i].path, argv[2]) == 0){
                 file = history[i];
+                if (file.users == 0){
+                    printf("File has not been modified\n");
+                    exit(-1);
+                }
+                break;
             }
         }
+        
         if (file.users == 0){
-            printf("File has not been modified\n");
+            printf("File was not found\n");
             exit(-1);
         }
 
-        int retval = -1;
-        unsigned int curr_user = getuid();
-
         for (int i = 0; i < file.users; i++){
-            if(file.UID[i] == curr_user)
-                retval = file.modifications[i];
-            // printf("You have modified the file %u times\n", file->modifications[i]);
+            printf("User %d has modified the file %d times\n", file.UID[i], file.modifications[i]);
         }
 
-        exit(retval);
-
-        return retval;
+        return 1;
+    } else {
+        printf("Invalid parameters\n");
+        return -1;
     }
-
-    int log_count = 0;
-
-    array_t *data = user_history_init();
-    user_history_t *user_history = (user_history_t *)data->data;
-
-    for (int i = 0; i < data->size; i++){
-        if (user_history[i].strikes >= _MAX_STRIKE_){
-            printf("User %d has been banned\n", user_history[i].UID);
-        }
-    }
-
-    // for (int i = 0; i < user_history; i++){
-    //     for (int j = 0; j < history[i].strikes; j++){
-    //         printf("User %d has %d strikes on file %s\n", history[i].UID, history[i].strikes, history[i].path[j]);
-    //     }
-    // }
-    return 0;
-    
 }

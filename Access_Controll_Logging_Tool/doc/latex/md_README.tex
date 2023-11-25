@@ -38,6 +38,14 @@ LD\_PRELOAD=                     // Disables the logging
 \end{DoxyCode}
 
 
+alternatively, logging can be enabled for a single command by running the following command\+:
+
+
+\begin{DoxyCode}
+LD\_PRELOAD=./out/libmylib.so <command>
+\end{DoxyCode}
+
+
 \subsubsection*{Testing}
 
 The program can be tested with the following commands\+:
@@ -46,4 +54,14 @@ The program can be tested with the following commands\+:
 \begin{DoxyCode}
 make test
 \end{DoxyCode}
- 
+
+
+or 
+\begin{DoxyCode}
+./out/aclog
+\end{DoxyCode}
+
+
+\subsubsection*{Documentation}
+
+For further documentatin a doxygen generated report is located in the doc directory 

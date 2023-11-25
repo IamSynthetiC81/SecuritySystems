@@ -2,57 +2,76 @@
 \label{log_8h}\index{log.\+h@{log.\+h}}
 {\ttfamily \#include $<$time.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}fhandler.\+h\char`\"{}}\newline
-Include dependency graph for log.\+h\+:
-\nopagebreak
+{\ttfamily \#include \char`\"{}Misc.\+h\char`\"{}}\newline
+Include dependency graph for log.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=212pt]{log_8h__incl}
+\includegraphics[width=350pt]{log_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:
-\nopagebreak
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=274pt]{log_8h__dep__incl}
+\includegraphics[width=350pt]{log_8h__dep__incl}
 \end{center}
 \end{figure}
 \subsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
 struct \hyperlink{structlog__entry}{log\+\_\+entry}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The log entry. \end{DoxyCompactList}\item 
+struct \hyperlink{structlog__entry__s}{log\+\_\+entry\+\_\+s}
+\begin{DoxyCompactList}\small\item\em The log entry in strings format. \end{DoxyCompactList}\item 
+struct \hyperlink{structuser__history}{user\+\_\+history}
+\begin{DoxyCompactList}\small\item\em User history in the log. Contains all files the user attempted ro access or modify but was rejected. \end{DoxyCompactList}\item 
+struct \hyperlink{structfile__history}{file\+\_\+history}
+\begin{DoxyCompactList}\small\item\em File history in the log. Contains logs regarding a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
 \#define \hyperlink{log_8h_a286c666b6725cb6f32fbd5500f41dd9f_a286c666b6725cb6f32fbd5500f41dd9f}{\+\_\+\+L\+O\+G\+\_\+\+F\+I\+L\+E\+\_\+\+P\+A\+T\+H\+\_\+}~\char`\"{}etc/log.\+txt\char`\"{}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Handles all operations regarding the log file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
 typedef enum \hyperlink{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24}{access\+\_\+types} \hyperlink{log_8h_ab20c54dfb1eb1323b9a3cfe2e6a76270_ab20c54dfb1eb1323b9a3cfe2e6a76270}{access\+\_\+t}
-\item 
-typedef struct \hyperlink{structlog__entry}{log\+\_\+entry} \hyperlink{log_8h_abd600feddcc5ca71fa3f3afa84eee569_abd600feddcc5ca71fa3f3afa84eee569}{log\+\_\+t}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The access types. \end{DoxyCompactList}\item 
+typedef struct \hyperlink{structlog__entry}{log\+\_\+entry} \hyperlink{log_8h_a9146f9d95d54274f118322bcf7f713ef_a9146f9d95d54274f118322bcf7f713ef}{logf\+\_\+t}
+\begin{DoxyCompactList}\small\item\em The log entry. \end{DoxyCompactList}\item 
+typedef struct \hyperlink{structlog__entry__s}{log\+\_\+entry\+\_\+s} \hyperlink{log_8h_a6e294c3f610f2a78fe6f6bc8592c7e90_a6e294c3f610f2a78fe6f6bc8592c7e90}{logs\+\_\+t}
+\begin{DoxyCompactList}\small\item\em The log entry in strings format. \end{DoxyCompactList}\item 
+typedef struct \hyperlink{structuser__history}{user\+\_\+history} \hyperlink{log_8h_adae9bf82e84f8e9ba2b5d82c481fd32a_adae9bf82e84f8e9ba2b5d82c481fd32a}{user\+\_\+history\+\_\+t}
+\begin{DoxyCompactList}\small\item\em User history in the log. Contains all files the user attempted ro access or modify but was rejected. \end{DoxyCompactList}\item 
+typedef struct \hyperlink{structfile__history}{file\+\_\+history} \hyperlink{log_8h_a5eba967092586c4763c2fbe89d22a634_a5eba967092586c4763c2fbe89d22a634}{file\+\_\+history\+\_\+t}
+\begin{DoxyCompactList}\small\item\em File history in the log. Contains logs regarding a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-enum \hyperlink{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24}{access\+\_\+types} \{ \hyperlink{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24acb4c076c6c5acda9b100eda359c1275e}{\+\_\+\+\_\+\+C\+R\+E\+A\+T\+I\+ON}, 
+enum \hyperlink{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24}{access\+\_\+types} \{ \newline
+\hyperlink{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24acb4c076c6c5acda9b100eda359c1275e}{\+\_\+\+\_\+\+C\+R\+E\+A\+T\+I\+ON}, 
 \hyperlink{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24a3cc9315c8894d0f5203a18e0211fda55}{\+\_\+\+\_\+\+O\+P\+EN}, 
 \hyperlink{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24a95544025446df9b5d326de5be621a6b1}{\+\_\+\+\_\+\+W\+R\+I\+TE}, 
-\hyperlink{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24a3dd5f28d31d4586aa16d6a57b7c16d53}{\+\_\+\+\_\+\+R\+E\+AD}
- \}
+\hyperlink{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24a3dd5f28d31d4586aa16d6a57b7c16d53}{\+\_\+\+\_\+\+R\+E\+AD}, 
+\newline
+\hyperlink{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24ae86cbc5ef13453117bdc25c501373905}{\+\_\+\+\_\+\+C\+L\+O\+SE}
+ \}\begin{DoxyCompactList}\small\item\em The access types. \end{DoxyCompactList}
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-struct tm \hyperlink{log_8h_a2de5fe84ca15039e1b007634ccef1651_a2de5fe84ca15039e1b007634ccef1651}{date\+\_\+and\+\_\+time} ()
-\begin{DoxyCompactList}\small\item\em Create a timestamp object with the current date and time. \end{DoxyCompactList}\item 
-void \hyperlink{log_8h_ab3a7d9a8e25e365afb72e557f60ba45f_ab3a7d9a8e25e365afb72e557f60ba45f}{print\+\_\+log\+\_\+to\+\_\+file} (\hyperlink{log_8h_abd600feddcc5ca71fa3f3afa84eee569_abd600feddcc5ca71fa3f3afa84eee569}{log\+\_\+t} \hyperlink{structlog__entry}{log\+\_\+entry})
-\begin{DoxyCompactList}\small\item\em Prints the log entry to the log file. \end{DoxyCompactList}\item 
-\hyperlink{log_8h_abd600feddcc5ca71fa3f3afa84eee569_abd600feddcc5ca71fa3f3afa84eee569}{log\+\_\+t} \hyperlink{log_8h_a208f5ebd87e3ff13ab84ab2d57c46974_a208f5ebd87e3ff13ab84ab2d57c46974}{create\+\_\+log} (const char $\ast$path, const \hyperlink{log_8h_ab20c54dfb1eb1323b9a3cfe2e6a76270_ab20c54dfb1eb1323b9a3cfe2e6a76270}{access\+\_\+t} access, const int action\+\_\+denied, unsigned char fingerprint\mbox{[}16\mbox{]})
-\begin{DoxyCompactList}\small\item\em Creates a log entry. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{log_8h_a9146f9d95d54274f118322bcf7f713ef_a9146f9d95d54274f118322bcf7f713ef}{logf\+\_\+t} \hyperlink{log_8h_a5d629107f91e052ae3a78630c7aa216d_a5d629107f91e052ae3a78630c7aa216d}{create\+\_\+log} (const char $\ast$path, const \hyperlink{log_8h_ab20c54dfb1eb1323b9a3cfe2e6a76270_ab20c54dfb1eb1323b9a3cfe2e6a76270}{access\+\_\+t} access, const int action\+\_\+denied, unsigned char fingerprint\mbox{[}33\mbox{]})
+\begin{DoxyCompactList}\small\item\em Creates a log entry. \end{DoxyCompactList}\item 
+\hyperlink{Misc_8h_a00cef65fdcdf049cdfa42839691a9b45_a00cef65fdcdf049cdfa42839691a9b45}{array\+\_\+t} $\ast$ \hyperlink{log_8h_ac5028d467821dad15eb5d62f1f459b4c_ac5028d467821dad15eb5d62f1f459b4c}{user\+\_\+history\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Reads the log file and returns an array of \hyperlink{log_8h_adae9bf82e84f8e9ba2b5d82c481fd32a_adae9bf82e84f8e9ba2b5d82c481fd32a}{user\+\_\+history\+\_\+t} in the form of \hyperlink{Misc_8h_a00cef65fdcdf049cdfa42839691a9b45_a00cef65fdcdf049cdfa42839691a9b45}{array\+\_\+t}. \end{DoxyCompactList}\item 
+\hyperlink{Misc_8h_a00cef65fdcdf049cdfa42839691a9b45_a00cef65fdcdf049cdfa42839691a9b45}{array\+\_\+t} $\ast$ \hyperlink{log_8h_ad7d10f80cd766efcca714ce1f1f06d87_ad7d10f80cd766efcca714ce1f1f06d87}{file\+\_\+history\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Reads the log file and returns an array of \hyperlink{log_8h_a5eba967092586c4763c2fbe89d22a634_a5eba967092586c4763c2fbe89d22a634}{file\+\_\+history\+\_\+t} in the form of \hyperlink{Misc_8h_a00cef65fdcdf049cdfa42839691a9b45_a00cef65fdcdf049cdfa42839691a9b45}{array\+\_\+t}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \hyperlink{log_8h_af59c188f6480a0873bb643e375c449fe_af59c188f6480a0873bb643e375c449fe}{\+\_\+size\+\_\+} = 0
+\begin{DoxyCompactList}\small\item\em The size of the log file. Updated on every log entry and on every read. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Macro Definition Documentation}
@@ -64,6 +83,10 @@ void \hyperlink{log_8h_ab3a7d9a8e25e365afb72e557f60ba45f_ab3a7d9a8e25e365afb72e5
 
 
 
+Handles all operations regarding the log file. 
+
+
+
 \subsection{Typedef Documentation}
 \mbox{\Hypertarget{log_8h_ab20c54dfb1eb1323b9a3cfe2e6a76270_ab20c54dfb1eb1323b9a3cfe2e6a76270}\label{log_8h_ab20c54dfb1eb1323b9a3cfe2e6a76270_ab20c54dfb1eb1323b9a3cfe2e6a76270}} 
 \index{log.\+h@{log.\+h}!access\+\_\+t@{access\+\_\+t}}
@@ -71,12 +94,113 @@ void \hyperlink{log_8h_ab3a7d9a8e25e365afb72e557f60ba45f_ab3a7d9a8e25e365afb72e5
 \subsubsection{\texorpdfstring{access\+\_\+t}{access\_t}}
 {\footnotesize\ttfamily typedef enum \hyperlink{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24}{access\+\_\+types}  \hyperlink{log_8h_ab20c54dfb1eb1323b9a3cfe2e6a76270_ab20c54dfb1eb1323b9a3cfe2e6a76270}{access\+\_\+t}}
 
-\mbox{\Hypertarget{log_8h_abd600feddcc5ca71fa3f3afa84eee569_abd600feddcc5ca71fa3f3afa84eee569}\label{log_8h_abd600feddcc5ca71fa3f3afa84eee569_abd600feddcc5ca71fa3f3afa84eee569}} 
-\index{log.\+h@{log.\+h}!log\+\_\+t@{log\+\_\+t}}
-\index{log\+\_\+t@{log\+\_\+t}!log.\+h@{log.\+h}}
-\subsubsection{\texorpdfstring{log\+\_\+t}{log\_t}}
-{\footnotesize\ttfamily typedef struct \hyperlink{structlog__entry}{log\+\_\+entry}  \hyperlink{log_8h_abd600feddcc5ca71fa3f3afa84eee569_abd600feddcc5ca71fa3f3afa84eee569}{log\+\_\+t}}
 
+
+The access types. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+\+C\+R\+E\+A\+T\+I\+ON} & The file was created. \\
+\hline
+{\em \+\_\+\+\_\+\+O\+P\+EN} & The file was opened. \\
+\hline
+{\em \+\_\+\+\_\+\+W\+R\+I\+TE} & The file was written to. \\
+\hline
+{\em \+\_\+\+\_\+\+R\+E\+AD} & The file was read from. \\
+\hline
+{\em \+\_\+\+\_\+\+C\+L\+O\+SE} & The file was closed. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{log_8h_a5eba967092586c4763c2fbe89d22a634_a5eba967092586c4763c2fbe89d22a634}\label{log_8h_a5eba967092586c4763c2fbe89d22a634_a5eba967092586c4763c2fbe89d22a634}} 
+\index{log.\+h@{log.\+h}!file\+\_\+history\+\_\+t@{file\+\_\+history\+\_\+t}}
+\index{file\+\_\+history\+\_\+t@{file\+\_\+history\+\_\+t}!log.\+h@{log.\+h}}
+\subsubsection{\texorpdfstring{file\+\_\+history\+\_\+t}{file\_history\_t}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structfile__history}{file\+\_\+history}  \hyperlink{log_8h_a5eba967092586c4763c2fbe89d22a634_a5eba967092586c4763c2fbe89d22a634}{file\+\_\+history\+\_\+t}}
+
+
+
+File history in the log. Contains logs regarding a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The absolute path of the file. \\
+\hline
+{\em U\+ID} & The U\+ID of the users that accessed or modified, or attempted to, the file. \\
+\hline
+{\em modifications} & The number of times the file was modified by each user. \\
+\hline
+{\em users} & The number of users that modified the file \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{log_8h_a9146f9d95d54274f118322bcf7f713ef_a9146f9d95d54274f118322bcf7f713ef}\label{log_8h_a9146f9d95d54274f118322bcf7f713ef_a9146f9d95d54274f118322bcf7f713ef}} 
+\index{log.\+h@{log.\+h}!logf\+\_\+t@{logf\+\_\+t}}
+\index{logf\+\_\+t@{logf\+\_\+t}!log.\+h@{log.\+h}}
+\subsubsection{\texorpdfstring{logf\+\_\+t}{logf\_t}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structlog__entry}{log\+\_\+entry}  \hyperlink{log_8h_a9146f9d95d54274f118322bcf7f713ef_a9146f9d95d54274f118322bcf7f713ef}{logf\+\_\+t}}
+
+
+
+The log entry. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em U\+ID} & The U\+ID of the user. \\
+\hline
+{\em path} & The absolute path of the file. \\
+\hline
+{\em timestamp} & The timestamp of the log entry. \\
+\hline
+{\em access} & The access type. see access\+\_\+t \\
+\hline
+{\em action\+\_\+denied} & 1 if the action was denied, else 0. \\
+\hline
+{\em fingerprint} & The fingerprint of the file. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{log_8h_a6e294c3f610f2a78fe6f6bc8592c7e90_a6e294c3f610f2a78fe6f6bc8592c7e90}\label{log_8h_a6e294c3f610f2a78fe6f6bc8592c7e90_a6e294c3f610f2a78fe6f6bc8592c7e90}} 
+\index{log.\+h@{log.\+h}!logs\+\_\+t@{logs\+\_\+t}}
+\index{logs\+\_\+t@{logs\+\_\+t}!log.\+h@{log.\+h}}
+\subsubsection{\texorpdfstring{logs\+\_\+t}{logs\_t}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structlog__entry__s}{log\+\_\+entry\+\_\+s} \hyperlink{log_8h_a6e294c3f610f2a78fe6f6bc8592c7e90_a6e294c3f610f2a78fe6f6bc8592c7e90}{logs\+\_\+t}}
+
+
+
+The log entry in strings format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em U\+ID} & The U\+ID of the user. \\
+\hline
+{\em path} & The absolute path of the file. \\
+\hline
+{\em timestamp} & The timestamp of the log entry. \\
+\hline
+{\em access} & The access type. see access\+\_\+t \\
+\hline
+{\em action\+\_\+denied} & 1 if the action was denied, else 0. \\
+\hline
+{\em fingerprint} & The fingerprint of the file. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{log_8h_adae9bf82e84f8e9ba2b5d82c481fd32a_adae9bf82e84f8e9ba2b5d82c481fd32a}\label{log_8h_adae9bf82e84f8e9ba2b5d82c481fd32a_adae9bf82e84f8e9ba2b5d82c481fd32a}} 
+\index{log.\+h@{log.\+h}!user\+\_\+history\+\_\+t@{user\+\_\+history\+\_\+t}}
+\index{user\+\_\+history\+\_\+t@{user\+\_\+history\+\_\+t}!log.\+h@{log.\+h}}
+\subsubsection{\texorpdfstring{user\+\_\+history\+\_\+t}{user\_history\_t}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structuser__history}{user\+\_\+history}  \hyperlink{log_8h_adae9bf82e84f8e9ba2b5d82c481fd32a_adae9bf82e84f8e9ba2b5d82c481fd32a}{user\+\_\+history\+\_\+t}}
+
+
+
+User history in the log. Contains all files the user attempted ro access or modify but was rejected. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em U\+ID} & The U\+ID of the user. \\
+\hline
+{\em strikes} & The number of strikes the user has. \\
+\hline
+{\em path} & The absolute path of the files accessed or modified. \\
+\hline
+\end{DoxyParams}
 
 
 \subsection{Enumeration Type Documentation}
@@ -86,6 +210,23 @@ void \hyperlink{log_8h_ab3a7d9a8e25e365afb72e557f60ba45f_ab3a7d9a8e25e365afb72e5
 \subsubsection{\texorpdfstring{access\+\_\+types}{access\_types}}
 {\footnotesize\ttfamily enum \hyperlink{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24}{access\+\_\+types}}
 
+
+
+The access types. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+\+C\+R\+E\+A\+T\+I\+ON} & The file was created. \\
+\hline
+{\em \+\_\+\+\_\+\+O\+P\+EN} & The file was opened. \\
+\hline
+{\em \+\_\+\+\_\+\+W\+R\+I\+TE} & The file was written to. \\
+\hline
+{\em \+\_\+\+\_\+\+R\+E\+AD} & The file was read from. \\
+\hline
+{\em \+\_\+\+\_\+\+C\+L\+O\+SE} & The file was closed. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyEnumFields}{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{\+\_\+\+\_\+\+C\+R\+E\+A\+T\+I\+ON@{\+\_\+\+\_\+\+C\+R\+E\+A\+T\+I\+ON}!log.\+h@{log.\+h}}\index{log.\+h@{log.\+h}!\+\_\+\+\_\+\+C\+R\+E\+A\+T\+I\+ON@{\+\_\+\+\_\+\+C\+R\+E\+A\+T\+I\+ON}}}\mbox{\Hypertarget{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24acb4c076c6c5acda9b100eda359c1275e}\label{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24acb4c076c6c5acda9b100eda359c1275e}} 
 \+\_\+\+\_\+\+C\+R\+E\+A\+T\+I\+ON&\\
@@ -103,15 +244,19 @@ void \hyperlink{log_8h_ab3a7d9a8e25e365afb72e557f60ba45f_ab3a7d9a8e25e365afb72e5
 \+\_\+\+\_\+\+R\+E\+AD&\\
 \hline
 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{\+\_\+\+\_\+\+C\+L\+O\+SE@{\+\_\+\+\_\+\+C\+L\+O\+SE}!log.\+h@{log.\+h}}\index{log.\+h@{log.\+h}!\+\_\+\+\_\+\+C\+L\+O\+SE@{\+\_\+\+\_\+\+C\+L\+O\+SE}}}\mbox{\Hypertarget{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24ae86cbc5ef13453117bdc25c501373905}\label{log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24_a1f5bf9b97a6a0e44df8bdfe6c9779e24ae86cbc5ef13453117bdc25c501373905}} 
+\+\_\+\+\_\+\+C\+L\+O\+SE&\\
+\hline
+
 \end{DoxyEnumFields}
 
 
 \subsection{Function Documentation}
-\mbox{\Hypertarget{log_8h_a208f5ebd87e3ff13ab84ab2d57c46974_a208f5ebd87e3ff13ab84ab2d57c46974}\label{log_8h_a208f5ebd87e3ff13ab84ab2d57c46974_a208f5ebd87e3ff13ab84ab2d57c46974}} 
+\mbox{\Hypertarget{log_8h_a5d629107f91e052ae3a78630c7aa216d_a5d629107f91e052ae3a78630c7aa216d}\label{log_8h_a5d629107f91e052ae3a78630c7aa216d_a5d629107f91e052ae3a78630c7aa216d}} 
 \index{log.\+h@{log.\+h}!create\+\_\+log@{create\+\_\+log}}
 \index{create\+\_\+log@{create\+\_\+log}!log.\+h@{log.\+h}}
 \subsubsection{\texorpdfstring{create\+\_\+log()}{create\_log()}}
-{\footnotesize\ttfamily \hyperlink{log_8h_abd600feddcc5ca71fa3f3afa84eee569_abd600feddcc5ca71fa3f3afa84eee569}{log\+\_\+t} create\+\_\+log (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path,  }\item[{const \hyperlink{log_8h_ab20c54dfb1eb1323b9a3cfe2e6a76270_ab20c54dfb1eb1323b9a3cfe2e6a76270}{access\+\_\+t}}]{access,  }\item[{const int}]{action\+\_\+denied,  }\item[{unsigned char}]{fingerprint\mbox{[}16\mbox{]} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \hyperlink{log_8h_a9146f9d95d54274f118322bcf7f713ef_a9146f9d95d54274f118322bcf7f713ef}{logf\+\_\+t} create\+\_\+log (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path,  }\item[{const \hyperlink{log_8h_ab20c54dfb1eb1323b9a3cfe2e6a76270_ab20c54dfb1eb1323b9a3cfe2e6a76270}{access\+\_\+t}}]{access,  }\item[{const int}]{action\+\_\+denied,  }\item[{unsigned char}]{fingerprint\mbox{[}33\mbox{]} }\end{DoxyParamCaption})}
 
 
 
@@ -128,31 +273,42 @@ Creates a log entry.
 {\em fingerprint} & The fingerprint of the file. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{log_8h_a2de5fe84ca15039e1b007634ccef1651_a2de5fe84ca15039e1b007634ccef1651}\label{log_8h_a2de5fe84ca15039e1b007634ccef1651_a2de5fe84ca15039e1b007634ccef1651}} 
-\index{log.\+h@{log.\+h}!date\+\_\+and\+\_\+time@{date\+\_\+and\+\_\+time}}
-\index{date\+\_\+and\+\_\+time@{date\+\_\+and\+\_\+time}!log.\+h@{log.\+h}}
-\subsubsection{\texorpdfstring{date\+\_\+and\+\_\+time()}{date\_and\_time()}}
-{\footnotesize\ttfamily struct tm date\+\_\+and\+\_\+time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{log_8h_ad7d10f80cd766efcca714ce1f1f06d87_ad7d10f80cd766efcca714ce1f1f06d87}\label{log_8h_ad7d10f80cd766efcca714ce1f1f06d87_ad7d10f80cd766efcca714ce1f1f06d87}} 
+\index{log.\+h@{log.\+h}!file\+\_\+history\+\_\+init@{file\+\_\+history\+\_\+init}}
+\index{file\+\_\+history\+\_\+init@{file\+\_\+history\+\_\+init}!log.\+h@{log.\+h}}
+\subsubsection{\texorpdfstring{file\+\_\+history\+\_\+init()}{file\_history\_init()}}
+{\footnotesize\ttfamily \hyperlink{Misc_8h_a00cef65fdcdf049cdfa42839691a9b45_a00cef65fdcdf049cdfa42839691a9b45}{array\+\_\+t}$\ast$ file\+\_\+history\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
-Create a timestamp object with the current date and time. 
+Reads the log file and returns an array of \hyperlink{log_8h_a5eba967092586c4763c2fbe89d22a634_a5eba967092586c4763c2fbe89d22a634}{file\+\_\+history\+\_\+t} in the form of \hyperlink{Misc_8h_a00cef65fdcdf049cdfa42839691a9b45_a00cef65fdcdf049cdfa42839691a9b45}{array\+\_\+t}. 
 
 \begin{DoxyReturn}{Returns}
-struct tm The current date and time. 
+array\+\_\+t$\ast$ The array of \hyperlink{log_8h_a5eba967092586c4763c2fbe89d22a634_a5eba967092586c4763c2fbe89d22a634}{file\+\_\+history\+\_\+t}. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{log_8h_ab3a7d9a8e25e365afb72e557f60ba45f_ab3a7d9a8e25e365afb72e557f60ba45f}\label{log_8h_ab3a7d9a8e25e365afb72e557f60ba45f_ab3a7d9a8e25e365afb72e557f60ba45f}} 
-\index{log.\+h@{log.\+h}!print\+\_\+log\+\_\+to\+\_\+file@{print\+\_\+log\+\_\+to\+\_\+file}}
-\index{print\+\_\+log\+\_\+to\+\_\+file@{print\+\_\+log\+\_\+to\+\_\+file}!log.\+h@{log.\+h}}
-\subsubsection{\texorpdfstring{print\+\_\+log\+\_\+to\+\_\+file()}{print\_log\_to\_file()}}
-{\footnotesize\ttfamily void print\+\_\+log\+\_\+to\+\_\+file (\begin{DoxyParamCaption}\item[{\hyperlink{log_8h_abd600feddcc5ca71fa3f3afa84eee569_abd600feddcc5ca71fa3f3afa84eee569}{log\+\_\+t}}]{log\+\_\+entry }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{log_8h_ac5028d467821dad15eb5d62f1f459b4c_ac5028d467821dad15eb5d62f1f459b4c}\label{log_8h_ac5028d467821dad15eb5d62f1f459b4c_ac5028d467821dad15eb5d62f1f459b4c}} 
+\index{log.\+h@{log.\+h}!user\+\_\+history\+\_\+init@{user\+\_\+history\+\_\+init}}
+\index{user\+\_\+history\+\_\+init@{user\+\_\+history\+\_\+init}!log.\+h@{log.\+h}}
+\subsubsection{\texorpdfstring{user\+\_\+history\+\_\+init()}{user\_history\_init()}}
+{\footnotesize\ttfamily \hyperlink{Misc_8h_a00cef65fdcdf049cdfa42839691a9b45_a00cef65fdcdf049cdfa42839691a9b45}{array\+\_\+t}$\ast$ user\+\_\+history\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
-Prints the log entry to the log file. 
+Reads the log file and returns an array of \hyperlink{log_8h_adae9bf82e84f8e9ba2b5d82c481fd32a_adae9bf82e84f8e9ba2b5d82c481fd32a}{user\+\_\+history\+\_\+t} in the form of \hyperlink{Misc_8h_a00cef65fdcdf049cdfa42839691a9b45_a00cef65fdcdf049cdfa42839691a9b45}{array\+\_\+t}. 
+
+\begin{DoxyReturn}{Returns}
+array\+\_\+t$\ast$ The array of \hyperlink{log_8h_adae9bf82e84f8e9ba2b5d82c481fd32a_adae9bf82e84f8e9ba2b5d82c481fd32a}{user\+\_\+history\+\_\+t}. 
+\end{DoxyReturn}
 
 
-\begin{DoxyParams}{Parameters}
-{\em \hyperlink{structlog__entry}{log\+\_\+entry}} & The log entry to be printed. \\
-\hline
-\end{DoxyParams}
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{log_8h_af59c188f6480a0873bb643e375c449fe_af59c188f6480a0873bb643e375c449fe}\label{log_8h_af59c188f6480a0873bb643e375c449fe_af59c188f6480a0873bb643e375c449fe}} 
+\index{log.\+h@{log.\+h}!\+\_\+size\+\_\+@{\+\_\+size\+\_\+}}
+\index{\+\_\+size\+\_\+@{\+\_\+size\+\_\+}!log.\+h@{log.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+size\+\_\+}{\_size\_}}
+{\footnotesize\ttfamily size\+\_\+t \+\_\+size\+\_\+ = 0}
+
+
+
+The size of the log file. Updated on every log entry and on every read. 
+

@@ -69,19 +69,22 @@ $(function() {
 <a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">log.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;time.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="fhandler_8h_source.html">fhandler.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Misc_8h_source.html">Misc.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for log.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="log_8h__incl.png" border="0" usemap="#log_8h" alt=""/></div>
 <map name="log_8h" id="log_8h">
 <area shape="rect" id="node3" href="fhandler_8h.html" title="fhandler.h" alt="" coords="93,80,181,107"/>
+<area shape="rect" id="node4" href="Misc_8h.html" title="Misc.h" alt="" coords="206,80,269,107"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -92,6 +95,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <area shape="rect" id="node2" href="acmonitor_8c.html" title="acmonitor.c" alt="" coords="5,80,104,107"/>
 <area shape="rect" id="node3" href="ACL_8c.html" title="ACL.c" alt="" coords="128,80,187,107"/>
 <area shape="rect" id="node4" href="log_8c.html" title="log.c" alt="" coords="211,80,264,107"/>
+<area shape="rect" id="node5" href="fmod__test_8c.html" title="fmod_test.c" alt="" coords="288,80,387,107"/>
 </map>
 </div>
 </div>
@@ -100,40 +104,73 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlog__entry.html">log_entry</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The log entry.  <a href="structlog__entry.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlog__entry__s.html">log_entry_s</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The log entry in strings format.  <a href="structlog__entry__s.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuser__history.html">user_history</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">User history in the log. Contains all files the user attempted ro access or modify but was rejected.  <a href="structuser__history.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfile__history.html">file_history</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">File history in the log. Contains logs regarding a file.  <a href="structfile__history.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a286c666b6725cb6f32fbd5500f41dd9f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h_a286c666b6725cb6f32fbd5500f41dd9f.html#a286c666b6725cb6f32fbd5500f41dd9f">_LOG_FILE_PATH_</a>&#160;&#160;&#160;&quot;etc/log.txt&quot;</td></tr>
+<tr class="memdesc:a286c666b6725cb6f32fbd5500f41dd9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles all operations regarding the log file.  <a href="log_8h_a286c666b6725cb6f32fbd5500f41dd9f.html#a286c666b6725cb6f32fbd5500f41dd9f">More...</a><br /></td></tr>
 <tr class="separator:a286c666b6725cb6f32fbd5500f41dd9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:ab20c54dfb1eb1323b9a3cfe2e6a76270"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24.html#a1f5bf9b97a6a0e44df8bdfe6c9779e24">access_types</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h_ab20c54dfb1eb1323b9a3cfe2e6a76270.html#ab20c54dfb1eb1323b9a3cfe2e6a76270">access_t</a></td></tr>
+<tr class="memdesc:ab20c54dfb1eb1323b9a3cfe2e6a76270"><td class="mdescLeft">&#160;</td><td class="mdescRight">The access types.  <a href="log_8h_ab20c54dfb1eb1323b9a3cfe2e6a76270.html#ab20c54dfb1eb1323b9a3cfe2e6a76270">More...</a><br /></td></tr>
 <tr class="separator:ab20c54dfb1eb1323b9a3cfe2e6a76270"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd600feddcc5ca71fa3f3afa84eee569"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structlog__entry.html">log_entry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h_abd600feddcc5ca71fa3f3afa84eee569.html#abd600feddcc5ca71fa3f3afa84eee569">log_t</a></td></tr>
-<tr class="separator:abd600feddcc5ca71fa3f3afa84eee569"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9146f9d95d54274f118322bcf7f713ef"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structlog__entry.html">log_entry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h_a9146f9d95d54274f118322bcf7f713ef.html#a9146f9d95d54274f118322bcf7f713ef">logf_t</a></td></tr>
+<tr class="memdesc:a9146f9d95d54274f118322bcf7f713ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">The log entry.  <a href="log_8h_a9146f9d95d54274f118322bcf7f713ef.html#a9146f9d95d54274f118322bcf7f713ef">More...</a><br /></td></tr>
+<tr class="separator:a9146f9d95d54274f118322bcf7f713ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e294c3f610f2a78fe6f6bc8592c7e90"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structlog__entry__s.html">log_entry_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h_a6e294c3f610f2a78fe6f6bc8592c7e90.html#a6e294c3f610f2a78fe6f6bc8592c7e90">logs_t</a></td></tr>
+<tr class="memdesc:a6e294c3f610f2a78fe6f6bc8592c7e90"><td class="mdescLeft">&#160;</td><td class="mdescRight">The log entry in strings format.  <a href="log_8h_a6e294c3f610f2a78fe6f6bc8592c7e90.html#a6e294c3f610f2a78fe6f6bc8592c7e90">More...</a><br /></td></tr>
+<tr class="separator:a6e294c3f610f2a78fe6f6bc8592c7e90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adae9bf82e84f8e9ba2b5d82c481fd32a"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structuser__history.html">user_history</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h_adae9bf82e84f8e9ba2b5d82c481fd32a.html#adae9bf82e84f8e9ba2b5d82c481fd32a">user_history_t</a></td></tr>
+<tr class="memdesc:adae9bf82e84f8e9ba2b5d82c481fd32a"><td class="mdescLeft">&#160;</td><td class="mdescRight">User history in the log. Contains all files the user attempted ro access or modify but was rejected.  <a href="log_8h_adae9bf82e84f8e9ba2b5d82c481fd32a.html#adae9bf82e84f8e9ba2b5d82c481fd32a">More...</a><br /></td></tr>
+<tr class="separator:adae9bf82e84f8e9ba2b5d82c481fd32a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5eba967092586c4763c2fbe89d22a634"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structfile__history.html">file_history</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h_a5eba967092586c4763c2fbe89d22a634.html#a5eba967092586c4763c2fbe89d22a634">file_history_t</a></td></tr>
+<tr class="memdesc:a5eba967092586c4763c2fbe89d22a634"><td class="mdescLeft">&#160;</td><td class="mdescRight">File history in the log. Contains logs regarding a file.  <a href="log_8h_a5eba967092586c4763c2fbe89d22a634.html#a5eba967092586c4763c2fbe89d22a634">More...</a><br /></td></tr>
+<tr class="separator:a5eba967092586c4763c2fbe89d22a634"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a1f5bf9b97a6a0e44df8bdfe6c9779e24"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24.html#a1f5bf9b97a6a0e44df8bdfe6c9779e24">access_types</a> { <a class="el" href="log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24.html#a1f5bf9b97a6a0e44df8bdfe6c9779e24acb4c076c6c5acda9b100eda359c1275e">__CREATION</a>, 
+<tr class="memitem:a1f5bf9b97a6a0e44df8bdfe6c9779e24"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24.html#a1f5bf9b97a6a0e44df8bdfe6c9779e24">access_types</a> { <br />
+&#160;&#160;<a class="el" href="log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24.html#a1f5bf9b97a6a0e44df8bdfe6c9779e24acb4c076c6c5acda9b100eda359c1275e">__CREATION</a>, 
 <a class="el" href="log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24.html#a1f5bf9b97a6a0e44df8bdfe6c9779e24a3cc9315c8894d0f5203a18e0211fda55">__OPEN</a>, 
 <a class="el" href="log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24.html#a1f5bf9b97a6a0e44df8bdfe6c9779e24a95544025446df9b5d326de5be621a6b1">__WRITE</a>, 
-<a class="el" href="log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24.html#a1f5bf9b97a6a0e44df8bdfe6c9779e24a3dd5f28d31d4586aa16d6a57b7c16d53">__READ</a>
- }</td></tr>
+<a class="el" href="log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24.html#a1f5bf9b97a6a0e44df8bdfe6c9779e24a3dd5f28d31d4586aa16d6a57b7c16d53">__READ</a>, 
+<br />
+&#160;&#160;<a class="el" href="log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24.html#a1f5bf9b97a6a0e44df8bdfe6c9779e24ae86cbc5ef13453117bdc25c501373905">__CLOSE</a>
+<br />
+ }<tr class="memdesc:a1f5bf9b97a6a0e44df8bdfe6c9779e24"><td class="mdescLeft">&#160;</td><td class="mdescRight">The access types.  <a href="log_8h_a1f5bf9b97a6a0e44df8bdfe6c9779e24.html#a1f5bf9b97a6a0e44df8bdfe6c9779e24">More...</a><br /></td></tr>
+</td></tr>
 <tr class="separator:a1f5bf9b97a6a0e44df8bdfe6c9779e24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a2de5fe84ca15039e1b007634ccef1651"><td class="memItemLeft" align="right" valign="top">struct tm&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h_a2de5fe84ca15039e1b007634ccef1651.html#a2de5fe84ca15039e1b007634ccef1651">date_and_time</a> ()</td></tr>
-<tr class="memdesc:a2de5fe84ca15039e1b007634ccef1651"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a timestamp object with the current date and time.  <a href="log_8h_a2de5fe84ca15039e1b007634ccef1651.html#a2de5fe84ca15039e1b007634ccef1651">More...</a><br /></td></tr>
-<tr class="separator:a2de5fe84ca15039e1b007634ccef1651"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3a7d9a8e25e365afb72e557f60ba45f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h_ab3a7d9a8e25e365afb72e557f60ba45f.html#ab3a7d9a8e25e365afb72e557f60ba45f">print_log_to_file</a> (<a class="el" href="log_8h_abd600feddcc5ca71fa3f3afa84eee569.html#abd600feddcc5ca71fa3f3afa84eee569">log_t</a> <a class="el" href="structlog__entry.html">log_entry</a>)</td></tr>
-<tr class="memdesc:ab3a7d9a8e25e365afb72e557f60ba45f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the log entry to the log file.  <a href="log_8h_ab3a7d9a8e25e365afb72e557f60ba45f.html#ab3a7d9a8e25e365afb72e557f60ba45f">More...</a><br /></td></tr>
-<tr class="separator:ab3a7d9a8e25e365afb72e557f60ba45f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a208f5ebd87e3ff13ab84ab2d57c46974"><td class="memItemLeft" align="right" valign="top"><a class="el" href="log_8h_abd600feddcc5ca71fa3f3afa84eee569.html#abd600feddcc5ca71fa3f3afa84eee569">log_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h_a208f5ebd87e3ff13ab84ab2d57c46974.html#a208f5ebd87e3ff13ab84ab2d57c46974">create_log</a> (const char *path, const <a class="el" href="log_8h_ab20c54dfb1eb1323b9a3cfe2e6a76270.html#ab20c54dfb1eb1323b9a3cfe2e6a76270">access_t</a> access, const int action_denied, unsigned char fingerprint[16])</td></tr>
-<tr class="memdesc:a208f5ebd87e3ff13ab84ab2d57c46974"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a log entry.  <a href="log_8h_a208f5ebd87e3ff13ab84ab2d57c46974.html#a208f5ebd87e3ff13ab84ab2d57c46974">More...</a><br /></td></tr>
-<tr class="separator:a208f5ebd87e3ff13ab84ab2d57c46974"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d629107f91e052ae3a78630c7aa216d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="log_8h_a9146f9d95d54274f118322bcf7f713ef.html#a9146f9d95d54274f118322bcf7f713ef">logf_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h_a5d629107f91e052ae3a78630c7aa216d.html#a5d629107f91e052ae3a78630c7aa216d">create_log</a> (const char *path, const <a class="el" href="log_8h_ab20c54dfb1eb1323b9a3cfe2e6a76270.html#ab20c54dfb1eb1323b9a3cfe2e6a76270">access_t</a> access, const int action_denied, unsigned char fingerprint[33])</td></tr>
+<tr class="memdesc:a5d629107f91e052ae3a78630c7aa216d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a log entry.  <a href="log_8h_a5d629107f91e052ae3a78630c7aa216d.html#a5d629107f91e052ae3a78630c7aa216d">More...</a><br /></td></tr>
+<tr class="separator:a5d629107f91e052ae3a78630c7aa216d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5028d467821dad15eb5d62f1f459b4c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Misc_8h_a00cef65fdcdf049cdfa42839691a9b45.html#a00cef65fdcdf049cdfa42839691a9b45">array_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h_ac5028d467821dad15eb5d62f1f459b4c.html#ac5028d467821dad15eb5d62f1f459b4c">user_history_init</a> ()</td></tr>
+<tr class="memdesc:ac5028d467821dad15eb5d62f1f459b4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the log file and returns an array of <a class="el" href="log_8h_adae9bf82e84f8e9ba2b5d82c481fd32a.html#adae9bf82e84f8e9ba2b5d82c481fd32a">user_history_t</a> in the form of <a class="el" href="Misc_8h_a00cef65fdcdf049cdfa42839691a9b45.html#a00cef65fdcdf049cdfa42839691a9b45">array_t</a>.  <a href="log_8h_ac5028d467821dad15eb5d62f1f459b4c.html#ac5028d467821dad15eb5d62f1f459b4c">More...</a><br /></td></tr>
+<tr class="separator:ac5028d467821dad15eb5d62f1f459b4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7d10f80cd766efcca714ce1f1f06d87"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Misc_8h_a00cef65fdcdf049cdfa42839691a9b45.html#a00cef65fdcdf049cdfa42839691a9b45">array_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h_ad7d10f80cd766efcca714ce1f1f06d87.html#ad7d10f80cd766efcca714ce1f1f06d87">file_history_init</a> ()</td></tr>
+<tr class="memdesc:ad7d10f80cd766efcca714ce1f1f06d87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the log file and returns an array of <a class="el" href="log_8h_a5eba967092586c4763c2fbe89d22a634.html#a5eba967092586c4763c2fbe89d22a634">file_history_t</a> in the form of <a class="el" href="Misc_8h_a00cef65fdcdf049cdfa42839691a9b45.html#a00cef65fdcdf049cdfa42839691a9b45">array_t</a>.  <a href="log_8h_ad7d10f80cd766efcca714ce1f1f06d87.html#ad7d10f80cd766efcca714ce1f1f06d87">More...</a><br /></td></tr>
+<tr class="separator:ad7d10f80cd766efcca714ce1f1f06d87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:af59c188f6480a0873bb643e375c449fe"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h_af59c188f6480a0873bb643e375c449fe.html#af59c188f6480a0873bb643e375c449fe">_size_</a> = 0</td></tr>
+<tr class="memdesc:af59c188f6480a0873bb643e375c449fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">The size of the log file. Updated on every log entry and on every read.  <a href="log_8h_af59c188f6480a0873bb643e375c449fe.html#af59c188f6480a0873bb643e375c449fe">More...</a><br /></td></tr>
+<tr class="separator:af59c188f6480a0873bb643e375c449fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

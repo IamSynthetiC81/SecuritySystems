@@ -34,6 +34,14 @@
 #define WHT   "\x1B[37m"
 #define RESET "\x1B[0m"
 
+/**
+ * In this test we are going to test the modification monitor acmonitor.c !!! .
+ * 
+ * We are going to write 41 lines of text to a file line by line. Each time we mark the number of accesses to the file before 
+ * and after we write the lines, and at the end we see whether the number of accesses is correct.
+ * 
+*/
+
 char *chatGPT_is_a_poet[] = {
         "In the kingdom of code, where bits and bytes play,",
         "C and Unix dance in a code ballet.",
@@ -115,7 +123,6 @@ int Write(){
             }
         }
         // printf("[%d]Access number after write = %d\n" ,i, mod_after);
-
         if (mod_after - 2 != mod_before ){
             return 0;
         }
@@ -126,8 +133,9 @@ int Write(){
 }
 
 int main(void){
+    printf("%-20s : ", "Modification Monitor");
+    
     int retval = Write();
 
-    printf("%-20s : ", "Modification Monitor");
     printf("[%4s]\n", retval ? GRN "PASS" RESET : RED "FAIL" RESET);   
 }

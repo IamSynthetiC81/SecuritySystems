@@ -44,6 +44,11 @@ The program can be tested with the following commands:
 make test
 ```
 
+or 
+```bash
+./out/aclog
+```
+
 ### Documentation
 
 For further documentatin a doxygen generated report is located in the doc directory

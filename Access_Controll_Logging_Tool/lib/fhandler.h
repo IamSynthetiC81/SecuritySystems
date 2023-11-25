@@ -1,9 +1,7 @@
 #ifndef HANDLER_H
     #define HANDLER_H
 
-
     #define _GNU_SOURCE
-
 
 /**
  * @brief Handles the dynamic linking of the functions.

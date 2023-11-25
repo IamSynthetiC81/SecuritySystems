@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main(int argc, char *argv[]){
+int main(){
 
     char message[] = "Hello World !!!\n";
     char *buffer = (char *)malloc(sizeof(char) * 1024);

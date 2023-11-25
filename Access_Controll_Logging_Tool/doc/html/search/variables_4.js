@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['uid',['UID',['../structlog__entry__text__hash_a68c5ad6594b98c96c933705d5d2b6167.html#a68c5ad6594b98c96c933705d5d2b6167',1,'log_entry_text_hash::UID()'],['../structlog__entry_a879f3cffed87111c14b5ddca7bf36bfe.html#a879f3cffed87111c14b5ddca7bf36bfe',1,'log_entry::UID()']]]
+  ['fingerprint',['fingerprint',['../structlog__entry_af2ebb7fded35fda20794591db630571e.html#af2ebb7fded35fda20794591db630571e',1,'log_entry::fingerprint()'],['../structlog__entry__s_adcc31a7a6fb6279625c938bde82d4310.html#adcc31a7a6fb6279625c938bde82d4310',1,'log_entry_s::fingerprint()']]]
 ];

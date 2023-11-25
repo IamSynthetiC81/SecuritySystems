@@ -30,10 +30,33 @@
 #include "fhandler.h"
 
 /**
+ * @version 1.1.3
+ * @authors mkritikakis, hgeorgakopoulos
+ * 
+ * This file contains the functions to create and print log entries onto log.txt
+ * Hooks for fopen, fread, fwrite and fclose are present and can be enabled by defining the macros __HOPEN, __HREAD, __HWRITE and __HDELETE respectively.
+ * @example gcc -D__HOPEN -D__HREAD -D__HWRITE -D__HDELETE -o test test.c lib/ACL.c lib/log.c lib/fhandler.c
+ *
+ * This file is compiled into a shared object file and is loaded into the process address space of the target program using LD_PRELOAD.
+ * @example LD_PRELOAD=./libACL.so <executable>
+ * 
+ * This file can be preloaded into the system with the following command. This way each file access will be logged.
+ * @example LD_PRELOAD=./libACL.so
+ * @warning This will log all file accesses made by all programs. Even to pipes and sockets. This can be very noisy and WILL throw errors on tmp files.
+ * 
+ * @todo make it work systemwide for fun.
+ * 
+*/
+
+/**
  * @brief returns the absolute path of a file stream
  * 
  * @param f The file stream
  * @return char* The absolute path of the file stream
+ * 
+ * @warning This function is not tested.
+ * 
+ * @todo test this function
 */
 char* get_path(FILE *f){
 	char* buf = (char*)malloc(256*sizeof(char));
@@ -72,21 +95,12 @@ unsigned char *Hash(FILE *fp){
 	do{
 		nread = fread_ptr(buf, sizeof(char), 1024, fp);
 
-		// printld("nread = %d\n", nread);
-		// printld("buf = %s\n", buf);
-
 		MD5_Update(&md5, buf, nread);
 	} while (nread > 0);
 
 	MD5_Final(hash_key, &md5);														// Get hash_key of file
 
 	fseek(fp, __seek_pointer, SEEK_SET);											// Set seek pointer to original position
-
-	printld("Hash_key = ");
-	for (int i = 0; i < 16; i++) {
-		printd("%02x", hash_key[i]);
-	}
-	printd("\n");
 
 	return hash_key;
 }
@@ -126,18 +140,21 @@ FILE *fopen(const char *path, const char *mode){
 
 	char *__abs_path;
 
-	Handle("libc.so.6", "fopen", &fopen_ptr);										// Get pointer to fopen
-	Handle("libc.so.6", "fread", &fread_ptr);										// Get pointer to fread
+	Handle("libc.so.6", "fopen", &fopen_ptr);										// Set pointer to fopen
+	Handle("libc.so.6", "fread", &fread_ptr);										// Set pointer to fread
 
 	unsigned char *hash_key;
 	int action_denied = 0;
 
-	access_t access_type = (access(path, F_OK) == 0) ? __OPEN : __CREATION; 		// Check if file exists
+	access_t access_type = (access(path, F_OK) == 0) ? __OPEN : __CREATION; 		/* Check if file exists
+																						If it does, set access_type to __OPEN
+																						Else, set access_type to __CREATION
+																					*/
 	
 	FILE *fp = fopen_ptr(path, mode);												// Open file
-	if (errno == EACCES || errno == EPERM || errno == EROFS){
-		hash_key = Hash_string("");
-		action_denied = 1;
+	if (errno == EACCES || errno == EPERM || errno == EROFS){						// If the open operation was not successful (permission denied)
+		hash_key = Hash_string("");													// Get hash_key of an empty string
+		action_denied = 1;															
 
 		__abs_path = (char*)malloc(sizeof(char)*254);							
 		getcwd(__abs_path, 253);													// Get current working directory
@@ -182,23 +199,19 @@ size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream){
 	
 	size_t ret_val = fwrite_ptr(ptr, size, nmemb, stream); 							// Write to the file
 
-	fflush(stream);																	// Flush the file stream
+	fflush(stream);																	/* Flush the file stream
+																						This is important so that the IO operation is not delayed
+																						by the OS and the changes are hashed and 
+																						stored to the log correctly !!!. 
+																					*/
 
 	if (errno == EACCES || errno == EPERM || errno == EROFS)						// If the write operation was not successful
 		action_denied = 1;															// Set action_denied to 1
-	// else
-		// __seek_pointer = ftell(stream);												// Save seek pointer
 
 	MD5_CTX md5;
 	MD5_Init(&md5);
 
-	// fseek(stream, 0, SEEK_SET);														// Set file pointer to the beginning of the file
-
 	hash_key = Hash(stream);														// Get hash_key of file
-
-	printld("hashed\n"); 
-
-	// fseek(stream, __seek_pointer, SEEK_SET);										// Set seek pointer to original position		
 
 	create_log(get_path(stream), __WRITE, action_denied, hash_key);					// Create and print log entry onto log.txt
 
@@ -209,7 +222,6 @@ size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream){
 #endif
 
 #ifdef __HREAD
-
 /**
  * @brief fread function hook.
  * 
@@ -231,8 +243,6 @@ size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream){
 	int action_denied = 0;
 
 	size_t ret_val = fread_ptr(ptr, size, nmemb, stream);							// Read from the file
-	
-	long int __seek_pointer = ftell(stream);										// Save seek pointer
 
 	if (ret_val != nmemb && nmemb != 0)												// If the read operation was not successful
 		action_denied = 1;															// Set action_denied to 1
@@ -244,8 +254,6 @@ size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream){
 
 	hash_key = Hash(stream);														// Get hash_key of file
 
-	fseek(stream, __seek_pointer, SEEK_SET);										// Set seek pointer to original position
-
 	create_log(get_path(stream), __READ, action_denied, hash_key);					// Create and print log entry onto log.txt
 
 	free(hash_key);
@@ -254,17 +262,21 @@ size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream){
 }
 #endif
 
+#ifdef __HDELETE
+/**
+ * @brief fclose function hook.
+ * 
+ * @param fp The file stream.
+ * 
+ * @return int 0 on success, EOF on failure.
+*/
 int fclose(FILE *fp){
 	int (*fclose_ptr)(FILE *);
 
 	Handle("libc.so.6", "fclose", &fclose_ptr);
 
-	unsigned char *hash_key;
-	int action_denied = 0;
-
-	
-
 	// printld("\t\t\t\tfclose() : \n");
 
 	return fclose_ptr(fp);
 }
+#endif

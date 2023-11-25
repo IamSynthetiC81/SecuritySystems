@@ -10,8 +10,7 @@
 {\ttfamily \#include $<$openssl/md5.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}log.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}fhandler.\+h\char`\"{}}\newline
-Include dependency graph for A\+C\+L.\+c\+:
-\nopagebreak
+Include dependency graph for A\+C\+L.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -22,6 +21,12 @@ Include dependency graph for A\+C\+L.\+c\+:
 \begin{DoxyCompactItemize}
 \item 
 \#define \hyperlink{ACL_8c_a369266c24eacffb87046522897a570d5_a369266c24eacffb87046522897a570d5}{\+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE}
+\item 
+\#define \hyperlink{ACL_8c_ac4c027058e9ccd1d4dce6a718af0b422_ac4c027058e9ccd1d4dce6a718af0b422}{printd}(format, ...)
+\item 
+\#define \hyperlink{ACL_8c_a8b3a3c4c8735fffe0d3b0ab6c7053667_a8b3a3c4c8735fffe0d3b0ab6c7053667}{printld}(format, ...)
+\item 
+\#define \hyperlink{ACL_8c_a483d4c865c4cb956ffe919f48867641a_a483d4c865c4cb956ffe919f48867641a}{printv}(format, ...)
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -29,7 +34,9 @@ Include dependency graph for A\+C\+L.\+c\+:
 char $\ast$ \hyperlink{ACL_8c_ae458807f7bf6dc176a3f783da321f6ec_ae458807f7bf6dc176a3f783da321f6ec}{get\+\_\+path} (F\+I\+LE $\ast$f)
 \begin{DoxyCompactList}\small\item\em returns the absolute path of a file stream \end{DoxyCompactList}\item 
 unsigned char $\ast$ \hyperlink{ACL_8c_a7da6115f144b2d630d5f090399ee4645_a7da6115f144b2d630d5f090399ee4645}{Hash} (F\+I\+LE $\ast$fp)
-\begin{DoxyCompactList}\small\item\em Creates a hash key from the contents of a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Creates a hash key from the contents of a file. \end{DoxyCompactList}\item 
+unsigned char $\ast$ \hyperlink{ACL_8c_a4c27f974a9c92361a21efd1bb444e170_a4c27f974a9c92361a21efd1bb444e170}{Hash\+\_\+string} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Creates a hash key from a string. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Macro Definition Documentation}
@@ -38,6 +45,24 @@ unsigned char $\ast$ \hyperlink{ACL_8c_a7da6115f144b2d630d5f090399ee4645_a7da611
 \index{\+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE@{\+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE}!A\+C\+L.\+c@{A\+C\+L.\+c}}
 \subsubsection{\texorpdfstring{\+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE}{\_GNU\_SOURCE}}
 {\footnotesize\ttfamily \#define \+\_\+\+G\+N\+U\+\_\+\+S\+O\+U\+R\+CE}
+
+\mbox{\Hypertarget{ACL_8c_ac4c027058e9ccd1d4dce6a718af0b422_ac4c027058e9ccd1d4dce6a718af0b422}\label{ACL_8c_ac4c027058e9ccd1d4dce6a718af0b422_ac4c027058e9ccd1d4dce6a718af0b422}} 
+\index{A\+C\+L.\+c@{A\+C\+L.\+c}!printd@{printd}}
+\index{printd@{printd}!A\+C\+L.\+c@{A\+C\+L.\+c}}
+\subsubsection{\texorpdfstring{printd}{printd}}
+{\footnotesize\ttfamily \#define printd(\begin{DoxyParamCaption}\item[{}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ACL_8c_a8b3a3c4c8735fffe0d3b0ab6c7053667_a8b3a3c4c8735fffe0d3b0ab6c7053667}\label{ACL_8c_a8b3a3c4c8735fffe0d3b0ab6c7053667_a8b3a3c4c8735fffe0d3b0ab6c7053667}} 
+\index{A\+C\+L.\+c@{A\+C\+L.\+c}!printld@{printld}}
+\index{printld@{printld}!A\+C\+L.\+c@{A\+C\+L.\+c}}
+\subsubsection{\texorpdfstring{printld}{printld}}
+{\footnotesize\ttfamily \#define printld(\begin{DoxyParamCaption}\item[{}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ACL_8c_a483d4c865c4cb956ffe919f48867641a_a483d4c865c4cb956ffe919f48867641a}\label{ACL_8c_a483d4c865c4cb956ffe919f48867641a_a483d4c865c4cb956ffe919f48867641a}} 
+\index{A\+C\+L.\+c@{A\+C\+L.\+c}!printv@{printv}}
+\index{printv@{printv}!A\+C\+L.\+c@{A\+C\+L.\+c}}
+\subsubsection{\texorpdfstring{printv}{printv}}
+{\footnotesize\ttfamily \#define printv(\begin{DoxyParamCaption}\item[{}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
 
 
 
@@ -58,8 +83,13 @@ returns the absolute path of a file stream
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-char$\ast$ The absolute path of the file stream 
+char$\ast$ The absolute path of the file stream
 \end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+This function is not tested.
+\end{DoxyWarning}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000002}{Todo}]test this function \end{DoxyRefDesc}
 \mbox{\Hypertarget{ACL_8c_a7da6115f144b2d630d5f090399ee4645_a7da6115f144b2d630d5f090399ee4645}\label{ACL_8c_a7da6115f144b2d630d5f090399ee4645_a7da6115f144b2d630d5f090399ee4645}} 
 \index{A\+C\+L.\+c@{A\+C\+L.\+c}!Hash@{Hash}}
 \index{Hash@{Hash}!A\+C\+L.\+c@{A\+C\+L.\+c}}
@@ -73,6 +103,24 @@ Creates a hash key from the contents of a file.
 
 \begin{DoxyParams}{Parameters}
 {\em fp} & The file stream \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned char$\ast$ The hash key 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ACL_8c_a4c27f974a9c92361a21efd1bb444e170_a4c27f974a9c92361a21efd1bb444e170}\label{ACL_8c_a4c27f974a9c92361a21efd1bb444e170_a4c27f974a9c92361a21efd1bb444e170}} 
+\index{A\+C\+L.\+c@{A\+C\+L.\+c}!Hash\+\_\+string@{Hash\+\_\+string}}
+\index{Hash\+\_\+string@{Hash\+\_\+string}!A\+C\+L.\+c@{A\+C\+L.\+c}}
+\subsubsection{\texorpdfstring{Hash\+\_\+string()}{Hash\_string()}}
+{\footnotesize\ttfamily unsigned char$\ast$ Hash\+\_\+string (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+Creates a hash key from a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
