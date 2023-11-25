@@ -1,0 +1,90 @@
+\hypertarget{structlog__entry__s}{}\section{log\+\_\+entry\+\_\+s Struct Reference}
+\label{structlog__entry__s}\index{log\+\_\+entry\+\_\+s@{log\+\_\+entry\+\_\+s}}
+
+
+The log entry in strings format.  
+
+
+
+
+{\ttfamily \#include $<$log.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+char \hyperlink{structlog__entry__s_a4cea55f12c34aebb7b3a0a8720e883bf_a4cea55f12c34aebb7b3a0a8720e883bf}{U\+ID} \mbox{[}sizeof(123456789)\mbox{]}
+\item 
+char \hyperlink{structlog__entry__s_a5af40019a92d555b0317d711b570f14c_a5af40019a92d555b0317d711b570f14c}{path} \mbox{[}256\mbox{]}
+\item 
+char \hyperlink{structlog__entry__s_ac18d2273a9bf57e659d829e5fff27d70_ac18d2273a9bf57e659d829e5fff27d70}{timestamp} \mbox{[}sizeof(\char`\"{}2024-\/01-\/01 00\+:00\+:00\char`\"{})\mbox{]}
+\item 
+char \hyperlink{structlog__entry__s_afd6b8cbb3e041417f504dd9b7653d43a_afd6b8cbb3e041417f504dd9b7653d43a}{access} \mbox{[}6\mbox{]}
+\item 
+char \hyperlink{structlog__entry__s_aab4fe84d4d2bd2f0122dca8a4362a53f_aab4fe84d4d2bd2f0122dca8a4362a53f}{action\+\_\+denied} \mbox{[}1\mbox{]}
+\item 
+char \hyperlink{structlog__entry__s_adcc31a7a6fb6279625c938bde82d4310_adcc31a7a6fb6279625c938bde82d4310}{fingerprint} \mbox{[}33\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The log entry in strings format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em U\+ID} & The U\+ID of the user. \\
+\hline
+{\em path} & The absolute path of the file. \\
+\hline
+{\em timestamp} & The timestamp of the log entry. \\
+\hline
+{\em access} & The access type. see access\+\_\+t \\
+\hline
+{\em action\+\_\+denied} & 1 if the action was denied, else 0. \\
+\hline
+{\em fingerprint} & The fingerprint of the file. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structlog__entry__s_afd6b8cbb3e041417f504dd9b7653d43a_afd6b8cbb3e041417f504dd9b7653d43a}\label{structlog__entry__s_afd6b8cbb3e041417f504dd9b7653d43a_afd6b8cbb3e041417f504dd9b7653d43a}} 
+\index{log\+\_\+entry\+\_\+s@{log\+\_\+entry\+\_\+s}!access@{access}}
+\index{access@{access}!log\+\_\+entry\+\_\+s@{log\+\_\+entry\+\_\+s}}
+\subsubsection{\texorpdfstring{access}{access}}
+{\footnotesize\ttfamily char log\+\_\+entry\+\_\+s\+::access\mbox{[}6\mbox{]}}
+
+\mbox{\Hypertarget{structlog__entry__s_aab4fe84d4d2bd2f0122dca8a4362a53f_aab4fe84d4d2bd2f0122dca8a4362a53f}\label{structlog__entry__s_aab4fe84d4d2bd2f0122dca8a4362a53f_aab4fe84d4d2bd2f0122dca8a4362a53f}} 
+\index{log\+\_\+entry\+\_\+s@{log\+\_\+entry\+\_\+s}!action\+\_\+denied@{action\+\_\+denied}}
+\index{action\+\_\+denied@{action\+\_\+denied}!log\+\_\+entry\+\_\+s@{log\+\_\+entry\+\_\+s}}
+\subsubsection{\texorpdfstring{action\+\_\+denied}{action\_denied}}
+{\footnotesize\ttfamily char log\+\_\+entry\+\_\+s\+::action\+\_\+denied\mbox{[}1\mbox{]}}
+
+\mbox{\Hypertarget{structlog__entry__s_adcc31a7a6fb6279625c938bde82d4310_adcc31a7a6fb6279625c938bde82d4310}\label{structlog__entry__s_adcc31a7a6fb6279625c938bde82d4310_adcc31a7a6fb6279625c938bde82d4310}} 
+\index{log\+\_\+entry\+\_\+s@{log\+\_\+entry\+\_\+s}!fingerprint@{fingerprint}}
+\index{fingerprint@{fingerprint}!log\+\_\+entry\+\_\+s@{log\+\_\+entry\+\_\+s}}
+\subsubsection{\texorpdfstring{fingerprint}{fingerprint}}
+{\footnotesize\ttfamily char log\+\_\+entry\+\_\+s\+::fingerprint\mbox{[}33\mbox{]}}
+
+\mbox{\Hypertarget{structlog__entry__s_a5af40019a92d555b0317d711b570f14c_a5af40019a92d555b0317d711b570f14c}\label{structlog__entry__s_a5af40019a92d555b0317d711b570f14c_a5af40019a92d555b0317d711b570f14c}} 
+\index{log\+\_\+entry\+\_\+s@{log\+\_\+entry\+\_\+s}!path@{path}}
+\index{path@{path}!log\+\_\+entry\+\_\+s@{log\+\_\+entry\+\_\+s}}
+\subsubsection{\texorpdfstring{path}{path}}
+{\footnotesize\ttfamily char log\+\_\+entry\+\_\+s\+::path\mbox{[}256\mbox{]}}
+
+\mbox{\Hypertarget{structlog__entry__s_ac18d2273a9bf57e659d829e5fff27d70_ac18d2273a9bf57e659d829e5fff27d70}\label{structlog__entry__s_ac18d2273a9bf57e659d829e5fff27d70_ac18d2273a9bf57e659d829e5fff27d70}} 
+\index{log\+\_\+entry\+\_\+s@{log\+\_\+entry\+\_\+s}!timestamp@{timestamp}}
+\index{timestamp@{timestamp}!log\+\_\+entry\+\_\+s@{log\+\_\+entry\+\_\+s}}
+\subsubsection{\texorpdfstring{timestamp}{timestamp}}
+{\footnotesize\ttfamily char log\+\_\+entry\+\_\+s\+::timestamp\mbox{[}sizeof(\char`\"{}2024-\/01-\/01 00\+:00\+:00\char`\"{})\mbox{]}}
+
+\mbox{\Hypertarget{structlog__entry__s_a4cea55f12c34aebb7b3a0a8720e883bf_a4cea55f12c34aebb7b3a0a8720e883bf}\label{structlog__entry__s_a4cea55f12c34aebb7b3a0a8720e883bf_a4cea55f12c34aebb7b3a0a8720e883bf}} 
+\index{log\+\_\+entry\+\_\+s@{log\+\_\+entry\+\_\+s}!U\+ID@{U\+ID}}
+\index{U\+ID@{U\+ID}!log\+\_\+entry\+\_\+s@{log\+\_\+entry\+\_\+s}}
+\subsubsection{\texorpdfstring{U\+ID}{UID}}
+{\footnotesize\ttfamily char log\+\_\+entry\+\_\+s\+::\+U\+ID\mbox{[}sizeof(123456789)\mbox{]}}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{log_8h}{log.\+h}\end{DoxyCompactItemize}

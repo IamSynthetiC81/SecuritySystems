@@ -116,6 +116,9 @@ int setStringArray(String_array_t *restrict arr , unsigned int _index, const cha
 
     strcpy(arr->data[_index], clean_string);
     strcpy(arr->data[_index], str);
+
+    free (clean_string);
+    
     return 1;
     
 }

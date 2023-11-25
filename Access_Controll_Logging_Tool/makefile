@@ -33,7 +33,7 @@ main: compile_lib main.c
 debug: compile_lib main.c
 	@export LD_LIBRARY_PATH=$(DIR_OUT_LIB); \
 	$(CC) $(CFLAGS) $(DEBUG_FLAGS) -o out/main main.c $(LFLAGS)
-acmonitor: create_dirs compile_lib acmonitor.c
+acmonitor: compile_lib acmonitor.c
 	$(CC) $(CFLAGS) -o $(DIR_OUT)acmonitor acmonitor.c -Ilib -L$(DIR_OUT_LIB) -Wl,-rpath=./$(DIR_OUT_LIB) $(LFLAGS)
 aclog : test_aclog.c
 	$(CC) $(CFLAGS) -o $(DIR_OUT)aclog test_aclog.c -Ilib -L$(DIR_OUT_LIB) -Wl,-rpath=./$(DIR_OUT_LIB) $(LFLAGS)

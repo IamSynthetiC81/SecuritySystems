@@ -1,0 +1,15 @@
+\hypertarget{gcc-example}{}\section{gcc}
+\begin{DoxyVersion}{Version}
+1.\+1.\+3 
+\end{DoxyVersion}
+\begin{DoxyAuthor}{Authors}
+mkritikakis, hgeorgakopoulos
+\end{DoxyAuthor}
+This file contains the functions to create and print log entries onto log.\+txt Hooks for fopen, fread, fwrite and fclose are present and can be enabled by defining the macros \+\_\+\+\_\+\+H\+O\+P\+EN, \+\_\+\+\_\+\+H\+R\+E\+AD, \+\_\+\+\_\+\+H\+W\+R\+I\+TE and \+\_\+\+\_\+\+H\+D\+E\+L\+E\+TE respectively. -\/\+D\+\_\+\+\_\+\+H\+O\+P\+EN -\/\+D\+\_\+\+\_\+\+H\+R\+E\+AD -\/\+D\+\_\+\+\_\+\+H\+W\+R\+I\+TE -\/\+D\+\_\+\+\_\+\+H\+D\+E\+L\+E\+TE -\/o test test.\+c \hyperlink{ACL_8c}{lib/\+A\+C\+L.\+c} \hyperlink{log_8c}{lib/log.\+c} \hyperlink{fhandler_8c}{lib/fhandler.\+c}
+
+This file is compiled into a shared object file and is loaded into the process address space of the target program using L\+D\+\_\+\+P\+R\+E\+L\+O\+AD.
+
+
+\begin{DoxyCodeInclude}
+\end{DoxyCodeInclude}
+ 

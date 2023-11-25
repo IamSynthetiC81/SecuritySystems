@@ -1,0 +1,146 @@
+\hypertarget{Misc_8h}{}\section{Misc.\+h File Reference}
+\label{Misc_8h}\index{Misc.\+h@{Misc.\+h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for Misc.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=273pt]{Misc_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{Misc_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structarray__1d}{array\+\_\+1d}
+\begin{DoxyCompactList}\small\item\em A structure to store a 1D array of any type of data. \end{DoxyCompactList}\item 
+struct \hyperlink{structString__array}{String\+\_\+array}
+\begin{DoxyCompactList}\small\item\em A structure to store an array of strings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{Misc_8h_ac4c027058e9ccd1d4dce6a718af0b422_ac4c027058e9ccd1d4dce6a718af0b422}{printd}(format, ...)
+\item 
+\#define \hyperlink{Misc_8h_a8b3a3c4c8735fffe0d3b0ab6c7053667_a8b3a3c4c8735fffe0d3b0ab6c7053667}{printld}(format, ...)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structarray__1d}{array\+\_\+1d} \hyperlink{Misc_8h_a00cef65fdcdf049cdfa42839691a9b45_a00cef65fdcdf049cdfa42839691a9b45}{array\+\_\+t}
+\begin{DoxyCompactList}\small\item\em A structure to store a 1D array of any type of data. \end{DoxyCompactList}\item 
+typedef struct \hyperlink{structString__array}{String\+\_\+array} \hyperlink{Misc_8h_a5415baf6b33c31bbf88da7909cacef53_a5415baf6b33c31bbf88da7909cacef53}{String\+\_\+array\+\_\+t}
+\begin{DoxyCompactList}\small\item\em A structure to store an array of strings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Misc_8h_a5415baf6b33c31bbf88da7909cacef53_a5415baf6b33c31bbf88da7909cacef53}{String\+\_\+array\+\_\+t} \hyperlink{Misc_8h_a14994f08225f3ec039c5e1c4f1ce34fe_a14994f08225f3ec039c5e1c4f1ce34fe}{Init\+String\+Array} (size\+\_\+t \+\_\+data\+\_\+size)
+\item 
+void \hyperlink{Misc_8h_a4dd7ace1bf25b5d9d86f09aa24eef635_a4dd7ace1bf25b5d9d86f09aa24eef635}{Push\+String\+Array} (\hyperlink{Misc_8h_a5415baf6b33c31bbf88da7909cacef53_a5415baf6b33c31bbf88da7909cacef53}{String\+\_\+array\+\_\+t} $\ast$restrict arr, const char $\ast$restrict str)
+\item 
+char $\ast$ \hyperlink{Misc_8h_a857fdfde68bcf52b34e778991f4f96e2_a857fdfde68bcf52b34e778991f4f96e2}{read\+String\+Array} (\hyperlink{Misc_8h_a5415baf6b33c31bbf88da7909cacef53_a5415baf6b33c31bbf88da7909cacef53}{String\+\_\+array\+\_\+t} $\ast$arr, unsigned int \+\_\+index)
+\item 
+int \hyperlink{Misc_8h_adf1e7a762b0fcaf97f02c286c8969b17_adf1e7a762b0fcaf97f02c286c8969b17}{set\+String\+Array} (\hyperlink{Misc_8h_a5415baf6b33c31bbf88da7909cacef53_a5415baf6b33c31bbf88da7909cacef53}{String\+\_\+array\+\_\+t} $\ast$restrict arr, unsigned int \+\_\+index, const char $\ast$restrict str)
+\item 
+void \hyperlink{Misc_8h_ae86e050e2e40fb2c8021bc9fd18d7672_ae86e050e2e40fb2c8021bc9fd18d7672}{Free\+String\+Array} (\hyperlink{Misc_8h_a5415baf6b33c31bbf88da7909cacef53_a5415baf6b33c31bbf88da7909cacef53}{String\+\_\+array\+\_\+t} $\ast$arr)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{Misc_8h_ac4c027058e9ccd1d4dce6a718af0b422_ac4c027058e9ccd1d4dce6a718af0b422}\label{Misc_8h_ac4c027058e9ccd1d4dce6a718af0b422_ac4c027058e9ccd1d4dce6a718af0b422}} 
+\index{Misc.\+h@{Misc.\+h}!printd@{printd}}
+\index{printd@{printd}!Misc.\+h@{Misc.\+h}}
+\subsubsection{\texorpdfstring{printd}{printd}}
+{\footnotesize\ttfamily \#define printd(\begin{DoxyParamCaption}\item[{}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Misc_8h_a8b3a3c4c8735fffe0d3b0ab6c7053667_a8b3a3c4c8735fffe0d3b0ab6c7053667}\label{Misc_8h_a8b3a3c4c8735fffe0d3b0ab6c7053667_a8b3a3c4c8735fffe0d3b0ab6c7053667}} 
+\index{Misc.\+h@{Misc.\+h}!printld@{printld}}
+\index{printld@{printld}!Misc.\+h@{Misc.\+h}}
+\subsubsection{\texorpdfstring{printld}{printld}}
+{\footnotesize\ttfamily \#define printld(\begin{DoxyParamCaption}\item[{}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{Misc_8h_a00cef65fdcdf049cdfa42839691a9b45_a00cef65fdcdf049cdfa42839691a9b45}\label{Misc_8h_a00cef65fdcdf049cdfa42839691a9b45_a00cef65fdcdf049cdfa42839691a9b45}} 
+\index{Misc.\+h@{Misc.\+h}!array\+\_\+t@{array\+\_\+t}}
+\index{array\+\_\+t@{array\+\_\+t}!Misc.\+h@{Misc.\+h}}
+\subsubsection{\texorpdfstring{array\+\_\+t}{array\_t}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structarray__1d}{array\+\_\+1d}  \hyperlink{Misc_8h_a00cef65fdcdf049cdfa42839691a9b45_a00cef65fdcdf049cdfa42839691a9b45}{array\+\_\+t}}
+
+
+
+A structure to store a 1D array of any type of data. 
+
+\begin{DoxyAttention}{Attention}
+The data must typecasted to void$\ast$ before storing. and must be typecasted back to the original type before using. 
+\end{DoxyAttention}
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A pointer to the array. \\
+\hline
+{\em size} & The size of the array. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{Misc_8h_a5415baf6b33c31bbf88da7909cacef53_a5415baf6b33c31bbf88da7909cacef53}\label{Misc_8h_a5415baf6b33c31bbf88da7909cacef53_a5415baf6b33c31bbf88da7909cacef53}} 
+\index{Misc.\+h@{Misc.\+h}!String\+\_\+array\+\_\+t@{String\+\_\+array\+\_\+t}}
+\index{String\+\_\+array\+\_\+t@{String\+\_\+array\+\_\+t}!Misc.\+h@{Misc.\+h}}
+\subsubsection{\texorpdfstring{String\+\_\+array\+\_\+t}{String\_array\_t}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structString__array}{String\+\_\+array}  \hyperlink{Misc_8h_a5415baf6b33c31bbf88da7909cacef53_a5415baf6b33c31bbf88da7909cacef53}{String\+\_\+array\+\_\+t}}
+
+
+
+A structure to store an array of strings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A pointer to the array of strings. \\
+\hline
+{\em size} & The size of the array. \\
+\hline
+{\em capacity} & The capacity of the array. \\
+\hline
+{\em data\+\_\+size} & The size for each string in the array. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{Misc_8h_ae86e050e2e40fb2c8021bc9fd18d7672_ae86e050e2e40fb2c8021bc9fd18d7672}\label{Misc_8h_ae86e050e2e40fb2c8021bc9fd18d7672_ae86e050e2e40fb2c8021bc9fd18d7672}} 
+\index{Misc.\+h@{Misc.\+h}!Free\+String\+Array@{Free\+String\+Array}}
+\index{Free\+String\+Array@{Free\+String\+Array}!Misc.\+h@{Misc.\+h}}
+\subsubsection{\texorpdfstring{Free\+String\+Array()}{FreeStringArray()}}
+{\footnotesize\ttfamily void Free\+String\+Array (\begin{DoxyParamCaption}\item[{\hyperlink{Misc_8h_a5415baf6b33c31bbf88da7909cacef53_a5415baf6b33c31bbf88da7909cacef53}{String\+\_\+array\+\_\+t} $\ast$}]{arr }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Misc_8h_a14994f08225f3ec039c5e1c4f1ce34fe_a14994f08225f3ec039c5e1c4f1ce34fe}\label{Misc_8h_a14994f08225f3ec039c5e1c4f1ce34fe_a14994f08225f3ec039c5e1c4f1ce34fe}} 
+\index{Misc.\+h@{Misc.\+h}!Init\+String\+Array@{Init\+String\+Array}}
+\index{Init\+String\+Array@{Init\+String\+Array}!Misc.\+h@{Misc.\+h}}
+\subsubsection{\texorpdfstring{Init\+String\+Array()}{InitStringArray()}}
+{\footnotesize\ttfamily \hyperlink{Misc_8h_a5415baf6b33c31bbf88da7909cacef53_a5415baf6b33c31bbf88da7909cacef53}{String\+\_\+array\+\_\+t} Init\+String\+Array (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{\+\_\+data\+\_\+size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Misc_8h_a4dd7ace1bf25b5d9d86f09aa24eef635_a4dd7ace1bf25b5d9d86f09aa24eef635}\label{Misc_8h_a4dd7ace1bf25b5d9d86f09aa24eef635_a4dd7ace1bf25b5d9d86f09aa24eef635}} 
+\index{Misc.\+h@{Misc.\+h}!Push\+String\+Array@{Push\+String\+Array}}
+\index{Push\+String\+Array@{Push\+String\+Array}!Misc.\+h@{Misc.\+h}}
+\subsubsection{\texorpdfstring{Push\+String\+Array()}{PushStringArray()}}
+{\footnotesize\ttfamily void Push\+String\+Array (\begin{DoxyParamCaption}\item[{\hyperlink{Misc_8h_a5415baf6b33c31bbf88da7909cacef53_a5415baf6b33c31bbf88da7909cacef53}{String\+\_\+array\+\_\+t} $\ast$restrict}]{arr,  }\item[{const char $\ast$restrict}]{str }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Misc_8h_a857fdfde68bcf52b34e778991f4f96e2_a857fdfde68bcf52b34e778991f4f96e2}\label{Misc_8h_a857fdfde68bcf52b34e778991f4f96e2_a857fdfde68bcf52b34e778991f4f96e2}} 
+\index{Misc.\+h@{Misc.\+h}!read\+String\+Array@{read\+String\+Array}}
+\index{read\+String\+Array@{read\+String\+Array}!Misc.\+h@{Misc.\+h}}
+\subsubsection{\texorpdfstring{read\+String\+Array()}{readStringArray()}}
+{\footnotesize\ttfamily char$\ast$ read\+String\+Array (\begin{DoxyParamCaption}\item[{\hyperlink{Misc_8h_a5415baf6b33c31bbf88da7909cacef53_a5415baf6b33c31bbf88da7909cacef53}{String\+\_\+array\+\_\+t} $\ast$}]{arr,  }\item[{unsigned int}]{\+\_\+index }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Misc_8h_adf1e7a762b0fcaf97f02c286c8969b17_adf1e7a762b0fcaf97f02c286c8969b17}\label{Misc_8h_adf1e7a762b0fcaf97f02c286c8969b17_adf1e7a762b0fcaf97f02c286c8969b17}} 
+\index{Misc.\+h@{Misc.\+h}!set\+String\+Array@{set\+String\+Array}}
+\index{set\+String\+Array@{set\+String\+Array}!Misc.\+h@{Misc.\+h}}
+\subsubsection{\texorpdfstring{set\+String\+Array()}{setStringArray()}}
+{\footnotesize\ttfamily int set\+String\+Array (\begin{DoxyParamCaption}\item[{\hyperlink{Misc_8h_a5415baf6b33c31bbf88da7909cacef53_a5415baf6b33c31bbf88da7909cacef53}{String\+\_\+array\+\_\+t} $\ast$restrict}]{arr,  }\item[{unsigned int}]{\+\_\+index,  }\item[{const char $\ast$restrict}]{str }\end{DoxyParamCaption})}
+

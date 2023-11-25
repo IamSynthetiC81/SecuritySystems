@@ -13,18 +13,18 @@
 #include "lib/fhandler.h"
 #include "lib/Misc.h"
 
+
+/**
+ * @brief The maximum number of times a user can try to access a file they are not allowed to.
+*/
 #define _MAX_STRIKE_ 7
 
 
-int string_included(user_history_t history, const char *path){
-    for (int j = 0; j < history.strikes; j++){
-        if (strcmp(history.path[j], path) == 0){
-            return 1;
-        }
-    }
-    return 0;
-}
-
+/**
+ * @brief prints a logf_t struct. Used for debugging
+ * 
+ * @param log logf_t struct to be printed
+*/
 void print_logf(logf_t log){
     char *access;
     switch (log.access){
@@ -48,16 +48,18 @@ void print_logf(logf_t log){
     printf("[%02d:%02d:%02d] %02d/%02d/%04d | UID : %5d | Action : %6s | Denied : %1d | Fingerprint : %s | Path : %s\n", log.timestamp.tm_hour, log.timestamp.tm_min, log.timestamp.tm_sec, log.timestamp.tm_mday, log.timestamp.tm_mon, log.timestamp.tm_year, log.UID, access, log.action_denied, log.fingerprint, log.path);
 }
 
+/**
+ * @brief Reads the log file and prints all users that have have tried to access a file that they were not allowed to, more than @link _MAX_STRIKE_ @endlink times
+*/
 int printMaliciousUsers(){
     array_t *data = user_history_init();
     user_history_t *user_history = (user_history_t *)data->data;
 
     for (int i = 0; i < data->size; i++){
         if (user_history[i].strikes >= _MAX_STRIKE_)
-        {
             printf("User %d has been banned\n", user_history[i].UID);
-        }
     }
+
     return 0;
 }
 

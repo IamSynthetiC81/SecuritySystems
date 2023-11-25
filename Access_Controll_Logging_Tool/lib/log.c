@@ -26,12 +26,19 @@
 	#define printv(format, ...)
 #endif
 
+/**
+ * @brief Indexes to the data struct returned by parse_log()
+*/
 enum logs{
 	_UID,
 	_PATH,
 	_FINGERPRINT
 };
 
+
+/**
+ * @brief returns the current date and time
+*/
 struct tm date_and_time(){
 	time_t rawtime = time(NULL);
 	struct tm *timestamp = localtime(&rawtime);
@@ -42,6 +49,11 @@ struct tm date_and_time(){
 	return *timestamp;
 }
 
+/**
+ * @brief prints a logf_t struct to the file.
+ * 
+ * @param log logf_t struct to be printed
+*/
 void print_log_to_file(logf_t log_entry){
 	FILE *(*fopen_ptr)(const char *, const char *);
 	Handle("libc.so.6", "fopen", &fopen_ptr);
@@ -113,6 +125,14 @@ void print_log_to_file(logf_t log_entry){
 	
 }
 
+/**
+ * @brief Creates a logf_t struct and prints it to the log file
+ * 
+ * @param path Path of the file
+ * @param access Type of access
+ * @param action_denied 1 if the action was denied, 0 otherwise
+ * @param fingerprint Fingerprint of the file
+*/
 logf_t create_log(const char *path, const access_t access, const int action_denied, unsigned char fingerprint[33]){
 	logf_t log_entry = {
 		.UID = getuid(),
@@ -147,6 +167,11 @@ logf_t create_log(const char *path, const access_t access, const int action_deni
 	return log_entry;
 }
 
+/**
+ * @brief Parses the log file and returns a 3D array containing the UID, path and fingerprint of each log entry
+ * 
+ * @todo : return all the data of the log file (time, date, action, etc.)
+*/
 char ***parse_log(){
 	printld("parse_log() : Starting\n");
 	FILE* (*fopen_ptr)(const char *, const char *);
@@ -217,15 +242,9 @@ char ***parse_log(){
 	return logs;
 }
 
-int string_included(user_history_t history, const char *path){
-    for (int j = 0; j < history.strikes; j++){
-        if (strcmp(history.path[j], path) == 0){
-            return 1;
-        }
-    }
-    return 0;
-}
-
+/**
+ * @brief Returns an array_t struct containing all the users and the files they tried to access in the log file.
+*/
 array_t *user_history_init(){
 	char ***logs = parse_log();
 
@@ -283,6 +302,9 @@ array_t *user_history_init(){
 	return array;
 }
 
+/**
+ * @brief Returns an array_t struct containing all the files and the users that have tried to access them in the log file.
+*/
 array_t *file_history_init(){
 	printld("file_history_init() : Starting\n");
 
