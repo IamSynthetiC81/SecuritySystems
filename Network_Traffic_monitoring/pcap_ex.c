@@ -10,12 +10,14 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 
+#define LOG_PATH "log/log.txt"
+
 #define DEBUG
 
 #ifdef DEBUG
-#define DEBUG_PRINT(...) printf(__VA_ARGS__)
+    #define DEBUG_PRINT(...) printf(__VA_ARGS__)
 #else
-#define DEBUG_PRINT(...)
+    #define DEBUG_PRINT(...)
 #endif
 
 #define _MAX_LOGS_ 10000
@@ -61,6 +63,28 @@ typedef enum OPERATION {
 } op_t;
 
 pcap_t * handle = NULL;
+
+void printToLog(const nflow_t *flow) {
+    FILE *fp = fopen(LOG_PATH, "a");
+    if (fp == NULL) {
+        printf("Error opening file!\n");
+        exit(1);
+    }
+
+    fprintf(fp, "%d.%d.%d.%d:%d -> %d.%d.%d.%d:%d\n",
+        (flow->src_ip >> 24) & 0xFF,
+        (flow->src_ip >> 16) & 0xFF,
+        (flow->src_ip >> 8) & 0xFF,
+        flow->src_ip & 0xFF,
+        flow->src_port,
+        (flow->dst_ip >> 24) & 0xFF,
+        (flow->dst_ip >> 16) & 0xFF,
+        (flow->dst_ip >> 8) & 0xFF,
+        flow->dst_ip & 0xFF,
+        flow->dst_port
+    );
+    fclose(fp);
+}
 
 void get_link_header_len(pcap_t* handle){
     // Determine the datalink layer type.
@@ -300,7 +324,11 @@ int main(const int argc, char *argv[]){
 
     capture(handle,filter);
 
-    printf("Total packets captured: %d\n",total_packets_received);
+    if (op == __ONLINE)                                                                                                 //If we are capturing online,
+        for(int i = 0 ; i < network_flows_count ; i++)                                                                  //print the network flows to the log file
+            printToLog(&network_flows[i]);
+
+    printf("\nTotal packets captured: %d\n",total_packets_received);
     printf("TCP packets captured: %d\n",tcp_packets_received);
     printf("UDP packets captured: %d\n",udp_packets_received);
     printf("TCP packet bytes captured: %d\n",tcp_bytes_received);
