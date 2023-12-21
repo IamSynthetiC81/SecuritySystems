@@ -83,6 +83,9 @@ void printToLog(const nflow_t *flow) {
         flow->dst_ip & 0xFF,
         flow->dst_port
     );
+
+    flow->protocol == IPPROTO_TCP ? fprintf(fp, "Protocol: TCP\n") : fprintf(fp, "Protocol: UDP\n");
+
     fclose(fp);
 }
 
@@ -93,7 +96,7 @@ void get_link_header_len(pcap_t* handle){
         fprintf(stderr, "pcap_datalink(): %s\n", pcap_geterr(handle));
         return;
     }
- 
+
     // Set the datalink layer header size.
     switch (linktype){
         case DLT_NULL:
@@ -324,11 +327,7 @@ int main(const int argc, char *argv[]){
 
     capture(handle,filter);
 
-    if (op == __ONLINE)                                                                                                 //If we are capturing online,
-        for(int i = 0 ; i < network_flows_count ; i++)                                                                  //print the network flows to the log file
-            printToLog(&network_flows[i]);
-
-    printf("\nTotal packets captured: %d\n",total_packets_received);
+    printf("Total packets captured: %d\n",total_packets_received);
     printf("TCP packets captured: %d\n",tcp_packets_received);
     printf("UDP packets captured: %d\n",udp_packets_received);
     printf("TCP packet bytes captured: %d\n",tcp_bytes_received);

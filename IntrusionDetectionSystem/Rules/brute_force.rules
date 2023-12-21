@@ -1,0 +1,7 @@
+alert tcp (
+    msg:"Possible SSH Brute Force Attempt"; 
+    flow:to_server; 
+    content:"SSH",nocase,offset 0, depth 4; 
+    detection_filter:track by_src, count 10, seconds 600;
+    sid:1000006;
+)

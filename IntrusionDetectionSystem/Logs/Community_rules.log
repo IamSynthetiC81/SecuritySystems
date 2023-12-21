@@ -1,0 +1,102 @@
+01/25-20:52:39.603835 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 192.168.3.131:57757 -> 239.255.255.250:1900
+01/25-20:52:39.604345 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 192.168.3.131:57757 -> 239.255.255.250:1900
+01/25-20:52:42.603621 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 192.168.3.131:57757 -> 239.255.255.250:1900
+01/25-20:52:42.604427 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 192.168.3.131:57757 -> 239.255.255.250:1900
+01/25-20:52:45.604089 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 192.168.3.131:57757 -> 239.255.255.250:1900
+01/25-20:52:45.604949 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 192.168.3.131:57757 -> 239.255.255.250:1900
+01/25-20:54:04.337730 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 172.16.255.1:54052 -> 239.255.255.250:1900
+01/25-20:54:04.337804 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 172.16.255.1:54052 -> 239.255.255.250:1900
+01/25-20:54:19.160746 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 10.0.2.15:48575 -> 10.0.2.2:1900
+01/25-20:54:19.160903 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 10.0.2.15:48575 -> 10.0.2.2:1900
+01/25-20:54:19.161403 [**] [1:449:9] "PROTOCOL-ICMP Time-To-Live Exceeded in Transit" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 10.0.2.2 -> 10.0.2.15
+01/25-20:54:19.161469 [**] [1:449:9] "PROTOCOL-ICMP Time-To-Live Exceeded in Transit" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 10.0.2.2 -> 10.0.2.15
+01/25-20:54:19.749351 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 10.0.2.15:48575 -> 10.0.2.2:1900
+01/25-20:54:19.749385 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 10.0.2.15:48575 -> 10.0.2.2:1900
+01/25-20:54:19.749652 [**] [1:449:9] "PROTOCOL-ICMP Time-To-Live Exceeded in Transit" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 10.0.2.2 -> 10.0.2.15
+01/25-20:54:19.749731 [**] [1:449:9] "PROTOCOL-ICMP Time-To-Live Exceeded in Transit" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 10.0.2.2 -> 10.0.2.15
+01/25-20:54:20.294381 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 10.0.2.15:48575 -> 10.0.2.2:1900
+01/25-20:54:20.294427 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 10.0.2.15:48575 -> 10.0.2.2:1900
+01/25-20:54:20.296806 [**] [1:449:9] "PROTOCOL-ICMP Time-To-Live Exceeded in Transit" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 10.0.2.2 -> 10.0.2.15
+01/25-20:54:20.296898 [**] [1:449:9] "PROTOCOL-ICMP Time-To-Live Exceeded in Transit" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 10.0.2.2 -> 10.0.2.15
+01/25-20:54:20.730127 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 10.0.2.15:48575 -> 10.0.2.2:1900
+01/25-20:54:20.730191 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 10.0.2.15:48575 -> 10.0.2.2:1900
+01/25-20:54:20.733007 [**] [1:449:9] "PROTOCOL-ICMP Time-To-Live Exceeded in Transit" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 10.0.2.2 -> 10.0.2.15
+01/25-20:54:20.733104 [**] [1:449:9] "PROTOCOL-ICMP Time-To-Live Exceeded in Transit" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 10.0.2.2 -> 10.0.2.15
+01/25-20:54:21.186147 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 10.0.2.15:48575 -> 10.0.2.2:1900
+01/25-20:54:21.186212 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 10.0.2.15:48575 -> 10.0.2.2:1900
+01/25-20:54:21.187322 [**] [1:449:9] "PROTOCOL-ICMP Time-To-Live Exceeded in Transit" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 10.0.2.2 -> 10.0.2.15
+01/25-20:54:21.187397 [**] [1:449:9] "PROTOCOL-ICMP Time-To-Live Exceeded in Transit" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 10.0.2.2 -> 10.0.2.15
+01/25-20:54:37.330025 [**] [1:1990:7] "POLICY-SOCIAL Microsoft MSN user search" [**] [Classification: Potential Corporate Privacy Violation] [Priority: 1] {TCP} 10.0.2.15:2550 -> 64.4.35.57:1863
+01/25-20:54:37.330648 [**] [1:1990:7] "POLICY-SOCIAL Microsoft MSN user search" [**] [Classification: Potential Corporate Privacy Violation] [Priority: 1] {TCP} 10.0.2.15:2550 -> 64.4.35.57:1863
+01/25-20:54:37.862178 [**] [1:540:17] "POLICY-SOCIAL Microsoft MSN message" [**] [Classification: Potential Corporate Privacy Violation] [Priority: 1] {TCP} 10.0.2.15:2550 -> 64.4.35.57:1863
+01/25-20:54:39.794361 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 172.16.255.1:61993 -> 239.255.255.250:1900
+01/25-20:54:39.794436 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 172.16.255.1:61993 -> 239.255.255.250:1900
+01/25-20:54:59.918512 [**] [1:540:17] "POLICY-SOCIAL Microsoft MSN message" [**] [Classification: Potential Corporate Privacy Violation] [Priority: 1] {TCP} 10.0.2.15:2550 -> 64.4.35.57:1863
+01/25-20:55:19.669288 [**] [1:540:17] "POLICY-SOCIAL Microsoft MSN message" [**] [Classification: Potential Corporate Privacy Violation] [Priority: 1] {TCP} 64.4.35.57:1863 -> 10.0.2.15:2550
+01/25-20:55:34.093311 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 172.16.255.1:60061 -> 239.255.255.250:1900
+01/25-20:55:34.094994 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 172.16.255.1:60061 -> 239.255.255.250:1900
+01/25-20:55:37.091736 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 172.16.255.1:60061 -> 239.255.255.250:1900
+01/25-20:55:37.092428 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 172.16.255.1:60061 -> 239.255.255.250:1900
+01/25-20:55:40.104246 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 172.16.255.1:60061 -> 239.255.255.250:1900
+01/25-20:55:40.104967 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 172.16.255.1:60061 -> 239.255.255.250:1900
+01/25-20:55:44.511002 [**] [1:1411:21] "PROTOCOL-SNMP public access udp" [**] [Classification: Attempted Information Leak] [Priority: 2] {UDP} 192.168.3.131:52400 -> 192.168.3.99:161
+01/25-20:55:44.511002 [**] [1:1417:18] "PROTOCOL-SNMP request udp" [**] [Classification: Attempted Information Leak] [Priority: 2] {UDP} 192.168.3.131:52400 -> 192.168.3.99:161
+01/25-20:55:44.711002 [**] [1:1411:21] "PROTOCOL-SNMP public access udp" [**] [Classification: Attempted Information Leak] [Priority: 2] {UDP} 192.168.3.131:52400 -> 192.168.3.99:161
+01/25-20:55:44.711002 [**] [1:1417:18] "PROTOCOL-SNMP request udp" [**] [Classification: Attempted Information Leak] [Priority: 2] {UDP} 192.168.3.131:52400 -> 192.168.3.99:161
+01/25-20:56:09.160746 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 10.0.2.15:48575 -> 10.0.2.2:1900
+01/25-20:56:09.160903 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 10.0.2.15:48575 -> 10.0.2.2:1900
+01/25-20:56:09.161403 [**] [1:449:9] "PROTOCOL-ICMP Time-To-Live Exceeded in Transit" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 10.0.2.2 -> 10.0.2.15
+01/25-20:56:09.161469 [**] [1:449:9] "PROTOCOL-ICMP Time-To-Live Exceeded in Transit" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 10.0.2.2 -> 10.0.2.15
+01/25-20:56:09.749351 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 10.0.2.15:48575 -> 10.0.2.2:1900
+01/25-20:56:09.749385 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 10.0.2.15:48575 -> 10.0.2.2:1900
+01/25-20:56:09.749652 [**] [1:449:9] "PROTOCOL-ICMP Time-To-Live Exceeded in Transit" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 10.0.2.2 -> 10.0.2.15
+01/25-20:56:09.749731 [**] [1:449:9] "PROTOCOL-ICMP Time-To-Live Exceeded in Transit" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 10.0.2.2 -> 10.0.2.15
+01/25-20:56:10.294381 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 10.0.2.15:48575 -> 10.0.2.2:1900
+01/25-20:56:10.294427 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 10.0.2.15:48575 -> 10.0.2.2:1900
+01/25-20:56:10.296806 [**] [1:449:9] "PROTOCOL-ICMP Time-To-Live Exceeded in Transit" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 10.0.2.2 -> 10.0.2.15
+01/25-20:56:10.296898 [**] [1:449:9] "PROTOCOL-ICMP Time-To-Live Exceeded in Transit" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 10.0.2.2 -> 10.0.2.15
+01/25-20:56:10.730127 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 10.0.2.15:48575 -> 10.0.2.2:1900
+01/25-20:56:10.730191 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 10.0.2.15:48575 -> 10.0.2.2:1900
+01/25-20:56:10.733007 [**] [1:449:9] "PROTOCOL-ICMP Time-To-Live Exceeded in Transit" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 10.0.2.2 -> 10.0.2.15
+01/25-20:56:10.733104 [**] [1:449:9] "PROTOCOL-ICMP Time-To-Live Exceeded in Transit" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 10.0.2.2 -> 10.0.2.15
+01/25-20:56:11.186147 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 10.0.2.15:48575 -> 10.0.2.2:1900
+01/25-20:56:11.186212 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 10.0.2.15:48575 -> 10.0.2.2:1900
+01/25-20:56:11.187322 [**] [1:449:9] "PROTOCOL-ICMP Time-To-Live Exceeded in Transit" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 10.0.2.2 -> 10.0.2.15
+01/25-20:56:11.187397 [**] [1:449:9] "PROTOCOL-ICMP Time-To-Live Exceeded in Transit" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 10.0.2.2 -> 10.0.2.15
+01/25-20:56:14.511260 [**] [1:1411:21] "PROTOCOL-SNMP public access udp" [**] [Classification: Attempted Information Leak] [Priority: 2] {UDP} 192.168.3.131:52400 -> 192.168.3.99:161
+01/25-20:56:14.511260 [**] [1:1417:18] "PROTOCOL-SNMP request udp" [**] [Classification: Attempted Information Leak] [Priority: 2] {UDP} 192.168.3.131:52400 -> 192.168.3.99:161
+01/25-20:56:14.711260 [**] [1:1411:21] "PROTOCOL-SNMP public access udp" [**] [Classification: Attempted Information Leak] [Priority: 2] {UDP} 192.168.3.131:52400 -> 192.168.3.99:161
+01/25-20:56:14.711260 [**] [1:1417:18] "PROTOCOL-SNMP request udp" [**] [Classification: Attempted Information Leak] [Priority: 2] {UDP} 192.168.3.131:52400 -> 192.168.3.99:161
+01/25-20:56:44.511549 [**] [1:1411:21] "PROTOCOL-SNMP public access udp" [**] [Classification: Attempted Information Leak] [Priority: 2] {UDP} 192.168.3.131:52400 -> 192.168.3.99:161
+01/25-20:56:44.511549 [**] [1:1417:18] "PROTOCOL-SNMP request udp" [**] [Classification: Attempted Information Leak] [Priority: 2] {UDP} 192.168.3.131:52400 -> 192.168.3.99:161
+01/25-20:56:44.711549 [**] [1:1411:21] "PROTOCOL-SNMP public access udp" [**] [Classification: Attempted Information Leak] [Priority: 2] {UDP} 192.168.3.131:52400 -> 192.168.3.99:161
+01/25-20:56:44.711549 [**] [1:1417:18] "PROTOCOL-SNMP request udp" [**] [Classification: Attempted Information Leak] [Priority: 2] {UDP} 192.168.3.131:52400 -> 192.168.3.99:161
+01/25-20:56:45.434639 [**] [1:466:9] "PROTOCOL-ICMP L3retriever Ping" [**] [Classification: Attempted Information Leak] [Priority: 2] {ICMP} 172.16.255.1 -> 67.215.65.132
+01/25-20:56:45.434639 [**] [1:384:8] "PROTOCOL-ICMP PING" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 172.16.255.1 -> 67.215.65.132
+01/25-20:56:45.549380 [**] [1:408:8] "PROTOCOL-ICMP Echo Reply" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 67.215.65.132 -> 172.16.255.1
+01/25-20:56:45.659285 [**] [1:466:9] "PROTOCOL-ICMP L3retriever Ping" [**] [Classification: Attempted Information Leak] [Priority: 2] {ICMP} 172.16.255.1 -> 67.215.65.132
+01/25-20:56:45.659285 [**] [1:384:8] "PROTOCOL-ICMP PING" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 172.16.255.1 -> 67.215.65.132
+01/25-20:56:47.552706 [**] [1:466:9] "PROTOCOL-ICMP L3retriever Ping" [**] [Classification: Attempted Information Leak] [Priority: 2] {ICMP} 172.16.255.1 -> 67.215.65.132
+01/25-20:56:47.552706 [**] [1:384:8] "PROTOCOL-ICMP PING" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 172.16.255.1 -> 67.215.65.132
+01/25-20:56:47.667822 [**] [1:408:8] "PROTOCOL-ICMP Echo Reply" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 67.215.65.132 -> 172.16.255.1
+01/25-20:56:47.823394 [**] [1:466:9] "PROTOCOL-ICMP L3retriever Ping" [**] [Classification: Attempted Information Leak] [Priority: 2] {ICMP} 172.16.255.1 -> 67.215.65.132
+01/25-20:56:47.823394 [**] [1:384:8] "PROTOCOL-ICMP PING" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 172.16.255.1 -> 67.215.65.132
+01/25-20:56:47.937788 [**] [1:408:8] "PROTOCOL-ICMP Echo Reply" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 67.215.65.132 -> 172.16.255.1
+01/25-20:56:48.052845 [**] [1:466:9] "PROTOCOL-ICMP L3retriever Ping" [**] [Classification: Attempted Information Leak] [Priority: 2] {ICMP} 172.16.255.1 -> 67.215.65.132
+01/25-20:56:48.052845 [**] [1:384:8] "PROTOCOL-ICMP PING" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 172.16.255.1 -> 67.215.65.132
+01/25-20:56:50.048943 [**] [1:466:9] "PROTOCOL-ICMP L3retriever Ping" [**] [Classification: Attempted Information Leak] [Priority: 2] {ICMP} 172.16.255.1 -> 67.215.65.132
+01/25-20:56:50.048943 [**] [1:384:8] "PROTOCOL-ICMP PING" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 172.16.255.1 -> 67.215.65.132
+01/25-20:56:50.164050 [**] [1:408:8] "PROTOCOL-ICMP Echo Reply" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 67.215.65.132 -> 172.16.255.1
+01/25-20:56:50.273617 [**] [1:466:9] "PROTOCOL-ICMP L3retriever Ping" [**] [Classification: Attempted Information Leak] [Priority: 2] {ICMP} 172.16.255.1 -> 67.215.65.132
+01/25-20:56:50.273617 [**] [1:384:8] "PROTOCOL-ICMP PING" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 172.16.255.1 -> 67.215.65.132
+01/25-20:56:50.385275 [**] [1:408:8] "PROTOCOL-ICMP Echo Reply" [**] [Classification: Misc activity] [Priority: 3] {ICMP} 67.215.65.132 -> 172.16.255.1
+01/25-20:57:11.252038 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 172.16.255.1:60061 -> 239.255.255.250:1900
+01/25-20:57:14.264978 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 172.16.255.1:60061 -> 239.255.255.250:1900
+01/25-20:57:14.511879 [**] [1:1411:21] "PROTOCOL-SNMP public access udp" [**] [Classification: Attempted Information Leak] [Priority: 2] {UDP} 192.168.3.131:52400 -> 192.168.3.99:161
+01/25-20:57:14.511879 [**] [1:1417:18] "PROTOCOL-SNMP request udp" [**] [Classification: Attempted Information Leak] [Priority: 2] {UDP} 192.168.3.131:52400 -> 192.168.3.99:161
+01/25-20:57:14.711879 [**] [1:1411:21] "PROTOCOL-SNMP public access udp" [**] [Classification: Attempted Information Leak] [Priority: 2] {UDP} 192.168.3.131:52400 -> 192.168.3.99:161
+01/25-20:57:14.711879 [**] [1:1417:18] "PROTOCOL-SNMP request udp" [**] [Classification: Attempted Information Leak] [Priority: 2] {UDP} 192.168.3.131:52400 -> 192.168.3.99:161
+01/25-20:57:14.860003 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 172.16.255.1:63802 -> 239.255.255.250:1900
+01/25-20:57:14.860078 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 172.16.255.1:63802 -> 239.255.255.250:1900
+01/25-20:57:17.276008 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 172.16.255.1:60061 -> 239.255.255.250:1900
+01/25-20:57:20.326760 [**] [1:1917:16] "INDICATOR-SCAN UPnP service discover attempt" [**] [Classification: Detection of a Network Scan] [Priority: 3] {UDP} 172.16.255.1:60061 -> 239.255.255.250:1900
