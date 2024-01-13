@@ -1,0 +1,40 @@
+/** Function Prologue **/
+
+   0x080488a5 <+0>:     push   %ebp
+   0x080488a6 <+1>:     mov    %esp,%ebp
+   0x080488a8 <+3>:     push   %ebx
+   0x080488a9 <+4>:     sub    $0x34,%esp
+
+/** Getting Input **/
+
+   0x080488ac <+7>:     call   0x8048780 <__x86.get_pc_thunk.bx>
+   0x080488b1 <+12>:    add    $0x9074f,%ebx
+   0x080488b7 <+18>:    sub    $0xc,%esp
+   0x080488ba <+21>:    lea    -0x2c(%ebp),%eax
+   0x080488bd <+24>:    push   %eax
+   0x080488be <+25>:    call   0x80501a0 <gets>
+   0x080488c3 <+30>:    add    $0x10,%esp
+
+/** Copying Input **/
+
+   0x080488c6 <+33>:    movl   $0x0,-0xc(%ebp)
+   0x080488cd <+40>:    jmp    0x80488ed <readString+72>
+   0x080488cf <+42>:    lea    -0x2c(%ebp),%edx
+   0x080488d2 <+45>:    mov    -0xc(%ebp),%eax
+   0x080488d5 <+48>:    add    %edx,%eax
+   0x080488d7 <+50>:    movzbl (%eax),%eax
+   0x080488da <+53>:    mov    %eax,%ecx
+   0x080488dc <+55>:    mov    $0x80dacc0,%edx
+   0x080488e2 <+61>:    mov    -0xc(%ebp),%eax
+   0x080488e5 <+64>:    add    %edx,%eax
+   0x080488e7 <+66>:    mov    %cl,(%eax)
+   0x080488e9 <+68>:    addl   $0x1,-0xc(%ebp)
+   0x080488ed <+72>:    cmpl   $0x7f,-0xc(%ebp)
+   0x080488f1 <+76>:    jle    0x80488cf <readString+42>
+
+/** Function Epilogue **/
+
+   0x080488f3 <+78>:    nop
+   0x080488f4 <+79>:    mov    -0x4(%ebp),%ebx
+   0x080488f7 <+82>:    leave
+   0x080488f8 <+83>:    ret
