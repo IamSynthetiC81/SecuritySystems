@@ -1,10 +1,16 @@
+all: main
 
+DIR_OUT = out
+LOG_OUT = log
 
-main: main.o
-	gcc -o main main.o -lpcap
+mkdir:
+	mkdir -p $(DIR_OUT)/ $(LOG_OUT)/
+
+main: mkdir pcap_ex.c
+	gcc -o $(DIR_OUT)/pcap_ex pcap_ex.c -lpcap
 
 clean: 
-	rm -f *.o
+	rm -f $(DIR_OUT)/*
 
 test: main
 	@./main

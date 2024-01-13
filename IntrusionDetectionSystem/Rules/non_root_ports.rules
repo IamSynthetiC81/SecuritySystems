@@ -1,0 +1,4 @@
+alert ip any 1024: -> any 1025: (
+    msg:"Traffic between two unprivilaged ports"; 
+    sid:1000002;
+)
